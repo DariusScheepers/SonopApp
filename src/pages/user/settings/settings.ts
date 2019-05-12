@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
-import { GlobalProvider } from "../../providers/global/global";
-import { Http } from '../../http-api';
+import { GlobalProvider } from "../../../providers/global/global";
+import { Http } from '../../../http-api';
 import { FormGroup, FormControl } from '@angular/forms';
-import { presentToast, handleError, presentLongToast } from '../../app-functions';
+import { presentToast, handleError, presentLongToast } from '../../../app-functions';
 
 @IonicPage()
 @Component({

@@ -6,10 +6,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 //import { HomePage } from '../pages/home/home';
 //import { ListPage } from '../pages/list/list';
 import { LoginPage } from '../pages/login/login';
-import { AnnouncementsPage } from '../pages/announcements/announcements';
-import { WeekendPage } from '../pages/weekend/weekend';
-import { SignOutPage } from '../pages/sign-out/sign-out';
-import { SettingsPage } from '../pages/settings/settings';
+import { AnnouncementsPage } from '../pages/user/announcements/announcements';
+import { WeekendPage } from '../pages/user/weekend/weekend';
+import { SignOutPage } from '../pages/user/sign-out/sign-out';
+import { SettingsPage } from '../pages/user/settings/settings';
 
 @Component({
   templateUrl: 'app.html'

@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { NavController, ToastController, ModalController } from 'ionic-angular';
-import { Http } from '../../http-api';
-import { GlobalProvider } from "../../providers/global/global";
+import { Http } from '../../../http-api';
+import { GlobalProvider } from "../../../providers/global/global";
 import { FormGroup, FormControl } from '@angular/forms';
-import { AnnouncementsAddPage } from '../announcements-add/announcements-add';
-import { presentToast, handleError } from '../../app-functions';
+import { AnnouncementsAddPage } from './announcements-add/announcements-add';
+import { presentToast, handleError } from '../../../app-functions';
 
 @Component({
   selector: 'page-announcements',

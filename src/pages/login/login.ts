@@ -3,11 +3,11 @@ import { NavController, ToastController } from 'ionic-angular';
 import { FormGroup, FormControl} from '@angular/forms';
 //import { HomePage } from '../home/home';
 import { Http } from '../../http-api';
-import { AnnouncementsPage } from '../announcements/announcements';
-import { RegisterPage } from '../register/register';
+import { AnnouncementsPage } from '../user/announcements/announcements';
+import { RegisterPage } from '../user/register/register';
 import { GlobalProvider } from "../../providers/global/global";
 import { presentToast, handleError } from '../../app-functions';
-import { LoginNonniePage } from '../login-nonnie/login';
+import { LoginNonniePage } from '../nonnie/login-nonnie/login';
 
 @Component({
   selector: 'page-login',

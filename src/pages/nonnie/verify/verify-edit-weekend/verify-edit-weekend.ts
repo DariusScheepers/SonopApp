@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, ToastController } from 'ionic-angular';
-import { Http } from '../../http-api';
-import { presentToast, handleError } from '../../app-functions';
+import { Http } from '../../../../http-api';
+import { presentToast, handleError } from '../../../../app-functions';
 
 @IonicPage()
 @Component({

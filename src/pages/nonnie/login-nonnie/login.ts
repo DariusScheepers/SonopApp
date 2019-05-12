@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, ToastController } from 'ionic-angular';
 import { FormGroup, FormControl} from '@angular/forms';
-import { Http } from '../../http-api';
+import { Http } from '../../../http-api';
 import { TabsPage } from '../tabs/tabs';
-import { presentToast, handleError } from '../../app-functions';
+import { presentToast, handleError } from '../../../app-functions';
 
 @Component({
   selector: 'page-login',

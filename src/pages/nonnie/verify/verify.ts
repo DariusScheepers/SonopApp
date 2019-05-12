@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, AlertController, ModalController } from 'ionic-angular';
-import { Http } from '../../http-api';
-import { presentToast, handleError } from '../../app-functions';
-import { VerifyEditPage } from '../verify-edit/verify-edit';
-import { VerifyEditWeekendPage } from '../verify-edit-weekend/verify-edit-weekend';
+import { Http } from '../../../http-api';
+import { presentToast, handleError } from '../../../app-functions';
+import { VerifyEditPage } from './verify-edit/verify-edit';
+import { VerifyEditWeekendPage } from './verify-edit-weekend/verify-edit-weekend';
 
 @IonicPage()
 @Component({

@@ -27979,25 +27979,6 @@ body {
   user-select: text;
 }
 
-.item.wrap, .item-content.wrap {
-  white-space: pre-wrap;
-}
-
-.cardImage {
-  height: 175px !important;
-  width: 125px !important;
-}
-
-.line-break {
-  overflow: inherit;
-  text-overflow: inherit;
-  white-space: normal;
-}
-
-#message {
-  min-height: 150px;
-}
-
 ion-spinner {
   top: 50%;
   margin-top: 50%;
@@ -28035,6 +28016,25 @@ page-weekend tr:hover {
 page-weekend #blockName {
   background-color: #488aff;
   color: white;
+}
+
+.item.wrap, .item-content.wrap {
+  white-space: pre-wrap;
+}
+
+.cardImage {
+  height: 175px !important;
+  width: 125px !important;
+}
+
+.line-break {
+  overflow: inherit;
+  text-overflow: inherit;
+  white-space: normal;
+}
+
+#message {
+  min-height: 150px;
 }
 
 page-weekend th {

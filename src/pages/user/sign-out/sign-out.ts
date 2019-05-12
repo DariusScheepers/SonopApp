@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, ToastController } from 'ionic-angular';
-import { GlobalProvider } from "../../providers/global/global";
-import { Http } from '../../http-api';
-import { handleError } from '../../app-functions';
+import { GlobalProvider } from "../../../providers/global/global";
+import { Http } from '../../../http-api';
+import { handleError } from '../../../app-functions';
 
 @Component({
 	selector: 'page-sign-out',

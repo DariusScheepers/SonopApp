@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, ToastController } from 'ionic-angular';
 import { FormGroup, FormControl} from '@angular/forms';
-import { Http } from '../../http-api';
-import { LoginPage } from '../login/login';
-import { presentToast, handleError } from '../../app-functions';
+import { Http } from '../../../http-api';
+import { LoginPage } from '../../login/login';
+import { presentToast, handleError } from '../../../app-functions';
 
 @Component({
   selector: 'page-register',

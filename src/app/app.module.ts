@@ -5,25 +5,26 @@ import { Http } from '../http-api';
 import { HttpModule} from '@angular/http';
 import { HTTP } from '@ionic-native/http';
 import { LocalNotifications } from '@ionic-native/local-notifications';
-//#region user
 import { MyApp } from './app.component';
+
+//#region user
 import { LoginPage } from '../pages/login/login';
-import { RegisterPage } from '../pages/register/register';
-import { AnnouncementsPage } from '../pages/announcements/announcements';
-import { AnnouncementsAddPage } from '../pages/announcements-add/announcements-add';
-import { WeekendPage } from '../pages/weekend/weekend';
-import { SignOutPage } from '../pages/sign-out/sign-out';
-import { SettingsPage } from '../pages/settings/settings';
+import { RegisterPage } from '../pages/user/register/register';
+import { AnnouncementsPage } from '../pages/user/announcements/announcements';
+import { AnnouncementsAddPage } from '../pages/user/announcements/announcements-add/announcements-add';
+import { WeekendPage } from '../pages/user/weekend/weekend';
+import { SignOutPage } from '../pages/user/sign-out/sign-out';
+import { SettingsPage } from '../pages/user/settings/settings';
 //#endregion
 
 //#region nonnie
-import { TabsPage } from '../pages/tabs/tabs';
-import { LoginNonniePage } from '../pages/login-nonnie/login';
-import { VerifyPage } from '../pages/verify/verify';
-import { WeekendNonniePage } from '../pages/weekend-nonnie/weekend';
-import { SignOutNonniePage } from '../pages/sign-out-nonnie/sign-out';
-import { VerifyEditPage } from '../pages/verify-edit/verify-edit';
-import { VerifyEditWeekendPage } from '../pages/verify-edit-weekend/verify-edit-weekend';
+import { TabsPage } from '../pages/nonnie/tabs/tabs';
+import { LoginNonniePage } from '../pages/nonnie/login-nonnie/login';
+import { VerifyPage } from '../pages/nonnie/verify/verify';
+import { WeekendNonniePage } from '../pages/nonnie/weekend-nonnie/weekend';
+import { SignOutNonniePage } from '../pages/nonnie/sign-out-nonnie/sign-out';
+import { VerifyEditPage } from '../pages/nonnie/verify/verify-edit/verify-edit';
+import { VerifyEditWeekendPage } from '../pages/nonnie/verify/verify-edit-weekend/verify-edit-weekend';
 //#endregion
 
 import { StatusBar } from '@ionic-native/status-bar';
