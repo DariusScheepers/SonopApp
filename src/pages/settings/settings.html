@@ -1,0 +1,64 @@
+
+<ion-header>
+
+  <ion-navbar>
+      	<button ion-button menuToggle right>
+    		<ion-icon name="menu"></ion-icon>
+      	</button>
+    <ion-title>Settings</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<h1>Update the settings you wish to change, leave the rest and click Update</h1>
+	<form (submit)="updateInformation(settings.value)" [formGroup]="settings">
+		<ion-list>
+			<ion-item> 
+				<ion-label floating>Your Bediening Table<span style="color:red">*</span></ion-label>
+				<ion-select formControlName="table" [(ngModel)]="bedieningTableID">
+					<ion-option value=1>HK</ion-option>
+					<ion-option value=2>Weste Senior</ion-option>
+					<ion-option value=3>Weste Junior</ion-option>
+					<ion-option value=4>Ooste Senior</ion-option>
+					<ion-option value=5>Ooste Junior</ion-option>
+					<ion-option value=6>Noorde Senior</ion-option>
+					<ion-option value=7>Noorde Junior</ion-option>
+					<ion-option value=8>Sentraal</ion-option>
+					<ion-option value=9>Senaat</ion-option>
+					<ion-option value=10>Verre Weste</ion-option>
+					<ion-option value=11>Eerste Jaar</ion-option>
+				</ion-select>        
+			</ion-item>
+			<ion-item>
+                <ion-label>Semi</ion-label>
+                <ion-checkbox right formControlName="semi" [(ngModel)]="semi"></ion-checkbox>
+			</ion-item>
+			<ion-item>
+				<ion-label floating>Update email adress</ion-label>
+				<ion-input formControlName="email" type="text" maxlength="100" [(ngModel)]="emailAddress"></ion-input>
+			</ion-item>
+		</ion-list>
+		<button *ngIf="!editPasswordMode" ion-button outline round (click)="editPasswordMode = !editPasswordMode">Change Password</button>
+		<button *ngIf="editPasswordMode" ion-button outline round (click)="editPasswordMode = !editPasswordMode">Cancel Changing Password</button>
+		<div *ngIf="editPasswordMode">
+			<ion-item> 
+				<ion-label floating>Old Password</ion-label>
+				<ion-input formControlName="oldpassword" type="password" maxlength="32"></ion-input>        
+			</ion-item>
+			<ion-item> 
+				<ion-label floating>New Password</ion-label>
+				<ion-input formControlName="newpassword" type="password" maxlength="32"></ion-input>        
+			</ion-item>
+			<ion-item> 
+				<ion-label floating>Confirm Password</ion-label>
+				<ion-input formControlName="confirmpassword" type="password" maxlength="32"></ion-input>        
+			</ion-item>
+		</div>
+		<button ion-button outline round type="submit" block>Update</button>
+		
+	</form>
+
+
+</ion-content>

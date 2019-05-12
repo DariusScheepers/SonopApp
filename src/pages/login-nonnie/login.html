@@ -1,0 +1,22 @@
+<ion-content>
+    <div id=register-container class="container">
+        <div class="login-pane">
+            <form (submit)="loginNonnie(nonnieLogin.value)" [formGroup]="nonnieLogin">
+                <ion-list>
+                    <ion-item>
+                        <ion-label>
+                            <h1>Welcome Nonnie</h1>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label floating>Password</ion-label>
+                        <ion-input formControlName="pass" type="password"></ion-input>
+                    </ion-item>
+                    <button ion-button outline round block type="submit" color="tertiary">Login</button>
+                </ion-list>
+            </form>
+        </div>
+        <div id="register-info">
+        </div>
+    </div>
+</ion-content>

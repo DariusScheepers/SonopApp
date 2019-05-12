@@ -1,0 +1,27 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle right>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Weekend Sign In</ion-title>
+    </ion-navbar>
+</ion-header>
+    
+<ion-content padding>
+    <div *ngIf="!weekendSignInOpen">
+        <h1>Sign in for the weekend has closed</h1>
+    </div>
+    <div>
+        <p>Weekend Sign In closes every Thursday at 15:00.</p>
+        <ion-list>
+            <ion-card color="primary" class="weekendSlots card" *ngFor="let meal of meals" (click)="updateSlot(meal)">
+                <ion-card-content>   
+                    <ion-item [style.background-color]="meal.status ? '#119b05' : '#f53d3d'">          
+                        <ion-label style="color:white">{{meal.meal}} {{meal.date}}</ion-label>           
+                    </ion-item>             
+                </ion-card-content>
+            </ion-card>
+        </ion-list>
+    </div>
+</ion-content>
+      

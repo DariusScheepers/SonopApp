@@ -1,0 +1,44 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Edit Account</ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="cancel()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <h1>Information regarding {{account.fullName}}</h1>
+  <form (submit)="submit(information.value)" [formGroup]="information">
+    <ion-list>
+      <ion-item> 
+        <ion-label floating>Your Bediening Table<span style="color:red">*</span></ion-label>
+        <ion-select formControlName="table" [(ngModel)]="bedieningTableID">
+          <ion-option value=1>HK</ion-option>
+          <ion-option value=2>Weste Senior</ion-option>
+          <ion-option value=3>Weste Junior</ion-option>
+          <ion-option value=4>Ooste Senior</ion-option>
+          <ion-option value=5>Ooste Junior</ion-option>
+          <ion-option value=6>Noorde Senior</ion-option>
+          <ion-option value=7>Noorde Junior</ion-option>
+          <ion-option value=8>Sentraal</ion-option>
+          <ion-option value=9>Senaat</ion-option>
+          <ion-option value=10>Verre Weste</ion-option>
+          <ion-option value=11>Eerste Jaar</ion-option>
+        </ion-select>        
+      </ion-item>
+      <ion-item>
+        <ion-label>Semi</ion-label>
+        <ion-checkbox right formControlName="semi" [(ngModel)]="semi"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+    <button ion-button outline round type="submit" block>Update</button>
+		
+	</form>
+
+</ion-content>

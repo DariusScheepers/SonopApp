@@ -1,0 +1,73 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Accounts</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="refresh()">Refresh</button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <h1>
+    Verify Accounts
+  </h1>
+  <ion-list>
+    <ion-card class="account card" *ngFor="let account of unverifiedAccounts" color="primary" [style.background-color]="account.usrIsHK ? '#f53d3d' : '#488aff'">
+      <ion-card-header>  
+          <ion-item color="primary">
+              <ion-label item-start><h1>{{account.fullName}}</h1></ion-label>
+              <button ion-button item-end (click)="verifyAccount(account)">Verify</button>
+              <button ion-button item-end (click)="discardAccount(account)">Discard</button>
+          </ion-item>              
+      </ion-card-header>
+      <ion-card-content>   
+          <ion-item color="primary">          
+            <ion-label>Username: {{account.usrUsername}}</ion-label>
+          </ion-item>
+          <ion-item color="primary">
+            <ion-label>Email address: {{account.usrEmailAddress}}</ion-label> 
+          </ion-item>
+          <ion-item color="primary">
+            <ion-label>Bediening Table: {{account.talName}}</ion-label> 
+          </ion-item>
+          <ion-item *ngIf="account.usrIsHK" color="primary">
+            <ion-label>HK Member</ion-label>  
+          </ion-item>            
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+
+  <h1>
+    Manage Accounts
+  </h1>
+  <ion-list>
+    <ion-card *ngFor="let account of verifiedAccounts" color="primary">
+      <ion-card-header>
+          <ion-item color="primary">
+            <ion-label item-start><h1>{{account.fullName}}</h1></ion-label>
+            <button ion-button item-end (click)="editAccount(account)">Edit</button>
+            <button ion-button item-end (click)="presentDeleteConfirm(account)">Delete</button>
+            <button ion-button item-end (click)="editWeekend(account)">Edit Weekend Sign In</button>
+          </ion-item> 
+      </ion-card-header>
+      <ion-card-content>   
+        <ion-item color="primary">          
+          <ion-label>Username: {{account.usrUsername}}</ion-label>
+        </ion-item>
+        <ion-item color="primary">
+          <ion-label>Email address: {{account.usrEmailAddress}}</ion-label> 
+        </ion-item>
+        <ion-item color="primary">
+          <ion-label>Bediening Table: {{account.talName}}</ion-label> 
+        </ion-item>   
+        <ion-item color="primary">
+            <ion-label>Semi: {{account.usrIsSemi}}</ion-label> 
+          </ion-item>            
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+
+</ion-content>

@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Add Announcement</ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="cancel()">
+          <ion-icon name="close"></ion-icon>
+      </button>
+  </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+    <form  (submit)="addAnnouncement(newAnn.value)" [formGroup]="newAnn">
+        <ion-item>
+            <h2>Post New Announcement</h2>
+        </ion-item>
+        <ion-item> 
+            <ion-label floating>Enter Title...</ion-label>
+            <ion-input formControlName="title" type="text" maxlength="50"></ion-input>        
+        </ion-item>
+        <ion-item id="message"> 
+            <ion-label floating>Enter text...</ion-label>
+            <ion-textarea rows="10" formControlName="message" type="text" maxlength="10000"></ion-textarea>        
+        </ion-item>
+        <ion-item>
+            <ion-label>Priority</ion-label>
+            <ion-checkbox (ionChange)="priorityMessage = !priorityMessage"></ion-checkbox>
+        </ion-item>
+        <button ion-button outline round type="submit" block>submit</button>
+    </form>
+</ion-content>

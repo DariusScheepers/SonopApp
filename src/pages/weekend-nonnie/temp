@@ -1,0 +1,290 @@
+
+
+
+
+		
+		<tr *ngFor="let student of Hk">
+			<td>{{student.usrName}} {{student.usrSurname}}</td>
+			<td [style.background-color]="student.wsiFridayDinner ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSaturdayBrunch ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSaturdayDinner ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSundayBreakfast ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSundayLunch ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSundayDinner ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+		</tr>
+		<tr id="blockName">
+			<td>Weste Seniors</td>
+		</tr>
+		<tr *ngFor="let student of WS">
+			<td>{{student.usrName}} {{student.usrSurname}}</td>
+			<td [style.background-color]="student.wsiFridayDinner ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSaturdayBrunch ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSaturdayDinner ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSundayBreakfast ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSundayLunch ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSundayDinner ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+		</tr>
+		<tr id="blockName">
+			<td>Weste Juniors</td>
+		</tr>
+		<tr *ngFor="let student of WJ">
+			<td>{{student.usrName}} {{student.usrSurname}}</td>
+			<td [style.background-color]="student.wsiFridayDinner ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSaturdayBrunch ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSaturdayDinner ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSundayBreakfast ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSundayLunch ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSundayDinner ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+		</tr>
+		<tr id="blockName">
+			<td>Ooste Seniors</td>
+		</tr>
+		<tr *ngFor="let student of OS">
+			<td>{{student.usrName}} {{student.usrSurname}}</td>
+			<td [style.background-color]="student.wsiFridayDinner ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSaturdayBrunch ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSaturdayDinner ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSundayBreakfast ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSundayLunch ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSundayDinner ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+		</tr>
+		<tr id="blockName">
+			<td>Ooster Juniors</td>
+		</tr>
+		<tr *ngFor="let student of OJ">
+			<td>{{student.usrName}} {{student.usrSurname}}</td>
+			<td [style.background-color]="student.wsiFridayDinner ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSaturdayBrunch ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSaturdayDinner ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSundayBreakfast ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSundayLunch ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSundayDinner ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+		</tr>
+		<tr id="blockName">
+			<td>Noorde Seniors</td>
+		</tr>
+		<tr *ngFor="let student of NS">
+			<td>{{student.usrName}} {{student.usrSurname}}</td>
+			<td [style.background-color]="student.wsiFridayDinner ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSaturdayBrunch ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSaturdayDinner ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSundayBreakfast ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSundayLunch ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSundayDinner ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+		</tr>
+		<tr id="blockName">
+			<td>Noorde Juniors</td>
+		</tr>
+		<tr *ngFor="let student of NJ">
+			<td>{{student.usrName}} {{student.usrSurname}}</td>
+			<td [style.background-color]="student.wsiFridayDinner ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSaturdayBrunch ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSaturdayDinner ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSundayBreakfast ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSundayLunch ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSundayDinner ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+		</tr>
+		<tr id="blockName">
+			<td>Sentraal</td>
+		</tr>
+		<tr *ngFor="let student of Sr">
+			<td>{{student.usrName}} {{student.usrSurname}}</td>
+			<td [style.background-color]="student.wsiFridayDinner ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSaturdayBrunch ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSaturdayDinner ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSundayBreakfast ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSundayLunch ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSundayDinner ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+		</tr>
+		<tr id="blockName">
+			<td>Senaat</td>
+		</tr>
+		<tr *ngFor="let student of St">
+			<td>{{student.usrName}} {{student.usrSurname}}</td>
+			<td [style.background-color]="student.wsiFridayDinner ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSaturdayBrunch ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSaturdayDinner ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSundayBreakfast ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSundayLunch ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSundayDinner ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+		</tr>
+		<tr id="blockName">
+			<td>Verre Weste</td>
+		</tr>
+		<tr *ngFor="let student of VW">
+			<td>{{student.usrName}} {{student.usrSurname}}</td>
+			<td [style.background-color]="student.wsiFridayDinner ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSaturdayBrunch ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSaturdayDinner ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSundayBreakfast ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSundayLunch ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSundayDinner ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+		</tr>
+		<tr id="blockName">
+			<td>First Years</td>
+		</tr>
+		<tr *ngFor="let student of EJ">
+			<td>{{student.usrName}} {{student.usrSurname}}</td>
+			<td [style.background-color]="student.wsiFridayDinner ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSaturdayBrunch ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSaturdayDinner ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSundayBreakfast ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSundayLunch ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+			<td [style.background-color]="student.wsiSundayDinner ? '#119b05' : '#f53d3d'">{{student.usrName}}</td>
+		</tr>
+
+
+
+
+
+
+
+
+        		
+		<tr *ngFor="let student of seatingMap[0]">
+			<td *ngFor="let field of student">{{ field }}</td>
+		</tr>
+		<tr *ngFor="let student of seatingMap[1]">
+			<td *ngFor="let field of student">{{ field }}</td>
+		</tr>
+		<tr *ngFor="let student of seatingMap[2]">
+			<td *ngFor="let field of student">{{ field }}</td>
+		</tr>
+		<tr *ngFor="let student of seatingMap[3]">
+			<td *ngFor="let field of student">{{ field }}</td>
+		</tr>
+		<tr *ngFor="let student of seatingMap[4]">
+			<td *ngFor="let field of student">{{ field }}</td>
+		</tr>
+		<tr *ngFor="let student of seatingMap[5]">
+			<td *ngFor="let field of student">{{ field }}</td>
+		</tr>
+		<tr *ngFor="let student of seatingMap[6]">
+			<td *ngFor="let field of student">{{ field }}</td>
+		</tr>
+		<tr *ngFor="let student of seatingMap[7]">
+			<td *ngFor="let field of student">{{ field }}</td>
+		</tr>
+		<tr *ngFor="let student of seatingMap[8]">
+			<td *ngFor="let field of student">{{ field }}</td>
+		</tr>	
+		<tr *ngFor="let student of seatingMap[9]">
+			<td *ngFor="let field of student">{{ field }}</td>
+		</tr>
+		<tr *ngFor="let student of seatingMap[10]">
+			<td *ngFor="let field of student">{{ field }}</td>
+		</tr>
+
+        alert(this.seatingMap[0][0][0]);
+				/*
+				jsonResp.result0.forEach(element => 
+				{	
+
+					var fullName = element.usrName + " " + element.usrSurname;
+					var rowEntry = [fullName, element.wsiFridayDinner, element.wsiSaturdayBrunch, element.wsiSaturdayDinner, element.wsiSundayBreakfast, element.wsiSundayLunch, element.wsiSundayDinner];
+
+					//this.seatingMap[element.talName] = [];
+					this.seatingMap[element.talName].push(rowEntry);
+					alert("tsble: " + element.talName + " se: " + this.seatingMap[element.talName]);
+						
+					
+
+
+
+					switch (element.talName) {
+						case this.tables[0]:
+							this.Hk.push(element);
+							break;
+						case this.tables[1]:
+							this.WS.push(element);
+							break;
+						case this.tables[2]:
+							this.WJ.push(element);
+							break;
+						case this.tables[3]:
+							this.OS.push(element);
+							break;
+						case this.tables[4]:
+							this.OJ.push(element);
+							break;
+						case this.tables[5]:
+							this.NS.push(element);
+							break;
+						case this.tables[6]:
+							this.NJ.push(element);
+							break;
+						case this.tables[7]:
+							this.Sr.push(element);
+							break;
+						case this.tables[8]:
+							this.St.push(element);
+							break;
+						case this.tables[9]:
+							this.VW.push(element);
+							break;
+						case this.tables[10]:
+							this.EJ.push(element);
+							break;						
+					}					
+				});
+			*/
+
+            seatingMapRows:number;
+	seatingMapCols:number = 7;
+	
+	
+	Hk:any = [];
+	WS:any = [];
+	WJ:any = [];
+	OS:any = [];
+	OJ:any = [];
+	NS:any = [];
+	NJ:any = [];
+	Sr:any = [];
+	St:any = [];
+	VW:any = [];
+	EJ:any = [];
+
+    this.Hk.forEach(element => {
+			csvText += element.usrName + " " + element.usrSurname + "," + element.wsiFridayDinner + "," + element.wsiSaturdayBrunch + "," + element.wsiSaturdayDinner + "," + element.wsiSundayBreakfast + "," + element.wsiSundayLunch + "," + element.wsiSundayDinner + "\n";
+		});
+		csvText += this.tables[1] + "\n";
+		this.WS.forEach(element => {
+			csvText += element.usrName + " " + element.usrSurname + "," + element.wsiFridayDinner + "," + element.wsiSaturdayBrunch + "," + element.wsiSaturdayDinner + "," + element.wsiSundayBreakfast + "," + element.wsiSundayLunch + "," + element.wsiSundayDinner + "\n";
+		});
+		csvText += this.tables[2] + "\n";
+		this.WJ.forEach(element => {
+			csvText += element.usrName + " " + element.usrSurname + "," + element.wsiFridayDinner + "," + element.wsiSaturdayBrunch + "," + element.wsiSaturdayDinner + "," + element.wsiSundayBreakfast + "," + element.wsiSundayLunch + "," + element.wsiSundayDinner + "\n";
+		});
+		csvText += this.tables[3] + "\n";
+		this.OS.forEach(element => {
+			csvText += element.usrName + " " + element.usrSurname + "," + element.wsiFridayDinner + "," + element.wsiSaturdayBrunch + "," + element.wsiSaturdayDinner + "," + element.wsiSundayBreakfast + "," + element.wsiSundayLunch + "," + element.wsiSundayDinner + "\n";
+		});
+		csvText += this.tables[4] + "\n";
+		this.OJ.forEach(element => {
+			csvText += element.usrName + " " + element.usrSurname + "," + element.wsiFridayDinner + "," + element.wsiSaturdayBrunch + "," + element.wsiSaturdayDinner + "," + element.wsiSundayBreakfast + "," + element.wsiSundayLunch + "," + element.wsiSundayDinner + "\n";
+		});
+		csvText += this.tables[5] + "\n";
+		this.NS.forEach(element => {
+			csvText += element.usrName + " " + element.usrSurname + "," + element.wsiFridayDinner + "," + element.wsiSaturdayBrunch + "," + element.wsiSaturdayDinner + "," + element.wsiSundayBreakfast + "," + element.wsiSundayLunch + "," + element.wsiSundayDinner + "\n";
+		});
+		csvText += this.tables[6] + "\n";
+		this.NJ.forEach(element => {
+			csvText += element.usrName + " " + element.usrSurname + "," + element.wsiFridayDinner + "," + element.wsiSaturdayBrunch + "," + element.wsiSaturdayDinner + "," + element.wsiSundayBreakfast + "," + element.wsiSundayLunch + "," + element.wsiSundayDinner + "\n";
+		});
+		csvText += this.tables[7] + "\n";
+		this.Sr.forEach(element => {
+			csvText += element.usrName + " " + element.usrSurname + "," + element.wsiFridayDinner + "," + element.wsiSaturdayBrunch + "," + element.wsiSaturdayDinner + "," + element.wsiSundayBreakfast + "," + element.wsiSundayLunch + "," + element.wsiSundayDinner + "\n";
+		});
+		csvText += this.tables[8] + "\n";
+		this.St.forEach(element => {
+			csvText += element.usrName + " " + element.usrSurname + "," + element.wsiFridayDinner + "," + element.wsiSaturdayBrunch + "," + element.wsiSaturdayDinner + "," + element.wsiSundayBreakfast + "," + element.wsiSundayLunch + "," + element.wsiSundayDinner + "\n";
+		});
+		csvText += this.tables[9] + "\n";
+		this.VW.forEach(element => {
+			csvText += element.usrName + " " + element.usrSurname + "," + element.wsiFridayDinner + "," + element.wsiSaturdayBrunch + "," + element.wsiSaturdayDinner + "," + element.wsiSundayBreakfast + "," + element.wsiSundayLunch + "," + element.wsiSundayDinner + "\n";
+		});
+		csvText += this.tables[10] + "\n";
+		this.EJ.forEach(element => {
+			csvText += element.usrName + " " + element.usrSurname + "," + element.wsiFridayDinner + "," + element.wsiSaturdayBrunch + "," + element.wsiSaturdayDinner + "," + element.wsiSundayBreakfast + "," + element.wsiSundayLunch + "," + element.wsiSundayDinner + "\n";
+		});

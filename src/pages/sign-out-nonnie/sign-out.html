@@ -1,0 +1,42 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>Today's Sign In List</ion-title>
+		<ion-buttons end>
+			<button ion-button icon-only (click)="refresh()">
+				<ion-icon name="refresh"></ion-icon>
+			</button>
+			<button ion-button icon-only (click)="downloadCSV()">
+				<ion-icon name="download"></ion-icon>
+			</button>			
+		</ion-buttons>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<table border=1>
+		<tr>
+			<th width="20%">Table</th>
+			<th width="50%">Student</th>
+			<th [style.background-color]="lunchMealStatus == 0 ? '#f53d3d' : '#119b05'"><b>{{ lunchMeal }}</b></th>
+			<th [style.background-color]="dinnerMealStatus == 0 ? '#f53d3d' : '#119b05'"><b>{{ dinnerMeal }}</b></th>
+		</tr>
+		<tr *ngFor="let student of seatingMapList;">
+			<td *ngFor="let field of student;" [style.background-color]="field == 0 ? '#FFFF00' : (field == 1 ? '#f53d3d' : (field == 2 ? '#119b05' : '#FFFFFF'))">
+				<div *ngIf="field != 0 && field != 1 && field != 2">
+					{{ field }}
+				</div>	
+				<div *ngIf="field == 0 && field != 1 && field != 2">
+					Permanent Sign Out
+				</div>	
+				<div *ngIf="field != 0 && field == 1 && field != 2">
+					Signed Out
+				</div>
+				<div *ngIf="field != 0 && field != 1 && field == 2">
+					Signed In
+				</div>					
+			</td>
+		</tr>
+	</table>
+	<ion-label>Number of Students Signed In for Lunch: {{ lunchCount }}</ion-label>
+	<ion-label>Number of Students Signed In for Dinner: {{ dinnerCount }}</ion-label>
+</ion-content>

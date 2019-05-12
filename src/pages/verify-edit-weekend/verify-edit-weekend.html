@@ -1,0 +1,27 @@
+<ion-header>
+
+  <ion-navbar>
+	<ion-title>Edit Weekend Sign In</ion-title>
+	<ion-buttons start>
+		<button ion-button (click)="cancel()">
+			<ion-icon name="close"></ion-icon>
+		</button>
+	</ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<h1>Information regarding {{account.fullName}}</h1>
+	<ion-list>
+		<ion-card color="primary" *ngFor="let meal of meals" (click)="updateSlot(meal)">
+			<ion-card-content>   
+				<ion-item [style.background-color]="meal.status ? '#119b05' : '#f53d3d'">          
+					<ion-label style="color:white">{{meal.meal}} {{meal.date}}</ion-label>           
+				</ion-item>             
+			</ion-card-content>
+		</ion-card>
+	</ion-list>
+	<button ion-button outline round block (click)="cancel()">Done</button>
+</ion-content>

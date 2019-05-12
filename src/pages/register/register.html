@@ -1,0 +1,71 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Registration</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <form (submit)="registerUser(regUser.value)" [formGroup]="regUser">
+        <ion-list>
+            <ion-item> 
+                <ion-label floating>Name<span style="color:red">*</span></ion-label>
+                <ion-input formControlName="fname" type="text" maxlength="50"></ion-input>        
+            </ion-item>
+            <ion-item> 
+                <ion-label floating>Surname<span style="color:red">*</span></ion-label>
+                <ion-input formControlName="sname" type="text" maxlength="50"></ion-input>        
+            </ion-item>
+            <ion-item> 
+                <ion-label floating>Email<span style="color:red">*</span></ion-label>
+                <ion-input formControlName="email" type="text" maxlength="100"></ion-input>        
+            </ion-item>
+            <ion-item> 
+                <ion-label floating>Username<span style="color:red">*</span></ion-label>
+                <ion-input formControlName="username" type="text" maxlength="50"></ion-input>        
+            </ion-item>
+            <ion-item> 
+                <ion-label floating>Student Number<span style="color:red">*</span></ion-label>
+                <ion-input formControlName="studentnumber" type="number" maxlength="8"></ion-input>        
+            </ion-item>
+            <ion-item> 
+                <ion-label floating>Year of First year<span style="color:red">*</span></ion-label>
+                <ion-input formControlName="firstyearyear" type="number"></ion-input>        
+            </ion-item>
+            <ion-item> 
+                <ion-label floating>Your Bediening Table<span style="color:red">*</span></ion-label>
+                <ion-select formControlName="bedieningtable">
+                    <ion-option value=1>HK</ion-option>
+                    <ion-option value=2>Weste Senior</ion-option>
+                    <ion-option value=3>Weste Junior</ion-option>
+                    <ion-option value=4>Ooste Senior</ion-option>
+                    <ion-option value=5>Ooste Junior</ion-option>
+                    <ion-option value=6>Noorde Senior</ion-option>
+                    <ion-option value=7>Noorde Junior</ion-option>
+                    <ion-option value=8>Sentraal</ion-option>
+                    <ion-option value=9>Senaat</ion-option>
+                    <ion-option value=10>Verre Weste</ion-option>
+                    <ion-option value=11>Eerste Jaar</ion-option>
+                </ion-select>        
+            </ion-item>
+            <ion-item>
+                <ion-label>Semi</ion-label>
+                <ion-checkbox right formControlName="semi"></ion-checkbox>
+            </ion-item>
+            <ion-item> 
+                <ion-label floating>Password<span style="color:red">*</span></ion-label>
+                <ion-input formControlName="password" type="password" maxlength="32"></ion-input>        
+            </ion-item>
+            <ion-item> 
+                <ion-label floating>Confirm Password<span style="color:red">*</span></ion-label>
+                <ion-input formControlName="confirmpassword" type="password" maxlength="32"></ion-input>        
+            </ion-item>
+        </ion-list>
+        <button ion-button outline round type="submit" block>Register</button>
+    </form>
+
+    <div padding>
+
+    </div>
+
+
+</ion-content>

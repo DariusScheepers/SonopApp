@@ -1,0 +1,56 @@
+<ion-header>
+    <ion-navbar>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="refresh()" end>
+                <ion-icon name="refresh"></ion-icon>
+            </button>
+            <button ion-button icon-only *ngIf="global.isHK" (click)="addAnnouncement()">
+                <ion-icon name="add"></ion-icon>
+            </button>
+        </ion-buttons>
+        <button ion-button menuToggle end>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Announcements</ion-title>
+    </ion-navbar>
+</ion-header>
+    
+<ion-content padding>
+
+    <h1>Welcome Meneer {{global.mySurname}}</h1>
+    <ion-card>
+        <ion-card-header>
+        </ion-card-header>
+        <ion-card-content text-wrap>
+            <ion-item>
+                <img item-start class="cardImage" src="../../assets/imgs/Garri Baldi.png" />
+                <p><i>{{votd.text}}</i>
+                    <br />- {{votd.reference}}
+                    <br />
+                    {{votdRef}}
+                </p>                
+            </ion-item>
+        </ion-card-content>
+    </ion-card>
+    
+    <ion-list>
+        <ion-card class="announcement card" *ngFor="let announcement of announcements" color="primary">
+        <ion-card-header>  
+            <ion-item color="primary">
+                <h1 class="line-break">{{announcement.title}}</h1>
+            </ion-item>              
+        </ion-card-header>
+        <ion-card-content>   
+            <ion-item color="primary">          
+                <p>{{announcement.date}}</p> 
+                <p>{{announcement.postedBy}}</p>  
+            </ion-item>
+            <ion-item>
+                <div class="line-break" [innerHTML]="announcement.message"></div>
+            </ion-item>             
+        </ion-card-content>
+        </ion-card>
+    </ion-list>
+    <p>All announcements will be wiped each Sunday at 17:00.</p>
+</ion-content>
+      

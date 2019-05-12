@@ -1,0 +1,14 @@
+.item.wrap, .item-content.wrap {
+    white-space: pre-wrap;
+}   
+
+.cardImage {
+    height: 175px !important;
+    width: 125px !important;
+  }
+
+.line-break{
+    overflow: inherit ;
+    text-overflow: inherit ;
+    white-space: normal;
+  }
