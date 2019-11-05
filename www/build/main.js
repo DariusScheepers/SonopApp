@@ -11,8 +11,8 @@ webpackJsonp([7],{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(106);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_login_login__ = __webpack_require__(107);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_user_announcements_announcements__ = __webpack_require__(108);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_user_weekend_weekend__ = __webpack_require__(212);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_user_sign_out_sign_out__ = __webpack_require__(213);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_user_weekend_weekend__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_user_sign_out_sign_out__ = __webpack_require__(212);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_user_settings_settings__ = __webpack_require__(115);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -68,7 +68,7 @@ var MyApp = /** @class */ (function () {
         __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Nav */])
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Users\dsche\Documents\Darius\Sonop\SonopApp\Refactored Front End\SonopApp-front-end\src\app\app.html"*/'<ion-menu [content]="content" side="right">\n\n  <ion-header>\n\n    <ion-toolbar>\n\n      <ion-title>Menu</ion-title>\n\n    </ion-toolbar>\n\n  </ion-header>\n\n\n\n  <ion-content>\n\n    <ion-list>\n\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n\n        {{p.title}}\n\n      </button>\n\n    </ion-list>\n\n  </ion-content>\n\n\n\n</ion-menu>\n\n\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"C:\Users\dsche\Documents\Darius\Sonop\SonopApp\Refactored Front End\SonopApp-front-end\src\app\app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\app\app.html"*/'<ion-menu [content]="content" side="right">\n\n  <ion-header>\n\n    <ion-toolbar>\n\n      <ion-title>Menu</ion-title>\n\n    </ion-toolbar>\n\n  </ion-header>\n\n\n\n  <ion-content>\n\n    <ion-list>\n\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n\n        {{p.title}}\n\n      </button>\n\n    </ion-list>\n\n  </ion-content>\n\n\n\n</ion-menu>\n\n\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\app\app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
     ], MyApp);
@@ -87,12 +87,12 @@ var MyApp = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__http_api__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__http_api__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__user_announcements_announcements__ = __webpack_require__(108);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__user_register_register__ = __webpack_require__(209);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__user_register_register__ = __webpack_require__(208);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_global_global__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_functions__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__nonnie_login_nonnie_login__ = __webpack_require__(210);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__nonnie_login_nonnie_login__ = __webpack_require__(209);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -178,7 +178,7 @@ var LoginPage = /** @class */ (function () {
     };
     LoginPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-login',template:/*ion-inline-start:"C:\Users\dsche\Documents\Darius\Sonop\SonopApp\Refactored Front End\SonopApp-front-end\src\pages\login\login.html"*/'<ion-content>   \n\n    <div *ngIf="splashScreenOn" (click)="splashScreenOn = false">\n\n        <ion-spinner name="crescent" class="spinner" *ngIf="!splashScreenReady"></ion-spinner>\n\n        <img src="../../assets/imgs/Screenshot_20190106-103426.jpg" width="100%" max-height="100%" (load)="splashScreenLoaded();">\n\n    </div>\n\n    <div *ngIf="!splashScreenOn">\n\n        <ion-list>\n\n            <form (submit)="login(user.value)" [formGroup]="user">\n\n                <ion-list>\n\n                    <ion-item>\n\n                        <ion-label>\n\n                            Login\n\n                        </ion-label>                      \n\n                    </ion-item>                    \n\n                    <ion-item>\n\n                        <ion-label>\n\n                            <ion-icon name="person"></ion-icon>\n\n                        </ion-label>\n\n                        <ion-input formControlName="studentNumber" type="number" maxlength="8" placeholder="Student Number"></ion-input>\n\n                    </ion-item>\n\n                    <button ion-button outline round block type="submit" color="tertiary">Login</button>\n\n                </ion-list>\n\n            </form>\n\n            <ion-item>\n\n                <button ion-button block (click)="openRegister()">Need an Account?</button>\n\n            </ion-item>\n\n            <ion-item>\n\n                <button ion-button block style="background-color: salmon;" (click)="goToNonnieLogin()">Go To Nonnie Login</button>\n\n            </ion-item>\n\n        </ion-list>\n\n        <div style="display: flex; justify-content: center;">\n\n            <img src="../../assets/imgs/Stalle_large.jpg" width="90%" max-height="100%" height="100%">\n\n        </div>\n\n    </div>\n\n</ion-content>'/*ion-inline-end:"C:\Users\dsche\Documents\Darius\Sonop\SonopApp\Refactored Front End\SonopApp-front-end\src\pages\login\login.html"*/
+            selector: 'page-login',template:/*ion-inline-start:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\login\login.html"*/'<ion-content>   \n\n    <div *ngIf="splashScreenOn" (click)="splashScreenOn = false">\n\n        <ion-spinner name="crescent" class="spinner" *ngIf="!splashScreenReady"></ion-spinner>\n\n        <img src="../../assets/imgs/Screenshot_20190106-103426.jpg" width="100%" max-height="100%" (load)="splashScreenLoaded();">\n\n    </div>\n\n    <div *ngIf="!splashScreenOn">\n\n        <ion-list>\n\n            <form (submit)="login(user.value)" [formGroup]="user">\n\n                <ion-list>\n\n                    <ion-item>\n\n                        <ion-label>\n\n                            Login\n\n                        </ion-label>                      \n\n                    </ion-item>                    \n\n                    <ion-item>\n\n                        <ion-label>\n\n                            <ion-icon name="person"></ion-icon>\n\n                        </ion-label>\n\n                        <ion-input formControlName="studentNumber" type="number" maxlength="8" placeholder="Student Number"></ion-input>\n\n                    </ion-item>\n\n                    <button ion-button outline round block type="submit" color="tertiary">Login</button>\n\n                </ion-list>\n\n            </form>\n\n            <ion-item>\n\n                <button ion-button block (click)="openRegister()">Need an Account?</button>\n\n            </ion-item>\n\n            <ion-item>\n\n                <button ion-button block style="background-color: salmon;" (click)="goToNonnieLogin()">Go To Nonnie Login</button>\n\n            </ion-item>\n\n        </ion-list>\n\n        <div style="display: flex; justify-content: center;">\n\n            <img src="../../assets/imgs/Stalle_large.jpg" width="90%" max-height="100%" height="100%">\n\n        </div>\n\n    </div>\n\n</ion-content>'/*ion-inline-end:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\login\login.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */], __WEBPACK_IMPORTED_MODULE_3__http_api__["a" /* Http */], __WEBPACK_IMPORTED_MODULE_6__providers_global_global__["a" /* GlobalProvider */]])
     ], LoginPage);
@@ -196,7 +196,7 @@ var LoginPage = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AnnouncementsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__http_api__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__http_api__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_global_global__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__announcements_add_announcements_add__ = __webpack_require__(114);
@@ -282,7 +282,7 @@ var AnnouncementsPage = /** @class */ (function () {
     };
     AnnouncementsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-announcements',template:/*ion-inline-start:"C:\Users\dsche\Documents\Darius\Sonop\SonopApp\Refactored Front End\SonopApp-front-end\src\pages\user\announcements\announcements.html"*/'<ion-header>\n\n    <ion-navbar>\n\n        <ion-buttons end>\n\n            <button ion-button icon-only (click)="refresh()" end>\n\n                <ion-icon name="refresh"></ion-icon>\n\n            </button>\n\n            <button ion-button icon-only *ngIf="global.isHK" (click)="addAnnouncement()">\n\n                <ion-icon name="add"></ion-icon>\n\n            </button>\n\n        </ion-buttons>\n\n        <button ion-button menuToggle end>\n\n            <ion-icon name="menu"></ion-icon>\n\n        </button>\n\n        <ion-title>Announcements</ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n    \n\n<ion-content padding>\n\n\n\n    <h1>Welcome Meneer {{global.mySurname}}</h1>\n\n    <ion-card>\n\n        <ion-card-header>\n\n        </ion-card-header>\n\n        <ion-card-content text-wrap>\n\n            <ion-item>\n\n                <img item-start class="cardImage" src="../../assets/imgs/Garri Baldi.png" />\n\n                <p><i>{{votd.text}}</i>\n\n                    <br />- {{votd.reference}}\n\n                    <br />\n\n                    {{votdRef}}\n\n                </p>                \n\n            </ion-item>\n\n        </ion-card-content>\n\n    </ion-card>\n\n    \n\n    <ion-list>\n\n        <ion-card class="announcement card" *ngFor="let announcement of announcements" color="primary">\n\n        <ion-card-header>  \n\n            <ion-item color="primary">\n\n                <h1 class="line-break">{{announcement.title}}</h1>\n\n            </ion-item>              \n\n        </ion-card-header>\n\n        <ion-card-content>   \n\n            <ion-item color="primary">          \n\n                <p>{{announcement.date}}</p> \n\n                <p>{{announcement.postedBy}}</p>  \n\n            </ion-item>\n\n            <ion-item>\n\n                <div class="line-break" [innerHTML]="announcement.message"></div>\n\n            </ion-item>             \n\n        </ion-card-content>\n\n        </ion-card>\n\n    </ion-list>\n\n    <p>All announcements will be wiped each Sunday at 17:00.</p>\n\n</ion-content>\n\n      '/*ion-inline-end:"C:\Users\dsche\Documents\Darius\Sonop\SonopApp\Refactored Front End\SonopApp-front-end\src\pages\user\announcements\announcements.html"*/
+            selector: 'page-announcements',template:/*ion-inline-start:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\user\announcements\announcements.html"*/'<ion-header>\n\n    <ion-navbar>\n\n        <ion-buttons end>\n\n            <button ion-button icon-only (click)="refresh()" end>\n\n                <ion-icon name="refresh"></ion-icon>\n\n            </button>\n\n            <button ion-button icon-only *ngIf="global.isHK" (click)="addAnnouncement()">\n\n                <ion-icon name="add"></ion-icon>\n\n            </button>\n\n        </ion-buttons>\n\n        <button ion-button menuToggle end>\n\n            <ion-icon name="menu"></ion-icon>\n\n        </button>\n\n        <ion-title>Announcements</ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n    \n\n<ion-content padding>\n\n\n\n    <h1>Welcome Meneer {{global.mySurname}}</h1>\n\n    <ion-card>\n\n        <ion-card-header>\n\n        </ion-card-header>\n\n        <ion-card-content text-wrap>\n\n            <ion-item>\n\n                <img item-start class="cardImage" src="../../assets/imgs/Garri Baldi.png" />\n\n                <p><i>{{votd.text}}</i>\n\n                    <br />- {{votd.reference}}\n\n                    <br />\n\n                    {{votdRef}}\n\n                </p>                \n\n            </ion-item>\n\n        </ion-card-content>\n\n    </ion-card>\n\n    \n\n    <ion-list>\n\n        <ion-card class="announcement card" *ngFor="let announcement of announcements" color="primary">\n\n        <ion-card-header>  \n\n            <ion-item color="primary">\n\n                <h1 class="line-break">{{announcement.title}}</h1>\n\n            </ion-item>              \n\n        </ion-card-header>\n\n        <ion-card-content>   \n\n            <ion-item color="primary">          \n\n                <p>{{announcement.date}}</p> \n\n                <p>{{announcement.postedBy}}</p>  \n\n            </ion-item>\n\n            <ion-item>\n\n                <div class="line-break" [innerHTML]="announcement.message"></div>\n\n            </ion-item>             \n\n        </ion-card-content>\n\n        </ion-card>\n\n    </ion-list>\n\n    <p>All announcements will be wiped each Sunday at 17:00.</p>\n\n</ion-content>\n\n      '/*ion-inline-end:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\user\announcements\announcements.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */], __WEBPACK_IMPORTED_MODULE_2__http_api__["a" /* Http */],
             __WEBPACK_IMPORTED_MODULE_3__providers_global_global__["a" /* GlobalProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* ModalController */]])
@@ -298,10 +298,88 @@ var AnnouncementsPage = /** @class */ (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return VerifyEditWeekendPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__http_api__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_functions__ = __webpack_require__(15);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var VerifyEditWeekendPage = /** @class */ (function () {
+    function VerifyEditWeekendPage(navCtrl, navParams, http, toastCtrl, viewCtrl) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.http = http;
+        this.toastCtrl = toastCtrl;
+        this.viewCtrl = viewCtrl;
+        this.loadSlotValues();
+    }
+    VerifyEditWeekendPage.prototype.loadSlotValues = function () {
+        var _this = this;
+        this.account = this.navParams.get('account');
+        var reqSend = {
+            id: this.account.usrID
+        };
+        this.http.post('/get-weekend', reqSend).subscribe(// 1 represents signed in
+        function (data) {
+            var jsonResp = JSON.parse(data.text());
+            _this.meals = jsonResp.JSONRes;
+        }, function (error) {
+            Object(__WEBPACK_IMPORTED_MODULE_3__app_functions__["a" /* handleError */])(_this.navCtrl, error, _this.toastCtrl);
+        });
+    };
+    VerifyEditWeekendPage.prototype.updateSlot = function (meal) {
+        var _this = this;
+        meal.status = !meal.status;
+        var reqSend = {
+            id: this.account.usrID,
+            wsiFridayDinner: this.meals[0].status,
+            wsiSaturdayBrunch: this.meals[1].status,
+            wsiSaturdayDinner: this.meals[2].status,
+            wsiSundayBreakfast: this.meals[3].status,
+            wsiSundayLunch: this.meals[4].status,
+            wsiSundayDinner: this.meals[5].status
+        };
+        this.http.post('/updateWeekend', reqSend).subscribe(function (data) { }, function (error) {
+            Object(__WEBPACK_IMPORTED_MODULE_3__app_functions__["a" /* handleError */])(_this.navCtrl, error, _this.toastCtrl);
+        });
+    };
+    VerifyEditWeekendPage.prototype.cancel = function () {
+        this.viewCtrl.dismiss(null);
+    };
+    VerifyEditWeekendPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-verify-edit-weekend',template:/*ion-inline-start:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\nonnie\verify\verify-edit-weekend\verify-edit-weekend.html"*/'<ion-header>\n\n\n\n  <ion-navbar>\n\n	<ion-title>Edit Weekend Sign In</ion-title>\n\n	<ion-buttons start>\n\n		<button ion-button (click)="cancel()">\n\n			<ion-icon name="close"></ion-icon>\n\n		</button>\n\n	</ion-buttons>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n	<h1>Information regarding {{account.fullName}}</h1>\n\n	<ion-list>\n\n		<ion-card color="primary" *ngFor="let meal of meals" (click)="updateSlot(meal)">\n\n			<ion-card-content>   \n\n				<ion-item [style.background-color]="meal.status ? \'#119b05\' : \'#f53d3d\'">          \n\n					<ion-label style="color:white">{{meal.meal}} {{meal.date}}</ion-label>           \n\n				</ion-item>             \n\n			</ion-card-content>\n\n		</ion-card>\n\n	</ion-list>\n\n	<button ion-button outline round block (click)="cancel()">Done</button>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\nonnie\verify\verify-edit-weekend\verify-edit-weekend.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__http_api__["a" /* Http */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ViewController */]])
+    ], VerifyEditWeekendPage);
+    return VerifyEditWeekendPage;
+}());
+
+//# sourceMappingURL=verify-edit-weekend.js.map
+
+/***/ }),
+
+/***/ 110:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SignOutNonniePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__http_api__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__http_api__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_papaparse__ = __webpack_require__(167);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_papaparse___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_papaparse__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_functions__ = __webpack_require__(15);
@@ -370,7 +448,7 @@ var SignOutNonniePage = /** @class */ (function () {
     };
     SignOutNonniePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-sign-out',template:/*ion-inline-start:"C:\Users\dsche\Documents\Darius\Sonop\SonopApp\Refactored Front End\SonopApp-front-end\src\pages\nonnie\sign-out-nonnie\sign-out.html"*/'<ion-header>\n	<ion-navbar>\n		<ion-title>Today\'s Sign In List</ion-title>\n		<ion-buttons end>\n			<button ion-button icon-only (click)="refresh()">\n				<ion-icon name="refresh"></ion-icon>\n			</button>\n			<button ion-button icon-only (click)="downloadCSV()">\n				<ion-icon name="download"></ion-icon>\n			</button>			\n		</ion-buttons>\n	</ion-navbar>\n</ion-header>\n\n<ion-content padding>\n	<table border=1>\n		<tr>\n			<th width="20%">Table</th>\n			<th width="50%">Student</th>\n			<th [style.background-color]="lunchMealStatus == 0 ? \'#f53d3d\' : \'#119b05\'"><b>{{ lunchMeal }}</b></th>\n			<th [style.background-color]="dinnerMealStatus == 0 ? \'#f53d3d\' : \'#119b05\'"><b>{{ dinnerMeal }}</b></th>\n		</tr>\n		<tr *ngFor="let student of seatingMapList;">\n			<td *ngFor="let field of student;" [style.background-color]="field == 0 ? \'#FFFF00\' : (field == 1 ? \'#f53d3d\' : (field == 2 ? \'#119b05\' : \'#FFFFFF\'))">\n				<div *ngIf="field != 0 && field != 1 && field != 2">\n					{{ field }}\n				</div>	\n				<div *ngIf="field == 0 && field != 1 && field != 2">\n					Permanent Sign Out\n				</div>	\n				<div *ngIf="field != 0 && field == 1 && field != 2">\n					Signed Out\n				</div>\n				<div *ngIf="field != 0 && field != 1 && field == 2">\n					Signed In\n				</div>					\n			</td>\n		</tr>\n	</table>\n	<ion-label>Number of Students Signed In for Lunch: {{ lunchCount }}</ion-label>\n	<ion-label>Number of Students Signed In for Dinner: {{ dinnerCount }}</ion-label>\n</ion-content>\n'/*ion-inline-end:"C:\Users\dsche\Documents\Darius\Sonop\SonopApp\Refactored Front End\SonopApp-front-end\src\pages\nonnie\sign-out-nonnie\sign-out.html"*/,
+            selector: 'page-sign-out',template:/*ion-inline-start:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\nonnie\sign-out-nonnie\sign-out.html"*/'<ion-header>\n\n	<ion-navbar>\n\n		<ion-title>Today\'s Sign In List</ion-title>\n\n		<ion-buttons end>\n\n			<button ion-button icon-only (click)="refresh()">\n\n				<ion-icon name="refresh"></ion-icon>\n\n			</button>\n\n			<button ion-button icon-only (click)="downloadCSV()">\n\n				<ion-icon name="download"></ion-icon>\n\n			</button>			\n\n		</ion-buttons>\n\n	</ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n	<table border=1>\n\n		<tr>\n\n			<th width="20%">Table</th>\n\n			<th width="50%">Student</th>\n\n			<th [style.background-color]="lunchMealStatus == 0 ? \'#f53d3d\' : \'#119b05\'"><b>{{ lunchMeal }}</b></th>\n\n			<th [style.background-color]="dinnerMealStatus == 0 ? \'#f53d3d\' : \'#119b05\'"><b>{{ dinnerMeal }}</b></th>\n\n		</tr>\n\n		<tr *ngFor="let student of seatingMapList;">\n\n			<td *ngFor="let field of student;" [style.background-color]="field == 0 ? \'#FFFF00\' : (field == 1 ? \'#f53d3d\' : (field == 2 ? \'#119b05\' : \'#FFFFFF\'))">\n\n				<div *ngIf="field != 0 && field != 1 && field != 2">\n\n					{{ field }}\n\n				</div>	\n\n				<div *ngIf="field == 0 && field != 1 && field != 2">\n\n					Permanent Sign Out\n\n				</div>	\n\n				<div *ngIf="field != 0 && field == 1 && field != 2">\n\n					Signed Out\n\n				</div>\n\n				<div *ngIf="field != 0 && field != 1 && field == 2">\n\n					Signed In\n\n				</div>					\n\n			</td>\n\n		</tr>\n\n	</table>\n\n	<ion-label>Number of Students Signed In for Lunch: {{ lunchCount }}</ion-label>\n\n	<ion-label>Number of Students Signed In for Dinner: {{ dinnerCount }}</ion-label>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\nonnie\sign-out-nonnie\sign-out.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__http_api__["a" /* Http */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */]])
     ], SignOutNonniePage);
@@ -381,158 +459,17 @@ var SignOutNonniePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 110:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return VerifyEditWeekendPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__http_api__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_functions__ = __webpack_require__(15);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-var VerifyEditWeekendPage = /** @class */ (function () {
-    function VerifyEditWeekendPage(navCtrl, navParams, http, toastCtrl, viewCtrl) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.http = http;
-        this.toastCtrl = toastCtrl;
-        this.viewCtrl = viewCtrl;
-        this.loadSlotValues();
-    }
-    VerifyEditWeekendPage.prototype.loadSlotValues = function () {
-        var _this = this;
-        this.account = this.navParams.get('account');
-        var reqSend = {
-            id: this.account.usrID
-        };
-        this.http.post('/get-weekend', reqSend).subscribe(// 1 represents signed in
-        function (data) {
-            var jsonResp = JSON.parse(data.text());
-            _this.meals = jsonResp.JSONRes;
-        }, function (error) {
-            Object(__WEBPACK_IMPORTED_MODULE_3__app_functions__["a" /* handleError */])(_this.navCtrl, error, _this.toastCtrl);
-        });
-    };
-    VerifyEditWeekendPage.prototype.updateSlot = function (meal) {
-        var _this = this;
-        meal.status = !meal.status;
-        var reqSend = {
-            id: this.account.usrID,
-            wsiFridayDinner: this.meals[0].status,
-            wsiSaturdayBrunch: this.meals[1].status,
-            wsiSaturdayDinner: this.meals[2].status,
-            wsiSundayBreakfast: this.meals[3].status,
-            wsiSundayLunch: this.meals[4].status,
-            wsiSundayDinner: this.meals[5].status
-        };
-        this.http.post('/updateWeekend', reqSend).subscribe(function (data) { }, function (error) {
-            Object(__WEBPACK_IMPORTED_MODULE_3__app_functions__["a" /* handleError */])(_this.navCtrl, error, _this.toastCtrl);
-        });
-    };
-    VerifyEditWeekendPage.prototype.cancel = function () {
-        this.viewCtrl.dismiss(null);
-    };
-    VerifyEditWeekendPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-verify-edit-weekend',template:/*ion-inline-start:"C:\Users\dsche\Documents\Darius\Sonop\SonopApp\Refactored Front End\SonopApp-front-end\src\pages\nonnie\verify\verify-edit-weekend\verify-edit-weekend.html"*/'<ion-header>\n\n  <ion-navbar>\n	<ion-title>Edit Weekend Sign In</ion-title>\n	<ion-buttons start>\n		<button ion-button (click)="cancel()">\n			<ion-icon name="close"></ion-icon>\n		</button>\n	</ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n	<h1>Information regarding {{account.fullName}}</h1>\n	<ion-list>\n		<ion-card color="primary" *ngFor="let meal of meals" (click)="updateSlot(meal)">\n			<ion-card-content>   \n				<ion-item [style.background-color]="meal.status ? \'#119b05\' : \'#f53d3d\'">          \n					<ion-label style="color:white">{{meal.meal}} {{meal.date}}</ion-label>           \n				</ion-item>             \n			</ion-card-content>\n		</ion-card>\n	</ion-list>\n	<button ion-button outline round block (click)="cancel()">Done</button>\n</ion-content>\n'/*ion-inline-end:"C:\Users\dsche\Documents\Darius\Sonop\SonopApp\Refactored Front End\SonopApp-front-end\src\pages\nonnie\verify\verify-edit-weekend\verify-edit-weekend.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__http_api__["a" /* Http */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ViewController */]])
-    ], VerifyEditWeekendPage);
-    return VerifyEditWeekendPage;
-}());
-
-//# sourceMappingURL=verify-edit-weekend.js.map
-
-/***/ }),
-
 /***/ 111:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return VerifyEditPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(11);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-var VerifyEditPage = /** @class */ (function () {
-    function VerifyEditPage(navCtrl, navParams, toastCtrl, viewCtrl) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.toastCtrl = toastCtrl;
-        this.viewCtrl = viewCtrl;
-        this.information = new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["b" /* FormGroup */]({
-            table: new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormControl */](),
-            semi: new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormControl */]()
-        });
-        this.loadAccountInformation();
-    }
-    VerifyEditPage.prototype.loadAccountInformation = function () {
-        this.account = this.navParams.get('account');
-        this.bedieningTableID = this.account.tblBedieningTable_talID;
-        this.semi = this.account.usrIsSemi;
-    };
-    VerifyEditPage.prototype.submit = function (value) {
-        var jsonSend = {
-            id: this.account.usrID,
-            bedieningTableID: value.table,
-            semi: value.semi
-        };
-        this.viewCtrl.dismiss(jsonSend);
-    };
-    VerifyEditPage.prototype.cancel = function () {
-        this.account = this.navParams.get('account');
-        this.viewCtrl.dismiss(null);
-    };
-    VerifyEditPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-verify-edit',template:/*ion-inline-start:"C:\Users\dsche\Documents\Darius\Sonop\SonopApp\Refactored Front End\SonopApp-front-end\src\pages\nonnie\verify\verify-edit\verify-edit.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Edit Account</ion-title>\n    <ion-buttons start>\n      <button ion-button (click)="cancel()">\n        <ion-icon name="close"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <h1>Information regarding {{account.fullName}}</h1>\n  <form (submit)="submit(information.value)" [formGroup]="information">\n    <ion-list>\n      <ion-item> \n        <ion-label floating>Your Bediening Table<span style="color:red">*</span></ion-label>\n        <ion-select formControlName="table" [(ngModel)]="bedieningTableID">\n          <ion-option value=1>HK</ion-option>\n          <ion-option value=2>Weste Senior</ion-option>\n          <ion-option value=3>Weste Junior</ion-option>\n          <ion-option value=4>Ooste Senior</ion-option>\n          <ion-option value=5>Ooste Junior</ion-option>\n          <ion-option value=6>Noorde Senior</ion-option>\n          <ion-option value=7>Noorde Junior</ion-option>\n          <ion-option value=8>Sentraal</ion-option>\n          <ion-option value=9>Senaat</ion-option>\n          <ion-option value=10>Verre Weste</ion-option>\n          <ion-option value=11>Eerste Jaar</ion-option>\n        </ion-select>        \n      </ion-item>\n      <ion-item>\n        <ion-label>Semi</ion-label>\n        <ion-checkbox right formControlName="semi" [(ngModel)]="semi"></ion-checkbox>\n      </ion-item>\n    </ion-list>\n    <button ion-button outline round type="submit" block>Update</button>\n		\n	</form>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\dsche\Documents\Darius\Sonop\SonopApp\Refactored Front End\SonopApp-front-end\src\pages\nonnie\verify\verify-edit\verify-edit.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ViewController */]])
-    ], VerifyEditPage);
-    return VerifyEditPage;
-}());
-
-//# sourceMappingURL=verify-edit.js.map
-
-/***/ }),
-
-/***/ 112:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return VerifyPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__http_api__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__http_api__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_functions__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__verify_edit_verify_edit__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__verify_edit_weekend_verify_edit_weekend__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__verify_edit_verify_edit__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__verify_edit_weekend_verify_edit_weekend__ = __webpack_require__(109);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -662,7 +599,7 @@ var VerifyPage = /** @class */ (function () {
     };
     VerifyPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-verify',template:/*ion-inline-start:"C:\Users\dsche\Documents\Darius\Sonop\SonopApp\Refactored Front End\SonopApp-front-end\src\pages\nonnie\verify\verify.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Accounts</ion-title>\n    <ion-buttons end>\n      <button ion-button (click)="refresh()">Refresh</button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <h1>\n    Verify Accounts\n  </h1>\n  <ion-list>\n    <ion-card class="account card" *ngFor="let account of unverifiedAccounts" color="primary" [style.background-color]="account.usrIsHK ? \'#f53d3d\' : \'#488aff\'">\n      <ion-card-header>  \n          <ion-item color="primary">\n              <ion-label item-start><h1>{{account.fullName}}</h1></ion-label>\n              <button ion-button item-end (click)="verifyAccount(account)">Verify</button>\n              <button ion-button item-end (click)="discardAccount(account)">Discard</button>\n          </ion-item>              \n      </ion-card-header>\n      <ion-card-content>   \n          <ion-item color="primary">          \n            <ion-label>Username: {{account.usrUsername}}</ion-label>\n          </ion-item>\n          <ion-item color="primary">\n            <ion-label>Email address: {{account.usrEmailAddress}}</ion-label> \n          </ion-item>\n          <ion-item color="primary">\n            <ion-label>Bediening Table: {{account.talName}}</ion-label> \n          </ion-item>\n          <ion-item *ngIf="account.usrIsHK" color="primary">\n            <ion-label>HK Member</ion-label>  \n          </ion-item>            \n      </ion-card-content>\n    </ion-card>\n  </ion-list>\n\n  <h1>\n    Manage Accounts\n  </h1>\n  <ion-list>\n    <ion-card *ngFor="let account of verifiedAccounts" color="primary">\n      <ion-card-header>\n          <ion-item color="primary">\n            <ion-label item-start><h1>{{account.fullName}}</h1></ion-label>\n            <button ion-button item-end (click)="editAccount(account)">Edit</button>\n            <button ion-button item-end (click)="presentDeleteConfirm(account)">Delete</button>\n            <button ion-button item-end (click)="editWeekend(account)">Edit Weekend Sign In</button>\n          </ion-item> \n      </ion-card-header>\n      <ion-card-content>   \n        <ion-item color="primary">          \n          <ion-label>Username: {{account.usrUsername}}</ion-label>\n        </ion-item>\n        <ion-item color="primary">\n          <ion-label>Email address: {{account.usrEmailAddress}}</ion-label> \n        </ion-item>\n        <ion-item color="primary">\n          <ion-label>Bediening Table: {{account.talName}}</ion-label> \n        </ion-item>   \n        <ion-item color="primary">\n            <ion-label>Semi: {{account.usrIsSemi}}</ion-label> \n          </ion-item>            \n      </ion-card-content>\n    </ion-card>\n  </ion-list>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\dsche\Documents\Darius\Sonop\SonopApp\Refactored Front End\SonopApp-front-end\src\pages\nonnie\verify\verify.html"*/,
+            selector: 'page-verify',template:/*ion-inline-start:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\nonnie\verify\verify.html"*/'<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Accounts</ion-title>\n\n    <ion-buttons end>\n\n      <button ion-button (click)="refresh()">Refresh</button>\n\n    </ion-buttons>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <h1>\n\n    Verify Accounts\n\n  </h1>\n\n  <ion-list>\n\n    <ion-card class="account card" *ngFor="let account of unverifiedAccounts" color="primary" [style.background-color]="account.usrIsHK ? \'#f53d3d\' : \'#488aff\'">\n\n      <ion-card-header>  \n\n          <ion-item color="primary">\n\n              <ion-label item-start><h1>{{account.fullName}}</h1></ion-label>\n\n              <button ion-button item-end (click)="verifyAccount(account)">Verify</button>\n\n              <button ion-button item-end (click)="discardAccount(account)">Discard</button>\n\n          </ion-item>              \n\n      </ion-card-header>\n\n      <ion-card-content>   \n\n          <ion-item color="primary">          \n\n            <ion-label>Username: {{account.usrUsername}}</ion-label>\n\n          </ion-item>\n\n          <ion-item color="primary">\n\n            <ion-label>Email address: {{account.usrEmailAddress}}</ion-label> \n\n          </ion-item>\n\n          <ion-item color="primary">\n\n            <ion-label>Bediening Table: {{account.talName}}</ion-label> \n\n          </ion-item>\n\n          <ion-item *ngIf="account.usrIsHK" color="primary">\n\n            <ion-label>HK Member</ion-label>  \n\n          </ion-item>            \n\n      </ion-card-content>\n\n    </ion-card>\n\n  </ion-list>\n\n\n\n  <h1>\n\n    Manage Accounts\n\n  </h1>\n\n  <ion-list>\n\n    <ion-card *ngFor="let account of verifiedAccounts" color="primary">\n\n      <ion-card-header>\n\n          <ion-item color="primary">\n\n            <ion-label item-start><h1>{{account.fullName}}</h1></ion-label>\n\n            <button ion-button item-end (click)="editAccount(account)">Edit</button>\n\n            <button ion-button item-end (click)="presentDeleteConfirm(account)">Delete</button>\n\n            <button ion-button item-end (click)="editWeekend(account)">Edit Weekend Sign In</button>\n\n          </ion-item> \n\n      </ion-card-header>\n\n      <ion-card-content>   \n\n        <ion-item color="primary">          \n\n          <ion-label>Username: {{account.usrUsername}}</ion-label>\n\n        </ion-item>\n\n        <ion-item color="primary">\n\n          <ion-label>Email address: {{account.usrEmailAddress}}</ion-label> \n\n        </ion-item>\n\n        <ion-item color="primary">\n\n          <ion-label>Bediening Table: {{account.talName}}</ion-label> \n\n        </ion-item>   \n\n        <ion-item color="primary">\n\n            <ion-label>Semi: {{account.usrIsSemi}}</ion-label> \n\n          </ion-item>            \n\n      </ion-card-content>\n\n    </ion-card>\n\n  </ion-list>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\nonnie\verify\verify.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */],
             __WEBPACK_IMPORTED_MODULE_2__http_api__["a" /* Http */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* ModalController */]])
@@ -674,6 +611,69 @@ var VerifyPage = /** @class */ (function () {
 
 /***/ }),
 
+/***/ 112:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return VerifyEditPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(11);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var VerifyEditPage = /** @class */ (function () {
+    function VerifyEditPage(navCtrl, navParams, toastCtrl, viewCtrl) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.toastCtrl = toastCtrl;
+        this.viewCtrl = viewCtrl;
+        this.information = new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["b" /* FormGroup */]({
+            table: new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormControl */](),
+            semi: new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormControl */]()
+        });
+        this.loadAccountInformation();
+    }
+    VerifyEditPage.prototype.loadAccountInformation = function () {
+        this.account = this.navParams.get('account');
+        this.bedieningTableID = this.account.tblBedieningTable_talID;
+        this.semi = this.account.usrIsSemi;
+    };
+    VerifyEditPage.prototype.submit = function (value) {
+        var jsonSend = {
+            id: this.account.usrID,
+            bedieningTableID: value.table,
+            semi: value.semi
+        };
+        this.viewCtrl.dismiss(jsonSend);
+    };
+    VerifyEditPage.prototype.cancel = function () {
+        this.account = this.navParams.get('account');
+        this.viewCtrl.dismiss(null);
+    };
+    VerifyEditPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-verify-edit',template:/*ion-inline-start:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\nonnie\verify\verify-edit\verify-edit.html"*/'<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Edit Account</ion-title>\n\n    <ion-buttons start>\n\n      <button ion-button (click)="cancel()">\n\n        <ion-icon name="close"></ion-icon>\n\n      </button>\n\n    </ion-buttons>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <h1>Information regarding {{account.fullName}}</h1>\n\n  <form (submit)="submit(information.value)" [formGroup]="information">\n\n    <ion-list>\n\n      <ion-item> \n\n        <ion-label floating>Your Bediening Table<span style="color:red">*</span></ion-label>\n\n        <ion-select formControlName="table" [(ngModel)]="bedieningTableID">\n\n          <ion-option value=1>HK</ion-option>\n\n          <ion-option value=2>Weste Senior</ion-option>\n\n          <ion-option value=3>Weste Junior</ion-option>\n\n          <ion-option value=4>Ooste Senior</ion-option>\n\n          <ion-option value=5>Ooste Junior</ion-option>\n\n          <ion-option value=6>Noorde Senior</ion-option>\n\n          <ion-option value=7>Noorde Junior</ion-option>\n\n          <ion-option value=8>Sentraal</ion-option>\n\n          <ion-option value=9>Senaat</ion-option>\n\n          <ion-option value=10>Verre Weste</ion-option>\n\n          <ion-option value=11>Eerste Jaar</ion-option>\n\n        </ion-select>        \n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label>Semi</ion-label>\n\n        <ion-checkbox right formControlName="semi" [(ngModel)]="semi"></ion-checkbox>\n\n      </ion-item>\n\n    </ion-list>\n\n    <button ion-button outline round type="submit" block>Update</button>\n\n		\n\n	</form>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\nonnie\verify\verify-edit\verify-edit.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ViewController */]])
+    ], VerifyEditPage);
+    return VerifyEditPage;
+}());
+
+//# sourceMappingURL=verify-edit.js.map
+
+/***/ }),
+
 /***/ 113:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -681,7 +681,7 @@ var VerifyPage = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WeekendNonniePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__http_api__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__http_api__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_papaparse__ = __webpack_require__(167);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_papaparse___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_papaparse__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_functions__ = __webpack_require__(15);
@@ -770,7 +770,7 @@ var WeekendNonniePage = /** @class */ (function () {
     };
     WeekendNonniePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-weekend',template:/*ion-inline-start:"C:\Users\dsche\Documents\Darius\Sonop\SonopApp\Refactored Front End\SonopApp-front-end\src\pages\nonnie\weekend-nonnie\weekend.html"*/'<ion-header>\n	<ion-navbar>\n		<ion-title>Weekend Sign In List</ion-title>\n		<ion-buttons end>\n			<button ion-button icon-only (click)="refresh()">\n				<ion-icon name="refresh"></ion-icon>\n			</button>\n			<button ion-button icon-only (click)="downloadCSV()">\n				<ion-icon name="download"></ion-icon>\n			</button>\n		</ion-buttons>\n	</ion-navbar>\n</ion-header>\n\n<ion-content padding>\n	<table border=1>\n		<tr>\n			<th width="20%">Table</th>\n			<th width="50%">Student</th>\n			<th *ngFor="let meal of meals"><b>{{ meal }}</b></th>\n		</tr>\n		<tr *ngFor="let student of seatingMapList; let i = index">\n			<td *ngFor="let field of student; let j = index" [style.background-color]="field == 0 ? \'#f53d3d\' : (field == 1 ? \'#119b05\' : \'#FFFFFF\')">\n				<div *ngIf="field != 0 && field != 1">					\n					{{ field }}\n				</div>\n				<div *ngIf="field == 0 && field != 1">\n					Signed Out\n				</div>\n				<div *ngIf="field != 0 && field == 1">\n					Signed In\n				</div>		\n			</td>\n		</tr>		\n	</table>\n	<ion-label>Number of Students Signed In on Firday Dinner: {{ countFrD }}</ion-label>\n	<ion-label>Number of Students Signed In on Saturday Brunch: {{ countSaB }}</ion-label>\n	<ion-label>Number of Students Signed In on Saturday Dinner: {{ countSaD }}</ion-label>\n	<ion-label>Number of Students Signed In on Sunday Breakfast: {{ countSuB }}</ion-label>\n	<ion-label>Number of Students Signed In on Sunday Lunch: {{ countSuL }}</ion-label>\n	<ion-label>Number of Students Signed In on Sunday Dinner: {{ countSuD }}</ion-label>\n</ion-content>\n'/*ion-inline-end:"C:\Users\dsche\Documents\Darius\Sonop\SonopApp\Refactored Front End\SonopApp-front-end\src\pages\nonnie\weekend-nonnie\weekend.html"*/,
+            selector: 'page-weekend',template:/*ion-inline-start:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\nonnie\weekend-nonnie\weekend.html"*/'<ion-header>\n\n	<ion-navbar>\n\n		<ion-title>Weekend Sign In List</ion-title>\n\n		<ion-buttons end>\n\n			<button ion-button icon-only (click)="refresh()">\n\n				<ion-icon name="refresh"></ion-icon>\n\n			</button>\n\n			<button ion-button icon-only (click)="downloadCSV()">\n\n				<ion-icon name="download"></ion-icon>\n\n			</button>\n\n		</ion-buttons>\n\n	</ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n	<table border=1>\n\n		<tr>\n\n			<th width="20%">Table</th>\n\n			<th width="50%">Student</th>\n\n			<th *ngFor="let meal of meals"><b>{{ meal }}</b></th>\n\n		</tr>\n\n		<tr *ngFor="let student of seatingMapList; let i = index">\n\n			<td *ngFor="let field of student; let j = index" [style.background-color]="field == 0 ? \'#f53d3d\' : (field == 1 ? \'#119b05\' : \'#FFFFFF\')">\n\n				<div *ngIf="field != 0 && field != 1">					\n\n					{{ field }}\n\n				</div>\n\n				<div *ngIf="field == 0 && field != 1">\n\n					Signed Out\n\n				</div>\n\n				<div *ngIf="field != 0 && field == 1">\n\n					Signed In\n\n				</div>		\n\n			</td>\n\n		</tr>		\n\n	</table>\n\n	<ion-label>Number of Students Signed In on Firday Dinner: {{ countFrD }}</ion-label>\n\n	<ion-label>Number of Students Signed In on Saturday Brunch: {{ countSaB }}</ion-label>\n\n	<ion-label>Number of Students Signed In on Saturday Dinner: {{ countSaD }}</ion-label>\n\n	<ion-label>Number of Students Signed In on Sunday Breakfast: {{ countSuB }}</ion-label>\n\n	<ion-label>Number of Students Signed In on Sunday Lunch: {{ countSuL }}</ion-label>\n\n	<ion-label>Number of Students Signed In on Sunday Dinner: {{ countSuD }}</ion-label>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\nonnie\weekend-nonnie\weekend.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__http_api__["a" /* Http */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */]])
     ], WeekendNonniePage);
@@ -789,7 +789,7 @@ var WeekendNonniePage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__http_api__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__http_api__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_global_global__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_functions__ = __webpack_require__(15);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -845,7 +845,7 @@ var AnnouncementsAddPage = /** @class */ (function () {
     };
     AnnouncementsAddPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-announcements-add',template:/*ion-inline-start:"C:\Users\dsche\Documents\Darius\Sonop\SonopApp\Refactored Front End\SonopApp-front-end\src\pages\user\announcements\announcements-add\announcements-add.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>Add Announcement</ion-title>\n    <ion-buttons start>\n      <button ion-button (click)="cancel()">\n          <ion-icon name="close"></ion-icon>\n      </button>\n  </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n    <form  (submit)="addAnnouncement(newAnn.value)" [formGroup]="newAnn">\n        <ion-item>\n            <h2>Post New Announcement</h2>\n        </ion-item>\n        <ion-item> \n            <ion-label floating>Enter Title...</ion-label>\n            <ion-input formControlName="title" type="text" maxlength="50"></ion-input>        \n        </ion-item>\n        <ion-item id="message"> \n            <ion-label floating>Enter text...</ion-label>\n            <ion-textarea rows="10" formControlName="message" type="text" maxlength="10000"></ion-textarea>        \n        </ion-item>\n        <ion-item>\n            <ion-label>Priority</ion-label>\n            <ion-checkbox (ionChange)="priorityMessage = !priorityMessage"></ion-checkbox>\n        </ion-item>\n        <button ion-button outline round type="submit" block>submit</button>\n    </form>\n</ion-content>\n'/*ion-inline-end:"C:\Users\dsche\Documents\Darius\Sonop\SonopApp\Refactored Front End\SonopApp-front-end\src\pages\user\announcements\announcements-add\announcements-add.html"*/,
+            selector: 'page-announcements-add',template:/*ion-inline-start:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\user\announcements\announcements-add\announcements-add.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>Add Announcement</ion-title>\n\n    <ion-buttons start>\n\n      <button ion-button (click)="cancel()">\n\n          <ion-icon name="close"></ion-icon>\n\n      </button>\n\n  </ion-buttons>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n    <form  (submit)="addAnnouncement(newAnn.value)" [formGroup]="newAnn">\n\n        <ion-item>\n\n            <h2>Post New Announcement</h2>\n\n        </ion-item>\n\n        <ion-item> \n\n            <ion-label floating>Enter Title...</ion-label>\n\n            <ion-input formControlName="title" type="text" maxlength="50"></ion-input>        \n\n        </ion-item>\n\n        <ion-item id="message"> \n\n            <ion-label floating>Enter text...</ion-label>\n\n            <ion-textarea rows="10" formControlName="message" type="text" maxlength="10000"></ion-textarea>        \n\n        </ion-item>\n\n        <ion-item>\n\n            <ion-label>Priority</ion-label>\n\n            <ion-checkbox (ionChange)="priorityMessage = !priorityMessage"></ion-checkbox>\n\n        </ion-item>\n\n        <button ion-button outline round type="submit" block>submit</button>\n\n    </form>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\user\announcements\announcements-add\announcements-add.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* ModalController */],
             __WEBPACK_IMPORTED_MODULE_3__http_api__["a" /* Http */], __WEBPACK_IMPORTED_MODULE_4__providers_global_global__["a" /* GlobalProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ViewController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */]])
@@ -865,7 +865,7 @@ var AnnouncementsAddPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_global_global__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__http_api__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__http_api__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_functions__ = __webpack_require__(15);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -957,7 +957,7 @@ var SettingsPage = /** @class */ (function () {
     };
     SettingsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-settings',template:/*ion-inline-start:"C:\Users\dsche\Documents\Darius\Sonop\SonopApp\Refactored Front End\SonopApp-front-end\src\pages\user\settings\settings.html"*/'\n<ion-header>\n\n  <ion-navbar>\n      	<button ion-button menuToggle right>\n    		<ion-icon name="menu"></ion-icon>\n      	</button>\n    <ion-title>Settings</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n	<h1>Update the settings you wish to change, leave the rest and click Update</h1>\n	<form (submit)="updateInformation(settings.value)" [formGroup]="settings">\n		<ion-list>\n			<ion-item> \n				<ion-label floating>Your Bediening Table<span style="color:red">*</span></ion-label>\n				<ion-select formControlName="table" [(ngModel)]="bedieningTableID">\n					<ion-option value=1>HK</ion-option>\n					<ion-option value=2>Weste Senior</ion-option>\n					<ion-option value=3>Weste Junior</ion-option>\n					<ion-option value=4>Ooste Senior</ion-option>\n					<ion-option value=5>Ooste Junior</ion-option>\n					<ion-option value=6>Noorde Senior</ion-option>\n					<ion-option value=7>Noorde Junior</ion-option>\n					<ion-option value=8>Sentraal</ion-option>\n					<ion-option value=9>Senaat</ion-option>\n					<ion-option value=10>Verre Weste</ion-option>\n					<ion-option value=11>Eerste Jaar</ion-option>\n				</ion-select>        \n			</ion-item>\n			<ion-item>\n                <ion-label>Semi</ion-label>\n                <ion-checkbox right formControlName="semi" [(ngModel)]="semi"></ion-checkbox>\n			</ion-item>\n			<ion-item>\n				<ion-label floating>Update email adress</ion-label>\n				<ion-input formControlName="email" type="text" maxlength="100" [(ngModel)]="emailAddress"></ion-input>\n			</ion-item>\n		</ion-list>\n		<button *ngIf="!editPasswordMode" ion-button outline round (click)="editPasswordMode = !editPasswordMode">Change Password</button>\n		<button *ngIf="editPasswordMode" ion-button outline round (click)="editPasswordMode = !editPasswordMode">Cancel Changing Password</button>\n		<div *ngIf="editPasswordMode">\n			<ion-item> \n				<ion-label floating>Old Password</ion-label>\n				<ion-input formControlName="oldpassword" type="password" maxlength="32"></ion-input>        \n			</ion-item>\n			<ion-item> \n				<ion-label floating>New Password</ion-label>\n				<ion-input formControlName="newpassword" type="password" maxlength="32"></ion-input>        \n			</ion-item>\n			<ion-item> \n				<ion-label floating>Confirm Password</ion-label>\n				<ion-input formControlName="confirmpassword" type="password" maxlength="32"></ion-input>        \n			</ion-item>\n		</div>\n		<button ion-button outline round type="submit" block>Update</button>\n		\n	</form>\n\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\dsche\Documents\Darius\Sonop\SonopApp\Refactored Front End\SonopApp-front-end\src\pages\user\settings\settings.html"*/,
+            selector: 'page-settings',template:/*ion-inline-start:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\user\settings\settings.html"*/'\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n      	<button ion-button menuToggle right>\n\n    		<ion-icon name="menu"></ion-icon>\n\n      	</button>\n\n    <ion-title>Settings</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n	<h1>Update the settings you wish to change, leave the rest and click Update</h1>\n\n	<form (submit)="updateInformation(settings.value)" [formGroup]="settings">\n\n		<ion-list>\n\n			<ion-item> \n\n				<ion-label floating>Your Bediening Table<span style="color:red">*</span></ion-label>\n\n				<ion-select formControlName="table" [(ngModel)]="bedieningTableID">\n\n					<ion-option value=1>HK</ion-option>\n\n					<ion-option value=2>Weste Senior</ion-option>\n\n					<ion-option value=3>Weste Junior</ion-option>\n\n					<ion-option value=4>Ooste Senior</ion-option>\n\n					<ion-option value=5>Ooste Junior</ion-option>\n\n					<ion-option value=6>Noorde Senior</ion-option>\n\n					<ion-option value=7>Noorde Junior</ion-option>\n\n					<ion-option value=8>Sentraal</ion-option>\n\n					<ion-option value=9>Senaat</ion-option>\n\n					<ion-option value=10>Verre Weste</ion-option>\n\n					<ion-option value=11>Eerste Jaar</ion-option>\n\n				</ion-select>        \n\n			</ion-item>\n\n			<ion-item>\n\n                <ion-label>Semi</ion-label>\n\n                <ion-checkbox right formControlName="semi" [(ngModel)]="semi"></ion-checkbox>\n\n			</ion-item>\n\n			<ion-item>\n\n				<ion-label floating>Update email adress</ion-label>\n\n				<ion-input formControlName="email" type="text" maxlength="100" [(ngModel)]="emailAddress"></ion-input>\n\n			</ion-item>\n\n		</ion-list>\n\n		<button *ngIf="!editPasswordMode" ion-button outline round (click)="editPasswordMode = !editPasswordMode">Change Password</button>\n\n		<button *ngIf="editPasswordMode" ion-button outline round (click)="editPasswordMode = !editPasswordMode">Cancel Changing Password</button>\n\n		<div *ngIf="editPasswordMode">\n\n			<ion-item> \n\n				<ion-label floating>Old Password</ion-label>\n\n				<ion-input formControlName="oldpassword" type="password" maxlength="32"></ion-input>        \n\n			</ion-item>\n\n			<ion-item> \n\n				<ion-label floating>New Password</ion-label>\n\n				<ion-input formControlName="newpassword" type="password" maxlength="32"></ion-input>        \n\n			</ion-item>\n\n			<ion-item> \n\n				<ion-label floating>Confirm Password</ion-label>\n\n				<ion-input formControlName="confirmpassword" type="password" maxlength="32"></ion-input>        \n\n			</ion-item>\n\n		</div>\n\n		<button ion-button outline round type="submit" block>Update</button>\n\n		\n\n	</form>\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\user\settings\settings.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_global_global__["a" /* GlobalProvider */], __WEBPACK_IMPORTED_MODULE_3__http_api__["a" /* Http */]])
     ], SettingsPage);
@@ -985,12 +985,12 @@ webpackEmptyAsyncContext.id = 125;
 
 /***/ }),
 
-/***/ 14:
+/***/ 13:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Http; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app_config__ = __webpack_require__(263);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app_config__ = __webpack_require__(262);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(49);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1110,19 +1110,19 @@ function getDayMonth(date) {
 
 var map = {
 	"../pages/nonnie/sign-out-nonnie/sign-out.module": [
-		291,
+		292,
 		6
 	],
 	"../pages/nonnie/verify/verify-edit-weekend/verify-edit-weekend.module": [
-		292,
+		291,
 		5
 	],
 	"../pages/nonnie/verify/verify-edit/verify-edit.module": [
-		293,
+		294,
 		4
 	],
 	"../pages/nonnie/verify/verify.module": [
-		294,
+		293,
 		3
 	],
 	"../pages/nonnie/weekend-nonnie/weekend.module": [
@@ -1154,7 +1154,7 @@ module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 209:
+/***/ 208:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1162,7 +1162,7 @@ module.exports = webpackAsyncContext;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__http_api__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__http_api__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__login_login__ = __webpack_require__(107);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_functions__ = __webpack_require__(15);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1296,7 +1296,7 @@ var RegisterPage = /** @class */ (function () {
     };
     RegisterPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-register',template:/*ion-inline-start:"C:\Users\dsche\Documents\Darius\Sonop\SonopApp\Refactored Front End\SonopApp-front-end\src\pages\user\register\register.html"*/'<ion-header>\n\n    <ion-navbar>\n\n        <ion-title>Registration</ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n    <form (submit)="registerUser(regUser.value)" [formGroup]="regUser">\n\n        <ion-list>\n\n            <ion-item> \n\n                <ion-label floating>Name<span style="color:red">*</span></ion-label>\n\n                <ion-input formControlName="fname" type="text" maxlength="50"></ion-input>        \n\n            </ion-item>\n\n            <ion-item> \n\n                <ion-label floating>Surname<span style="color:red">*</span></ion-label>\n\n                <ion-input formControlName="sname" type="text" maxlength="50"></ion-input>        \n\n            </ion-item>\n\n            <ion-item> \n\n                <ion-label floating>Email<span style="color:red">*</span></ion-label>\n\n                <ion-input formControlName="email" type="text" maxlength="100"></ion-input>        \n\n            </ion-item>\n\n            <ion-item> \n\n                <ion-label floating>Username<span style="color:red">*</span></ion-label>\n\n                <ion-input formControlName="username" type="text" maxlength="50"></ion-input>        \n\n            </ion-item>\n\n            <ion-item> \n\n                <ion-label floating>Student Number<span style="color:red">*</span></ion-label>\n\n                <ion-input formControlName="studentnumber" type="number" maxlength="8"></ion-input>        \n\n            </ion-item>\n\n            <ion-item> \n\n                <ion-label floating>Year of First year<span style="color:red">*</span></ion-label>\n\n                <ion-input formControlName="firstyearyear" type="number"></ion-input>        \n\n            </ion-item>\n\n            <ion-item> \n\n                <ion-label floating>Your Bediening Table<span style="color:red">*</span></ion-label>\n\n                <ion-select formControlName="bedieningtable">\n\n                    <ion-option value=1>HK</ion-option>\n\n                    <ion-option value=2>Weste Senior</ion-option>\n\n                    <ion-option value=3>Weste Junior</ion-option>\n\n                    <ion-option value=4>Ooste Senior</ion-option>\n\n                    <ion-option value=5>Ooste Junior</ion-option>\n\n                    <ion-option value=6>Noorde Senior</ion-option>\n\n                    <ion-option value=7>Noorde Junior</ion-option>\n\n                    <ion-option value=8>Sentraal</ion-option>\n\n                    <ion-option value=9>Senaat</ion-option>\n\n                    <ion-option value=10>Verre Weste</ion-option>\n\n                    <ion-option value=11>Eerste Jaar</ion-option>\n\n                </ion-select>        \n\n            </ion-item>\n\n            <ion-item>\n\n                <ion-label>Semi</ion-label>\n\n                <ion-checkbox right formControlName="semi"></ion-checkbox>\n\n            </ion-item>\n\n            <ion-item> \n\n                <ion-label floating>Password<span style="color:red">*</span></ion-label>\n\n                <ion-input formControlName="password" type="password" maxlength="32"></ion-input>        \n\n            </ion-item>\n\n            <ion-item> \n\n                <ion-label floating>Confirm Password<span style="color:red">*</span></ion-label>\n\n                <ion-input formControlName="confirmpassword" type="password" maxlength="32"></ion-input>        \n\n            </ion-item>\n\n        </ion-list>\n\n        <button ion-button outline round type="submit" block>Register</button>\n\n    </form>\n\n\n\n    <div padding>\n\n\n\n    </div>\n\n\n\n\n\n</ion-content>'/*ion-inline-end:"C:\Users\dsche\Documents\Darius\Sonop\SonopApp\Refactored Front End\SonopApp-front-end\src\pages\user\register\register.html"*/
+            selector: 'page-register',template:/*ion-inline-start:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\user\register\register.html"*/'<ion-header>\n\n    <ion-navbar>\n\n        <ion-title>Registration</ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n    <form (submit)="registerUser(regUser.value)" [formGroup]="regUser">\n\n        <ion-list>\n\n            <ion-item> \n\n                <ion-label floating>Name<span style="color:red">*</span></ion-label>\n\n                <ion-input formControlName="fname" type="text" maxlength="50"></ion-input>        \n\n            </ion-item>\n\n            <ion-item> \n\n                <ion-label floating>Surname<span style="color:red">*</span></ion-label>\n\n                <ion-input formControlName="sname" type="text" maxlength="50"></ion-input>        \n\n            </ion-item>\n\n            <ion-item> \n\n                <ion-label floating>Email<span style="color:red">*</span></ion-label>\n\n                <ion-input formControlName="email" type="text" maxlength="100"></ion-input>        \n\n            </ion-item>\n\n            <ion-item> \n\n                <ion-label floating>Username<span style="color:red">*</span></ion-label>\n\n                <ion-input formControlName="username" type="text" maxlength="50"></ion-input>        \n\n            </ion-item>\n\n            <ion-item> \n\n                <ion-label floating>Student Number<span style="color:red">*</span></ion-label>\n\n                <ion-input formControlName="studentnumber" type="number" maxlength="8"></ion-input>        \n\n            </ion-item>\n\n            <ion-item> \n\n                <ion-label floating>Year of First year<span style="color:red">*</span></ion-label>\n\n                <ion-input formControlName="firstyearyear" type="number"></ion-input>        \n\n            </ion-item>\n\n            <ion-item> \n\n                <ion-label floating>Your Bediening Table<span style="color:red">*</span></ion-label>\n\n                <ion-select formControlName="bedieningtable">\n\n                    <ion-option value=1>HK</ion-option>\n\n                    <ion-option value=2>Weste Senior</ion-option>\n\n                    <ion-option value=3>Weste Junior</ion-option>\n\n                    <ion-option value=4>Ooste Senior</ion-option>\n\n                    <ion-option value=5>Ooste Junior</ion-option>\n\n                    <ion-option value=6>Noorde Senior</ion-option>\n\n                    <ion-option value=7>Noorde Junior</ion-option>\n\n                    <ion-option value=8>Sentraal</ion-option>\n\n                    <ion-option value=9>Senaat</ion-option>\n\n                    <ion-option value=10>Verre Weste</ion-option>\n\n                    <ion-option value=11>Eerste Jaar</ion-option>\n\n                </ion-select>        \n\n            </ion-item>\n\n            <ion-item>\n\n                <ion-label>Semi</ion-label>\n\n                <ion-checkbox right formControlName="semi"></ion-checkbox>\n\n            </ion-item>\n\n            <ion-item> \n\n                <ion-label floating>Password<span style="color:red">*</span></ion-label>\n\n                <ion-input formControlName="password" type="password" maxlength="32"></ion-input>        \n\n            </ion-item>\n\n            <ion-item> \n\n                <ion-label floating>Confirm Password<span style="color:red">*</span></ion-label>\n\n                <ion-input formControlName="confirmpassword" type="password" maxlength="32"></ion-input>        \n\n            </ion-item>\n\n        </ion-list>\n\n        <button ion-button outline round type="submit" block>Register</button>\n\n    </form>\n\n\n\n    <div padding>\n\n\n\n    </div>\n\n\n\n\n\n</ion-content>'/*ion-inline-end:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\user\register\register.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__http_api__["a" /* Http */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */]])
     ], RegisterPage);
@@ -1307,7 +1307,7 @@ var RegisterPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 210:
+/***/ 209:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1315,8 +1315,8 @@ var RegisterPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__http_api__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__tabs_tabs__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__http_api__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__tabs_tabs__ = __webpack_require__(210);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_functions__ = __webpack_require__(15);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1366,7 +1366,7 @@ var LoginNonniePage = /** @class */ (function () {
     };
     LoginNonniePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-login',template:/*ion-inline-start:"C:\Users\dsche\Documents\Darius\Sonop\SonopApp\Refactored Front End\SonopApp-front-end\src\pages\nonnie\login-nonnie\login.html"*/'<ion-content>\n\n    <div id=register-container class="container">\n\n        <div class="login-pane">\n\n            <form (submit)="loginNonnie(nonnieLogin.value)" [formGroup]="nonnieLogin">\n\n                <ion-list>\n\n                    <ion-item>\n\n                        <ion-label>\n\n                            <h1>Welcome Nonnie</h1>\n\n                        </ion-label>\n\n                    </ion-item>\n\n                    <ion-item>\n\n                        <ion-label floating>Password</ion-label>\n\n                        <ion-input formControlName="pass" type="password"></ion-input>\n\n                    </ion-item>\n\n                    <button ion-button outline round block type="submit" color="tertiary">Login</button>\n\n                </ion-list>\n\n            </form>\n\n        </div>\n\n        <div id="register-info">\n\n        </div>\n\n    </div>\n\n</ion-content>'/*ion-inline-end:"C:\Users\dsche\Documents\Darius\Sonop\SonopApp\Refactored Front End\SonopApp-front-end\src\pages\nonnie\login-nonnie\login.html"*/
+            selector: 'page-login',template:/*ion-inline-start:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\nonnie\login-nonnie\login.html"*/'<ion-content>\n\n    <div id=register-container class="container">\n\n        <div class="login-pane">\n\n            <form (submit)="loginNonnie(nonnieLogin.value)" [formGroup]="nonnieLogin">\n\n                <ion-list>\n\n                    <ion-item>\n\n                        <ion-label>\n\n                            <h1>Welcome Nonnie</h1>\n\n                        </ion-label>\n\n                    </ion-item>\n\n                    <ion-item>\n\n                        <ion-label floating>Password</ion-label>\n\n                        <ion-input formControlName="pass" type="password"></ion-input>\n\n                    </ion-item>\n\n                    <button ion-button outline round block type="submit" color="tertiary">Login</button>\n\n                </ion-list>\n\n            </form>\n\n        </div>\n\n        <div id="register-info">\n\n        </div>\n\n    </div>\n\n</ion-content>'/*ion-inline-end:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\nonnie\login-nonnie\login.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */], __WEBPACK_IMPORTED_MODULE_3__http_api__["a" /* Http */]])
     ], LoginNonniePage);
@@ -1377,15 +1377,15 @@ var LoginNonniePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 211:
+/***/ 210:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TabsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__verify_verify__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__verify_verify__ = __webpack_require__(111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__weekend_nonnie_weekend__ = __webpack_require__(113);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__sign_out_nonnie_sign_out__ = __webpack_require__(109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__sign_out_nonnie_sign_out__ = __webpack_require__(110);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1406,7 +1406,7 @@ var TabsPage = /** @class */ (function () {
         this.tab3Root = __WEBPACK_IMPORTED_MODULE_3__sign_out_nonnie_sign_out__["a" /* SignOutNonniePage */];
     }
     TabsPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Users\dsche\Documents\Darius\Sonop\SonopApp\Refactored Front End\SonopApp-front-end\src\pages\nonnie\tabs\tabs.html"*/'<ion-tabs>\n  <ion-tab [root]="tab1Root" tabTitle="Accounts" tabIcon="contacts"></ion-tab>\n  <ion-tab [root]="tab2Root" tabTitle="Weekend Sign In List" tabIcon="ios-clipboard"></ion-tab>\n  <ion-tab [root]="tab3Root" tabTitle="Week Day Sign In List" tabIcon="ios-clipboard"></ion-tab>\n</ion-tabs>\n'/*ion-inline-end:"C:\Users\dsche\Documents\Darius\Sonop\SonopApp\Refactored Front End\SonopApp-front-end\src\pages\nonnie\tabs\tabs.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\nonnie\tabs\tabs.html"*/'<ion-tabs>\n\n  <ion-tab [root]="tab1Root" tabTitle="Accounts" tabIcon="contacts"></ion-tab>\n\n  <ion-tab [root]="tab2Root" tabTitle="Weekend Sign In List" tabIcon="ios-clipboard"></ion-tab>\n\n  <ion-tab [root]="tab3Root" tabTitle="Week Day Sign In List" tabIcon="ios-clipboard"></ion-tab>\n\n</ion-tabs>\n\n'/*ion-inline-end:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\nonnie\tabs\tabs.html"*/
         }),
         __metadata("design:paramtypes", [])
     ], TabsPage);
@@ -1417,7 +1417,7 @@ var TabsPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 212:
+/***/ 211:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1425,7 +1425,7 @@ var TabsPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_global_global__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__http_api__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__http_api__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_functions__ = __webpack_require__(15);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1494,7 +1494,7 @@ var WeekendPage = /** @class */ (function () {
     };
     WeekendPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-weekend',template:/*ion-inline-start:"C:\Users\dsche\Documents\Darius\Sonop\SonopApp\Refactored Front End\SonopApp-front-end\src\pages\user\weekend\weekend.html"*/'<ion-header>\n\n    <ion-navbar>\n\n        <button ion-button menuToggle right>\n\n            <ion-icon name="menu"></ion-icon>\n\n        </button>\n\n        <ion-title>Weekend Sign In</ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n    \n\n<ion-content padding>\n\n    <div *ngIf="!weekendSignInOpen">\n\n        <h1>Sign in for the weekend has closed</h1>\n\n    </div>\n\n    <div>\n\n        <p>Weekend Sign In closes every Thursday at 15:00.</p>\n\n        <ion-list>\n\n            <ion-card color="primary" class="weekendSlots card" *ngFor="let meal of meals" (click)="updateSlot(meal)">\n\n                <ion-card-content>   \n\n                    <ion-item [style.background-color]="meal.status ? \'#119b05\' : \'#f53d3d\'">          \n\n                        <ion-label style="color:white">{{meal.meal}} {{meal.date}}</ion-label>           \n\n                    </ion-item>             \n\n                </ion-card-content>\n\n            </ion-card>\n\n        </ion-list>\n\n    </div>\n\n</ion-content>\n\n      '/*ion-inline-end:"C:\Users\dsche\Documents\Darius\Sonop\SonopApp\Refactored Front End\SonopApp-front-end\src\pages\user\weekend\weekend.html"*/
+            selector: 'page-weekend',template:/*ion-inline-start:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\user\weekend\weekend.html"*/'<ion-header>\n\n    <ion-navbar>\n\n        <button ion-button menuToggle right>\n\n            <ion-icon name="menu"></ion-icon>\n\n        </button>\n\n        <ion-title>Weekend Sign In</ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n    \n\n<ion-content padding>\n\n    <div *ngIf="!weekendSignInOpen">\n\n        <h1>Sign in for the weekend has closed</h1>\n\n    </div>\n\n    <div>\n\n        <p>Weekend Sign In closes every Thursday at 15:00.</p>\n\n        <ion-list>\n\n            <ion-card color="primary" class="weekendSlots card" *ngFor="let meal of meals" (click)="updateSlot(meal)">\n\n                <ion-card-content>   \n\n                    <ion-item [style.background-color]="meal.status ? \'#119b05\' : \'#f53d3d\'">          \n\n                        <ion-label style="color:white">{{meal.meal}} {{meal.date}}</ion-label>           \n\n                    </ion-item>             \n\n                </ion-card-content>\n\n            </ion-card>\n\n        </ion-list>\n\n    </div>\n\n</ion-content>\n\n      '/*ion-inline-end:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\user\weekend\weekend.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_global_global__["a" /* GlobalProvider */], __WEBPACK_IMPORTED_MODULE_3__http_api__["a" /* Http */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */]])
     ], WeekendPage);
@@ -1505,7 +1505,7 @@ var WeekendPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 213:
+/***/ 212:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1513,7 +1513,7 @@ var WeekendPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_global_global__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__http_api__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__http_api__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_functions__ = __webpack_require__(15);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1570,7 +1570,7 @@ var SignOutPage = /** @class */ (function () {
     };
     SignOutPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-sign-out',template:/*ion-inline-start:"C:\Users\dsche\Documents\Darius\Sonop\SonopApp\Refactored Front End\SonopApp-front-end\src\pages\user\sign-out\sign-out.html"*/'<ion-header>\n    <ion-navbar>\n        <button ion-button menuToggle right>\n            <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-title>Sign Out</ion-title>\n    </ion-navbar>\n</ion-header>\n    \n<ion-content padding>\n    <p>Sign Out closes every weekday at 11:00 for Lunch and 15:00 for Dinner.</p>\n    <ion-list>\n        <ion-card color="primary" class="weekendSlots card" *ngFor="let meal of meals" (click)="updateSlot(meal)">\n            <ion-card-content *ngIf="meal.openStatus" [style.background-color]="meal.status == 0 ? \'#FFFF00\' : (meal.status == 1 ? \'#f53d3d\' : \'#119b05\')">   \n                <ion-item [style.background-color]="meal.status == 0 ? \'#FFFF00\' : (meal.status == 1 ? \'#f53d3d\' : \'#119b05\')">          \n					<ion-label [style.color]="meal.status == 0 ? \'#000000\' : \'#ffffff\'">{{meal.meal}} {{meal.date}}</ion-label> \n                </ion-item> \n                <ion-item [style.background-color]="meal.status == 0 ? \'#FFFF00\' : (meal.status == 1 ? \'#f53d3d\' : \'#119b05\')">\n                    <ion-label end *ngIf="meal.status == 0">Permanently Signed Out</ion-label>\n                    <ion-label end *ngIf="meal.status == 1">Signed out for Now</ion-label>\n                    <ion-label end *ngIf="meal.status == 2">Signed In</ion-label>\n                </ion-item>           \n            </ion-card-content>\n        </ion-card>\n    </ion-list>\n</ion-content>\n      '/*ion-inline-end:"C:\Users\dsche\Documents\Darius\Sonop\SonopApp\Refactored Front End\SonopApp-front-end\src\pages\user\sign-out\sign-out.html"*/,
+            selector: 'page-sign-out',template:/*ion-inline-start:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\user\sign-out\sign-out.html"*/'<ion-header>\n\n    <ion-navbar>\n\n        <button ion-button menuToggle right>\n\n            <ion-icon name="menu"></ion-icon>\n\n        </button>\n\n        <ion-title>Sign Out</ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n    \n\n<ion-content padding>\n\n    <p>Sign Out closes every weekday at 11:00 for Lunch and 15:00 for Dinner.</p>\n\n    <ion-list>\n\n        <ion-card color="primary" class="weekendSlots card" *ngFor="let meal of meals" (click)="updateSlot(meal)">\n\n            <ion-card-content *ngIf="meal.openStatus" [style.background-color]="meal.status == 0 ? \'#FFFF00\' : (meal.status == 1 ? \'#f53d3d\' : \'#119b05\')">   \n\n                <ion-item [style.background-color]="meal.status == 0 ? \'#FFFF00\' : (meal.status == 1 ? \'#f53d3d\' : \'#119b05\')">          \n\n					<ion-label [style.color]="meal.status == 0 ? \'#000000\' : \'#ffffff\'">{{meal.meal}} {{meal.date}}</ion-label> \n\n                </ion-item> \n\n                <ion-item [style.background-color]="meal.status == 0 ? \'#FFFF00\' : (meal.status == 1 ? \'#f53d3d\' : \'#119b05\')">\n\n                    <ion-label end *ngIf="meal.status == 0">Permanently Signed Out</ion-label>\n\n                    <ion-label end *ngIf="meal.status == 1">Signed out for Now</ion-label>\n\n                    <ion-label end *ngIf="meal.status == 2">Signed In</ion-label>\n\n                </ion-item>           \n\n            </ion-card-content>\n\n        </ion-card>\n\n    </ion-list>\n\n</ion-content>\n\n      '/*ion-inline-end:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\user\sign-out\sign-out.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_global_global__["a" /* GlobalProvider */], __WEBPACK_IMPORTED_MODULE_3__http_api__["a" /* Http */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */]])
     ], SignOutPage);
@@ -1581,13 +1581,13 @@ var SignOutPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 214:
+/***/ 213:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(215);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(237);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(214);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(236);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -1595,7 +1595,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 237:
+/***/ 236:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1603,9 +1603,9 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__http_api__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__http_api__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_http__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_http__ = __webpack_require__(207);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_http__ = __webpack_require__(280);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_local_notifications__ = __webpack_require__(288);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_component__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_status_bar__ = __webpack_require__(55);
@@ -1644,10 +1644,10 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* MyApp */], {}, {
                     links: [
-                        { loadChildren: '../pages/nonnie/sign-out-nonnie/sign-out.module#SignOutPageModule', name: 'SignOutNonniePage', segment: 'sign-out', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/nonnie/verify/verify-edit-weekend/verify-edit-weekend.module#VerifyEditWeekendPageModule', name: 'VerifyEditWeekendPage', segment: 'verify-edit-weekend', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/nonnie/verify/verify-edit/verify-edit.module#VerifyEditPageModule', name: 'VerifyEditPage', segment: 'verify-edit', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/nonnie/sign-out-nonnie/sign-out.module#SignOutPageModule', name: 'SignOutNonniePage', segment: 'sign-out', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/nonnie/verify/verify.module#VerifyPageModule', name: 'VerifyPage', segment: 'verify', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/nonnie/verify/verify-edit/verify-edit.module#VerifyEditPageModule', name: 'VerifyEditPage', segment: 'verify-edit', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/nonnie/weekend-nonnie/weekend.module#WeekendPageModule', name: 'WeekendNonniePage', segment: 'weekend', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/user/announcements/announcements-add/announcements-add.module#AnnouncementsAddPageModule', name: 'AnnouncementsAddPage', segment: 'announcements-add', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/user/settings/settings.module#SettingsPageModule', name: 'SettingsPage', segment: 'settings', priority: 'low', defaultHistory: [] }
@@ -1679,7 +1679,7 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 263:
+/***/ 262:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1738,19 +1738,19 @@ var GlobalProvider = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NonnieModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__nonnie_tabs_tabs__ = __webpack_require__(211);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__nonnie_login_nonnie_login__ = __webpack_require__(210);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__nonnie_verify_verify__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__nonnie_tabs_tabs__ = __webpack_require__(210);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__nonnie_login_nonnie_login__ = __webpack_require__(209);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__nonnie_verify_verify__ = __webpack_require__(111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__nonnie_weekend_nonnie_weekend__ = __webpack_require__(113);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__nonnie_sign_out_nonnie_sign_out__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__nonnie_verify_verify_edit_verify_edit__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__nonnie_verify_verify_edit_weekend_verify_edit_weekend__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__nonnie_sign_out_nonnie_sign_out__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__nonnie_verify_verify_edit_verify_edit__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__nonnie_verify_verify_edit_weekend_verify_edit_weekend__ = __webpack_require__(109);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_platform_browser__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_ionic_angular__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_app_component__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_http__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__http_api__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__http_api__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_status_bar__ = __webpack_require__(55);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1827,14 +1827,14 @@ var NonnieModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_component__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_http__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__http_api__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__http_api__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_status_bar__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__login_login__ = __webpack_require__(107);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__register_register__ = __webpack_require__(209);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__register_register__ = __webpack_require__(208);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__announcements_announcements__ = __webpack_require__(108);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__announcements_announcements_add_announcements_add__ = __webpack_require__(114);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__weekend_weekend__ = __webpack_require__(212);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__sign_out_sign_out__ = __webpack_require__(213);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__weekend_weekend__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__sign_out_sign_out__ = __webpack_require__(212);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__settings_settings__ = __webpack_require__(115);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__providers_global_global__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_native_splash_screen__ = __webpack_require__(106);
@@ -1905,5 +1905,5 @@ var UserModule = /** @class */ (function () {
 
 /***/ })
 
-},[214]);
+},[213]);
 //# sourceMappingURL=main.js.map
