@@ -8,6 +8,7 @@ import { RegisterPage } from '../user/register/register';
 import { GlobalProvider } from "../../providers/global/global";
 import { presentToast, handleError } from '../../app-functions';
 import { LoginNonniePage } from '../nonnie/login-nonnie/login';
+import { LoginModel } from '../../../models/login.model';
 
 @Component({
   selector: 'page-login',
@@ -15,7 +16,7 @@ import { LoginNonniePage } from '../nonnie/login-nonnie/login';
 })
 export class LoginPage {
 
-  user: any;
+  user: FormGroup | LoginModel;
   splashScreenReady: any = false;
   splashScreenVisibility: any = "hidden";
   splashScreenOn: any = true;
@@ -46,42 +47,41 @@ export class LoginPage {
       return;
     }
 
-    var jsonArr = {
-      studentNumber : ""
+    let jsonArr: LoginModel = {
+      studentNumber : value.studentNumber
     };
-    jsonArr.studentNumber = value.studentNumber;
 
-	this.http.post("/login", jsonArr).subscribe
-	(
-		(data) =>
-		{      
-			var jsonResp = JSON.parse(data.text());
-			if (jsonResp.JSONRes.success)
-			{
-        if (jsonResp.JSONRes.verified)
+    this.http.post("/login", jsonArr).subscribe
+    (
+      (data) =>
+      {      
+        var jsonResp = JSON.parse(data.text());
+        if (jsonResp.JSONRes.success)
         {
-          presentToast(this.toastCtrl,"Logged in!");
-          this.global.myUsrID = jsonResp.JSONRes.usrID;
-          this.global.mySurname = jsonResp.JSONRes.surname;
-          this.global.isHK = jsonResp.JSONRes.isHK;
-          if (jsonResp.JSONRes.isTheBestCoder)
-            this.global.isHK = true;
-          
-          this.navCtrl.setRoot(AnnouncementsPage);
+          if (jsonResp.JSONRes.verified)
+          {
+            presentToast(this.toastCtrl,"Logged in!");
+            this.global.myUsrID = jsonResp.JSONRes.usrID;
+            this.global.mySurname = jsonResp.JSONRes.surname;
+            this.global.isHK = jsonResp.JSONRes.isHK;
+            if (jsonResp.JSONRes.isTheBestCoder)
+              this.global.isHK = true;
+            
+            this.navCtrl.setRoot(AnnouncementsPage);
+          }
+          else
+            presentToast(this.toastCtrl,"Your account has not yet been verified. Please try again later.");
         }
         else
-          presentToast(this.toastCtrl,"Your account has not yet been verified. Please try again later.");
-			}
-			else
-			{
-				presentToast(this.toastCtrl,"Invalid Login. Try Again.");
-			}
-		},
-		(error) =>
-		{
-			handleError(this.navCtrl,error,this.toastCtrl);         
-		}
-	);
+        {
+          presentToast(this.toastCtrl,"Invalid Login. Try Again.");
+        }
+      },
+      (error) =>
+      {
+        handleError(this.navCtrl,error,this.toastCtrl);         
+      }
+    );
   }
 
   public openRegister()
