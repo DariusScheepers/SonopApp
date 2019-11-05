@@ -9,23 +9,15 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { LoginPage } from '../login/login';
 import { RegisterPage } from './register/register';
-import { AnnouncementsPage } from './announcements/announcements';
-import { AnnouncementsAddPage } from './announcements/announcements-add/announcements-add';
-import { WeekendPage } from './weekend/weekend';
-import { SignOutPage } from './sign-out/sign-out';
-import { SettingsPage } from './settings/settings';
 import { GlobalProvider } from "../../providers/global/global";
 import { SplashScreen } from "@ionic-native/splash-screen";
+import { AnnouncementsPage } from './announcements/announcements';
 
 @NgModule({
     declarations: [
         LoginPage,
-        AnnouncementsPage,
-        AnnouncementsAddPage,
         RegisterPage,
-        WeekendPage,
-        SignOutPage,
-        SettingsPage,   
+        AnnouncementsPage
     ],
     imports: [
         BrowserModule,
@@ -35,12 +27,8 @@ import { SplashScreen } from "@ionic-native/splash-screen";
     bootstrap: [IonicApp],
     entryComponents: [
         LoginPage,
-        AnnouncementsPage,
-        AnnouncementsAddPage,
         RegisterPage,
-        WeekendPage,
-        SignOutPage,
-        SettingsPage,
+        AnnouncementsPage
     ],
     providers: [
         StatusBar,

@@ -2,11 +2,6 @@
 //#region nonnie
 import { TabsPage } from '../nonnie/tabs/tabs';
 import { LoginNonniePage } from '../nonnie/login-nonnie/login';
-import { VerifyPage } from '../nonnie/verify/verify';
-import { WeekendNonniePage } from '../nonnie/weekend-nonnie/weekend';
-import { SignOutNonniePage } from '../nonnie/sign-out-nonnie/sign-out';
-import { VerifyEditPage } from '../nonnie/verify/verify-edit/verify-edit';
-import { VerifyEditWeekendPage } from '../nonnie/verify/verify-edit-weekend/verify-edit-weekend';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicModule, IonicApp, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from '../../app/app.component';
@@ -20,11 +15,6 @@ import { StatusBar } from '@ionic-native/status-bar';
     declarations: [  
         TabsPage,
         LoginNonniePage,
-        VerifyPage,
-        WeekendNonniePage,
-        SignOutNonniePage,
-        VerifyEditPage,
-        VerifyEditWeekendPage
     ],
     imports: [
         BrowserModule,
@@ -35,11 +25,6 @@ import { StatusBar } from '@ionic-native/status-bar';
     entryComponents: [
         TabsPage,
         LoginNonniePage,
-        VerifyPage,
-        WeekendNonniePage,
-        SignOutNonniePage,
-        VerifyEditPage,
-        VerifyEditWeekendPage
     ],
     providers: [
         StatusBar,

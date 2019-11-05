@@ -11,9 +11,9 @@ webpackJsonp([7],{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(106);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_login_login__ = __webpack_require__(107);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_user_announcements_announcements__ = __webpack_require__(108);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_user_weekend_weekend__ = __webpack_require__(211);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_user_sign_out_sign_out__ = __webpack_require__(212);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_user_settings_settings__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_user_weekend_weekend__ = __webpack_require__(287);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_user_sign_out_sign_out__ = __webpack_require__(288);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_user_settings_settings__ = __webpack_require__(210);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -89,10 +89,10 @@ var MyApp = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__http_api__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__user_announcements_announcements__ = __webpack_require__(108);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__user_register_register__ = __webpack_require__(208);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__user_register_register__ = __webpack_require__(201);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_global_global__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_functions__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__nonnie_login_nonnie_login__ = __webpack_require__(209);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__nonnie_login_nonnie_login__ = __webpack_require__(202);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -199,7 +199,7 @@ var LoginPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__http_api__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_global_global__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__announcements_add_announcements_add__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__announcements_add_announcements_add__ = __webpack_require__(209);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_functions__ = __webpack_require__(15);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -294,681 +294,7 @@ var AnnouncementsPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 109:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return VerifyEditWeekendPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__http_api__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_functions__ = __webpack_require__(15);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-var VerifyEditWeekendPage = /** @class */ (function () {
-    function VerifyEditWeekendPage(navCtrl, navParams, http, toastCtrl, viewCtrl) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.http = http;
-        this.toastCtrl = toastCtrl;
-        this.viewCtrl = viewCtrl;
-        this.loadSlotValues();
-    }
-    VerifyEditWeekendPage.prototype.loadSlotValues = function () {
-        var _this = this;
-        this.account = this.navParams.get('account');
-        var reqSend = {
-            id: this.account.usrID
-        };
-        this.http.post('/get-weekend', reqSend).subscribe(// 1 represents signed in
-        function (data) {
-            var jsonResp = JSON.parse(data.text());
-            _this.meals = jsonResp.JSONRes;
-        }, function (error) {
-            Object(__WEBPACK_IMPORTED_MODULE_3__app_functions__["a" /* handleError */])(_this.navCtrl, error, _this.toastCtrl);
-        });
-    };
-    VerifyEditWeekendPage.prototype.updateSlot = function (meal) {
-        var _this = this;
-        meal.status = !meal.status;
-        var reqSend = {
-            id: this.account.usrID,
-            wsiFridayDinner: this.meals[0].status,
-            wsiSaturdayBrunch: this.meals[1].status,
-            wsiSaturdayDinner: this.meals[2].status,
-            wsiSundayBreakfast: this.meals[3].status,
-            wsiSundayLunch: this.meals[4].status,
-            wsiSundayDinner: this.meals[5].status
-        };
-        this.http.post('/updateWeekend', reqSend).subscribe(function (data) { }, function (error) {
-            Object(__WEBPACK_IMPORTED_MODULE_3__app_functions__["a" /* handleError */])(_this.navCtrl, error, _this.toastCtrl);
-        });
-    };
-    VerifyEditWeekendPage.prototype.cancel = function () {
-        this.viewCtrl.dismiss(null);
-    };
-    VerifyEditWeekendPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-verify-edit-weekend',template:/*ion-inline-start:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\nonnie\verify\verify-edit-weekend\verify-edit-weekend.html"*/'<ion-header>\n\n\n\n  <ion-navbar>\n\n	<ion-title>Edit Weekend Sign In</ion-title>\n\n	<ion-buttons start>\n\n		<button ion-button (click)="cancel()">\n\n			<ion-icon name="close"></ion-icon>\n\n		</button>\n\n	</ion-buttons>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n	<h1>Information regarding {{account.fullName}}</h1>\n\n	<ion-list>\n\n		<ion-card color="primary" *ngFor="let meal of meals" (click)="updateSlot(meal)">\n\n			<ion-card-content>   \n\n				<ion-item [style.background-color]="meal.status ? \'#119b05\' : \'#f53d3d\'">          \n\n					<ion-label style="color:white">{{meal.meal}} {{meal.date}}</ion-label>           \n\n				</ion-item>             \n\n			</ion-card-content>\n\n		</ion-card>\n\n	</ion-list>\n\n	<button ion-button outline round block (click)="cancel()">Done</button>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\nonnie\verify\verify-edit-weekend\verify-edit-weekend.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__http_api__["a" /* Http */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ViewController */]])
-    ], VerifyEditWeekendPage);
-    return VerifyEditWeekendPage;
-}());
-
-//# sourceMappingURL=verify-edit-weekend.js.map
-
-/***/ }),
-
-/***/ 110:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SignOutNonniePage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__http_api__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_papaparse__ = __webpack_require__(167);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_papaparse___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_papaparse__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_functions__ = __webpack_require__(15);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-var SignOutNonniePage = /** @class */ (function () {
-    function SignOutNonniePage(navCtrl, http, toastCtrl) {
-        this.navCtrl = navCtrl;
-        this.http = http;
-        this.toastCtrl = toastCtrl;
-        this.seatingMapList = [];
-        this.getCurrentSignOut();
-    }
-    SignOutNonniePage.prototype.getCurrentSignOut = function () {
-        var _this = this;
-        this.http.get('/currentSignInList').subscribe(function (data) {
-            _this.seatingMapList = [];
-            _this.lunchCount = 0;
-            _this.dinnerCount = 0;
-            var jsonResp = JSON.parse(data.text()).JSONRes;
-            _this.lunchMeal = jsonResp.lunchMeal;
-            _this.dinnerMeal = jsonResp.dinnerMeal;
-            _this.lunchMealStatus = jsonResp.lunchOpenStatus;
-            _this.dinnerMealStatus = jsonResp.dinnerMealStatus;
-            for (var _i = 0, _a = jsonResp.seatingMap; _i < _a.length; _i++) {
-                var element = _a[_i];
-                _this.seatingMapList.push(element);
-                if (element[2] == 2)
-                    _this.lunchCount++;
-                if (element[3] == 2)
-                    _this.dinnerCount++;
-            }
-        }, function (error) {
-            Object(__WEBPACK_IMPORTED_MODULE_4__app_functions__["a" /* handleError */])(_this.navCtrl, error, _this.toastCtrl);
-        });
-    };
-    SignOutNonniePage.prototype.downloadCSV = function () {
-        var csvHeaderA = ["Table", "Student", this.lunchMeal, this.dinnerMeal];
-        var csv = __WEBPACK_IMPORTED_MODULE_3_papaparse__["unparse"]({
-            fields: csvHeaderA,
-            data: this.seatingMapList
-        });
-        var blob = new Blob([csv]);
-        var a = window.document.createElement("a");
-        a.href = window.URL.createObjectURL(blob);
-        var today = new Date();
-        a.download = today.getDate() + "-" + today.getMonth() + " Sign In List.csv";
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-    };
-    SignOutNonniePage.prototype.refresh = function () {
-        this.getCurrentSignOut();
-    };
-    SignOutNonniePage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-sign-out',template:/*ion-inline-start:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\nonnie\sign-out-nonnie\sign-out.html"*/'<ion-header>\n\n	<ion-navbar>\n\n		<ion-title>Today\'s Sign In List</ion-title>\n\n		<ion-buttons end>\n\n			<button ion-button icon-only (click)="refresh()">\n\n				<ion-icon name="refresh"></ion-icon>\n\n			</button>\n\n			<button ion-button icon-only (click)="downloadCSV()">\n\n				<ion-icon name="download"></ion-icon>\n\n			</button>			\n\n		</ion-buttons>\n\n	</ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n	<table border=1>\n\n		<tr>\n\n			<th width="20%">Table</th>\n\n			<th width="50%">Student</th>\n\n			<th [style.background-color]="lunchMealStatus == 0 ? \'#f53d3d\' : \'#119b05\'"><b>{{ lunchMeal }}</b></th>\n\n			<th [style.background-color]="dinnerMealStatus == 0 ? \'#f53d3d\' : \'#119b05\'"><b>{{ dinnerMeal }}</b></th>\n\n		</tr>\n\n		<tr *ngFor="let student of seatingMapList;">\n\n			<td *ngFor="let field of student;" [style.background-color]="field == 0 ? \'#FFFF00\' : (field == 1 ? \'#f53d3d\' : (field == 2 ? \'#119b05\' : \'#FFFFFF\'))">\n\n				<div *ngIf="field != 0 && field != 1 && field != 2">\n\n					{{ field }}\n\n				</div>	\n\n				<div *ngIf="field == 0 && field != 1 && field != 2">\n\n					Permanent Sign Out\n\n				</div>	\n\n				<div *ngIf="field != 0 && field == 1 && field != 2">\n\n					Signed Out\n\n				</div>\n\n				<div *ngIf="field != 0 && field != 1 && field == 2">\n\n					Signed In\n\n				</div>					\n\n			</td>\n\n		</tr>\n\n	</table>\n\n	<ion-label>Number of Students Signed In for Lunch: {{ lunchCount }}</ion-label>\n\n	<ion-label>Number of Students Signed In for Dinner: {{ dinnerCount }}</ion-label>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\nonnie\sign-out-nonnie\sign-out.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__http_api__["a" /* Http */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */]])
-    ], SignOutNonniePage);
-    return SignOutNonniePage;
-}());
-
-//# sourceMappingURL=sign-out.js.map
-
-/***/ }),
-
-/***/ 111:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return VerifyPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__http_api__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_functions__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__verify_edit_verify_edit__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__verify_edit_weekend_verify_edit_weekend__ = __webpack_require__(109);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-var VerifyPage = /** @class */ (function () {
-    function VerifyPage(navCtrl, navParams, toastCtrl, http, alertCtrl, modalCtrl) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.toastCtrl = toastCtrl;
-        this.http = http;
-        this.alertCtrl = alertCtrl;
-        this.modalCtrl = modalCtrl;
-        this.refresh();
-    }
-    VerifyPage.prototype.refresh = function () {
-        this.loadUnverifiedAccounts();
-        this.loadVerifiedAccounts();
-    };
-    VerifyPage.prototype.loadUnverifiedAccounts = function () {
-        var _this = this;
-        this.unverifiedAccounts = [];
-        this.http.get('/getUnverifiedAccounts').subscribe(function (data) {
-            var jsonResp = JSON.parse(data.text());
-            _this.unverifiedAccounts = jsonResp.result0;
-        }, function (error) {
-            Object(__WEBPACK_IMPORTED_MODULE_3__app_functions__["a" /* handleError */])(_this.navCtrl, error, _this.toastCtrl);
-        });
-    };
-    VerifyPage.prototype.loadVerifiedAccounts = function () {
-        var _this = this;
-        this.unverifiedAccounts = [];
-        this.http.get('/getVerifiedAccounts').subscribe(function (data) {
-            var jsonResp = JSON.parse(data.text());
-            _this.verifiedAccounts = jsonResp.result0;
-        }, function (error) {
-            Object(__WEBPACK_IMPORTED_MODULE_3__app_functions__["a" /* handleError */])(_this.navCtrl, error, _this.toastCtrl);
-        });
-    };
-    VerifyPage.prototype.verifyAccount = function (account) {
-        var _this = this;
-        var reqSend = {
-            id: account.usrID
-        };
-        this.http.post('/acceptAccount', reqSend).subscribe(function (data) {
-            _this.refresh();
-            Object(__WEBPACK_IMPORTED_MODULE_3__app_functions__["c" /* presentToast */])(_this.toastCtrl, "Account Accepted");
-        }, function (error) {
-            Object(__WEBPACK_IMPORTED_MODULE_3__app_functions__["a" /* handleError */])(_this.navCtrl, error, _this.toastCtrl);
-        });
-    };
-    VerifyPage.prototype.discardAccount = function (account) {
-        var _this = this;
-        var reqSend = {
-            id: account.usrID
-        };
-        this.http.post('/discardAccount', reqSend).subscribe(function (data) {
-            _this.refresh();
-            Object(__WEBPACK_IMPORTED_MODULE_3__app_functions__["c" /* presentToast */])(_this.toastCtrl, "Account Discarded");
-        }, function (error) {
-            Object(__WEBPACK_IMPORTED_MODULE_3__app_functions__["a" /* handleError */])(_this.navCtrl, error, _this.toastCtrl);
-        });
-    };
-    VerifyPage.prototype.deleteAccount = function (account) {
-        var _this = this;
-        var reqSend = {
-            id: account.usrID
-        };
-        this.http.post('/deleteAccount', reqSend).subscribe(function (data) {
-            _this.refresh();
-            Object(__WEBPACK_IMPORTED_MODULE_3__app_functions__["c" /* presentToast */])(_this.toastCtrl, "Account Deleted");
-        }, function (error) {
-            Object(__WEBPACK_IMPORTED_MODULE_3__app_functions__["a" /* handleError */])(_this.navCtrl, error, _this.toastCtrl);
-        });
-    };
-    VerifyPage.prototype.presentDeleteConfirm = function (account) {
-        var _this = this;
-        var alert = this.alertCtrl.create({
-            title: 'Delete',
-            message: 'Are you sure you want to delete this account?',
-            buttons: [
-                {
-                    text: 'Cancel',
-                    role: 'cancel',
-                    handler: function () {
-                    }
-                },
-                {
-                    text: 'Delete',
-                    handler: function () {
-                        _this.deleteAccount(account);
-                    }
-                }
-            ]
-        });
-        alert.present();
-    };
-    VerifyPage.prototype.editAccount = function (account) {
-        var _this = this;
-        var addModal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_4__verify_edit_verify_edit__["a" /* VerifyEditPage */], { 'account': account });
-        addModal.onDidDismiss(function (result) {
-            if (result) {
-                _this.http.post('/updateAccountInformation', result).subscribe(function (data) {
-                    Object(__WEBPACK_IMPORTED_MODULE_3__app_functions__["c" /* presentToast */])(_this.toastCtrl, 'Successfully Submitted.');
-                    _this.refresh();
-                }, function (error) {
-                    Object(__WEBPACK_IMPORTED_MODULE_3__app_functions__["a" /* handleError */])(_this.navCtrl, error, _this.toastCtrl);
-                });
-            }
-        });
-        addModal.present();
-    };
-    VerifyPage.prototype.editWeekend = function (account) {
-        var addModal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_5__verify_edit_weekend_verify_edit_weekend__["a" /* VerifyEditWeekendPage */], { 'account': account });
-        addModal.onDidDismiss(function (result) { });
-        addModal.present();
-    };
-    VerifyPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-verify',template:/*ion-inline-start:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\nonnie\verify\verify.html"*/'<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Accounts</ion-title>\n\n    <ion-buttons end>\n\n      <button ion-button (click)="refresh()">Refresh</button>\n\n    </ion-buttons>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <h1>\n\n    Verify Accounts\n\n  </h1>\n\n  <ion-list>\n\n    <ion-card class="account card" *ngFor="let account of unverifiedAccounts" color="primary" [style.background-color]="account.usrIsHK ? \'#f53d3d\' : \'#488aff\'">\n\n      <ion-card-header>  \n\n          <ion-item color="primary">\n\n              <ion-label item-start><h1>{{account.fullName}}</h1></ion-label>\n\n              <button ion-button item-end (click)="verifyAccount(account)">Verify</button>\n\n              <button ion-button item-end (click)="discardAccount(account)">Discard</button>\n\n          </ion-item>              \n\n      </ion-card-header>\n\n      <ion-card-content>   \n\n          <ion-item color="primary">          \n\n            <ion-label>Username: {{account.usrUsername}}</ion-label>\n\n          </ion-item>\n\n          <ion-item color="primary">\n\n            <ion-label>Email address: {{account.usrEmailAddress}}</ion-label> \n\n          </ion-item>\n\n          <ion-item color="primary">\n\n            <ion-label>Bediening Table: {{account.talName}}</ion-label> \n\n          </ion-item>\n\n          <ion-item *ngIf="account.usrIsHK" color="primary">\n\n            <ion-label>HK Member</ion-label>  \n\n          </ion-item>            \n\n      </ion-card-content>\n\n    </ion-card>\n\n  </ion-list>\n\n\n\n  <h1>\n\n    Manage Accounts\n\n  </h1>\n\n  <ion-list>\n\n    <ion-card *ngFor="let account of verifiedAccounts" color="primary">\n\n      <ion-card-header>\n\n          <ion-item color="primary">\n\n            <ion-label item-start><h1>{{account.fullName}}</h1></ion-label>\n\n            <button ion-button item-end (click)="editAccount(account)">Edit</button>\n\n            <button ion-button item-end (click)="presentDeleteConfirm(account)">Delete</button>\n\n            <button ion-button item-end (click)="editWeekend(account)">Edit Weekend Sign In</button>\n\n          </ion-item> \n\n      </ion-card-header>\n\n      <ion-card-content>   \n\n        <ion-item color="primary">          \n\n          <ion-label>Username: {{account.usrUsername}}</ion-label>\n\n        </ion-item>\n\n        <ion-item color="primary">\n\n          <ion-label>Email address: {{account.usrEmailAddress}}</ion-label> \n\n        </ion-item>\n\n        <ion-item color="primary">\n\n          <ion-label>Bediening Table: {{account.talName}}</ion-label> \n\n        </ion-item>   \n\n        <ion-item color="primary">\n\n            <ion-label>Semi: {{account.usrIsSemi}}</ion-label> \n\n          </ion-item>            \n\n      </ion-card-content>\n\n    </ion-card>\n\n  </ion-list>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\nonnie\verify\verify.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */],
-            __WEBPACK_IMPORTED_MODULE_2__http_api__["a" /* Http */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* ModalController */]])
-    ], VerifyPage);
-    return VerifyPage;
-}());
-
-//# sourceMappingURL=verify.js.map
-
-/***/ }),
-
-/***/ 112:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return VerifyEditPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(11);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-var VerifyEditPage = /** @class */ (function () {
-    function VerifyEditPage(navCtrl, navParams, toastCtrl, viewCtrl) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.toastCtrl = toastCtrl;
-        this.viewCtrl = viewCtrl;
-        this.information = new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["b" /* FormGroup */]({
-            table: new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormControl */](),
-            semi: new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormControl */]()
-        });
-        this.loadAccountInformation();
-    }
-    VerifyEditPage.prototype.loadAccountInformation = function () {
-        this.account = this.navParams.get('account');
-        this.bedieningTableID = this.account.tblBedieningTable_talID;
-        this.semi = this.account.usrIsSemi;
-    };
-    VerifyEditPage.prototype.submit = function (value) {
-        var jsonSend = {
-            id: this.account.usrID,
-            bedieningTableID: value.table,
-            semi: value.semi
-        };
-        this.viewCtrl.dismiss(jsonSend);
-    };
-    VerifyEditPage.prototype.cancel = function () {
-        this.account = this.navParams.get('account');
-        this.viewCtrl.dismiss(null);
-    };
-    VerifyEditPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-verify-edit',template:/*ion-inline-start:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\nonnie\verify\verify-edit\verify-edit.html"*/'<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Edit Account</ion-title>\n\n    <ion-buttons start>\n\n      <button ion-button (click)="cancel()">\n\n        <ion-icon name="close"></ion-icon>\n\n      </button>\n\n    </ion-buttons>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <h1>Information regarding {{account.fullName}}</h1>\n\n  <form (submit)="submit(information.value)" [formGroup]="information">\n\n    <ion-list>\n\n      <ion-item> \n\n        <ion-label floating>Your Bediening Table<span style="color:red">*</span></ion-label>\n\n        <ion-select formControlName="table" [(ngModel)]="bedieningTableID">\n\n          <ion-option value=1>HK</ion-option>\n\n          <ion-option value=2>Weste Senior</ion-option>\n\n          <ion-option value=3>Weste Junior</ion-option>\n\n          <ion-option value=4>Ooste Senior</ion-option>\n\n          <ion-option value=5>Ooste Junior</ion-option>\n\n          <ion-option value=6>Noorde Senior</ion-option>\n\n          <ion-option value=7>Noorde Junior</ion-option>\n\n          <ion-option value=8>Sentraal</ion-option>\n\n          <ion-option value=9>Senaat</ion-option>\n\n          <ion-option value=10>Verre Weste</ion-option>\n\n          <ion-option value=11>Eerste Jaar</ion-option>\n\n        </ion-select>        \n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label>Semi</ion-label>\n\n        <ion-checkbox right formControlName="semi" [(ngModel)]="semi"></ion-checkbox>\n\n      </ion-item>\n\n    </ion-list>\n\n    <button ion-button outline round type="submit" block>Update</button>\n\n		\n\n	</form>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\nonnie\verify\verify-edit\verify-edit.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ViewController */]])
-    ], VerifyEditPage);
-    return VerifyEditPage;
-}());
-
-//# sourceMappingURL=verify-edit.js.map
-
-/***/ }),
-
-/***/ 113:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WeekendNonniePage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__http_api__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_papaparse__ = __webpack_require__(167);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_papaparse___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_papaparse__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_functions__ = __webpack_require__(15);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-var WeekendNonniePage = /** @class */ (function () {
-    function WeekendNonniePage(navCtrl, navParams, http, toastCtrl) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.http = http;
-        this.toastCtrl = toastCtrl;
-        this.seatingMap = [];
-        this.seatingMapList = [];
-        this.meals = ["Friday Dinner", "Satudray Brunch", "Satudray Dinner", "Sunday Breakfast", "Sunday Lunch", "Sunday Dinner"];
-        this.getWeekendSignIns();
-    }
-    WeekendNonniePage.prototype.getWeekendSignIns = function () {
-        var _this = this;
-        this.http.get('/weekendSignInList').subscribe(function (data) {
-            _this.seatingMap = [];
-            _this.seatingMapList = [];
-            _this.countFrD = 0;
-            _this.countSaB = 0;
-            _this.countSaD = 0;
-            _this.countSuB = 0;
-            _this.countSuL = 0;
-            _this.countSuD = 0;
-            var jsonResp = JSON.parse(data.text());
-            _this.seatingMap = jsonResp.seatingMap;
-            _this.seatingMap.forEach(function (element0) {
-                element0.forEach(function (element1) {
-                    _this.seatingMapList.push(element1);
-                    if (element1[2] == 1)
-                        _this.countFrD++;
-                    if (element1[3] == 1)
-                        _this.countSaB++;
-                    if (element1[4] == 1)
-                        _this.countSaD++;
-                    if (element1[5] == 1)
-                        _this.countSuB++;
-                    if (element1[6] == 1)
-                        _this.countSuL++;
-                    if (element1[7] == 1)
-                        _this.countSuD++;
-                });
-            });
-        }, function (error) {
-            Object(__WEBPACK_IMPORTED_MODULE_4__app_functions__["a" /* handleError */])(_this.navCtrl, error, _this.toastCtrl);
-        });
-    };
-    WeekendNonniePage.prototype.downloadCSV = function () {
-        var csvHeaderA = ["Table", "Student", "Friday Dinner", "Satudray Brunch", "Satudray Dinner", "Sunday Breakfast", "Sunday Lunch", "Sunday Dinner"];
-        var csv = __WEBPACK_IMPORTED_MODULE_3_papaparse__["unparse"]({
-            fields: csvHeaderA,
-            data: this.seatingMapList
-        });
-        // Dummy implementation for Desktop download purpose
-        var blob = new Blob([csv]);
-        var a = window.document.createElement("a");
-        a.href = window.URL.createObjectURL(blob);
-        a.download = "Weekend Sign In " + this.getNextDayOfWeek(5) + "-" + this.getNextDayOfWeek(0) + ".csv";
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-    };
-    WeekendNonniePage.prototype.getNextDayOfWeek = function (dayOfWeek) {
-        var date = new Date();
-        var resultDate = new Date();
-        resultDate.setDate(date.getDate() + (7 + dayOfWeek - date.getDay()) % 7);
-        return resultDate.getDate().toString() + "/" + resultDate.getMonth().toString();
-    };
-    WeekendNonniePage.prototype.refresh = function () {
-        this.getWeekendSignIns();
-    };
-    WeekendNonniePage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-weekend',template:/*ion-inline-start:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\nonnie\weekend-nonnie\weekend.html"*/'<ion-header>\n\n	<ion-navbar>\n\n		<ion-title>Weekend Sign In List</ion-title>\n\n		<ion-buttons end>\n\n			<button ion-button icon-only (click)="refresh()">\n\n				<ion-icon name="refresh"></ion-icon>\n\n			</button>\n\n			<button ion-button icon-only (click)="downloadCSV()">\n\n				<ion-icon name="download"></ion-icon>\n\n			</button>\n\n		</ion-buttons>\n\n	</ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n	<table border=1>\n\n		<tr>\n\n			<th width="20%">Table</th>\n\n			<th width="50%">Student</th>\n\n			<th *ngFor="let meal of meals"><b>{{ meal }}</b></th>\n\n		</tr>\n\n		<tr *ngFor="let student of seatingMapList; let i = index">\n\n			<td *ngFor="let field of student; let j = index" [style.background-color]="field == 0 ? \'#f53d3d\' : (field == 1 ? \'#119b05\' : \'#FFFFFF\')">\n\n				<div *ngIf="field != 0 && field != 1">					\n\n					{{ field }}\n\n				</div>\n\n				<div *ngIf="field == 0 && field != 1">\n\n					Signed Out\n\n				</div>\n\n				<div *ngIf="field != 0 && field == 1">\n\n					Signed In\n\n				</div>		\n\n			</td>\n\n		</tr>		\n\n	</table>\n\n	<ion-label>Number of Students Signed In on Firday Dinner: {{ countFrD }}</ion-label>\n\n	<ion-label>Number of Students Signed In on Saturday Brunch: {{ countSaB }}</ion-label>\n\n	<ion-label>Number of Students Signed In on Saturday Dinner: {{ countSaD }}</ion-label>\n\n	<ion-label>Number of Students Signed In on Sunday Breakfast: {{ countSuB }}</ion-label>\n\n	<ion-label>Number of Students Signed In on Sunday Lunch: {{ countSuL }}</ion-label>\n\n	<ion-label>Number of Students Signed In on Sunday Dinner: {{ countSuD }}</ion-label>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\nonnie\weekend-nonnie\weekend.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__http_api__["a" /* Http */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */]])
-    ], WeekendNonniePage);
-    return WeekendNonniePage;
-}());
-
-//# sourceMappingURL=weekend.js.map
-
-/***/ }),
-
-/***/ 114:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AnnouncementsAddPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__http_api__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_global_global__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_functions__ = __webpack_require__(15);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-var AnnouncementsAddPage = /** @class */ (function () {
-    function AnnouncementsAddPage(navCtrl, navParams, modalCtrl, http, global, viewCtrl, toastCtrl) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.modalCtrl = modalCtrl;
-        this.http = http;
-        this.global = global;
-        this.viewCtrl = viewCtrl;
-        this.toastCtrl = toastCtrl;
-        this.priorityMessage = false;
-        this.newAnn = new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["b" /* FormGroup */]({
-            title: new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormControl */](),
-            message: new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormControl */]()
-        });
-    }
-    AnnouncementsAddPage.prototype.cancel = function () {
-        this.viewCtrl.dismiss(null);
-    };
-    AnnouncementsAddPage.prototype.addAnnouncement = function (value) {
-        if (value.title == null || value.title == "") {
-            Object(__WEBPACK_IMPORTED_MODULE_5__app_functions__["c" /* presentToast */])(this.toastCtrl, "Please fill in title.");
-            return false;
-        }
-        if (value.message == null || value.message == "") {
-            Object(__WEBPACK_IMPORTED_MODULE_5__app_functions__["c" /* presentToast */])(this.toastCtrl, "Please fill in message.");
-            return false;
-        }
-        var jsonArr = {
-            title: value.title,
-            message: value.message,
-            id: this.global.myUsrID,
-            priority: this.priorityMessage
-        };
-        this.newAnn.reset();
-        this.viewCtrl.dismiss(jsonArr);
-    };
-    AnnouncementsAddPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-announcements-add',template:/*ion-inline-start:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\user\announcements\announcements-add\announcements-add.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>Add Announcement</ion-title>\n\n    <ion-buttons start>\n\n      <button ion-button (click)="cancel()">\n\n          <ion-icon name="close"></ion-icon>\n\n      </button>\n\n  </ion-buttons>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n    <form  (submit)="addAnnouncement(newAnn.value)" [formGroup]="newAnn">\n\n        <ion-item>\n\n            <h2>Post New Announcement</h2>\n\n        </ion-item>\n\n        <ion-item> \n\n            <ion-label floating>Enter Title...</ion-label>\n\n            <ion-input formControlName="title" type="text" maxlength="50"></ion-input>        \n\n        </ion-item>\n\n        <ion-item id="message"> \n\n            <ion-label floating>Enter text...</ion-label>\n\n            <ion-textarea rows="10" formControlName="message" type="text" maxlength="10000"></ion-textarea>        \n\n        </ion-item>\n\n        <ion-item>\n\n            <ion-label>Priority</ion-label>\n\n            <ion-checkbox (ionChange)="priorityMessage = !priorityMessage"></ion-checkbox>\n\n        </ion-item>\n\n        <button ion-button outline round type="submit" block>submit</button>\n\n    </form>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\user\announcements\announcements-add\announcements-add.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* ModalController */],
-            __WEBPACK_IMPORTED_MODULE_3__http_api__["a" /* Http */], __WEBPACK_IMPORTED_MODULE_4__providers_global_global__["a" /* GlobalProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ViewController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */]])
-    ], AnnouncementsAddPage);
-    return AnnouncementsAddPage;
-}());
-
-//# sourceMappingURL=announcements-add.js.map
-
-/***/ }),
-
-/***/ 115:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SettingsPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_global_global__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__http_api__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_functions__ = __webpack_require__(15);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-var SettingsPage = /** @class */ (function () {
-    function SettingsPage(navCtrl, toastCtrl, navParams, global, http) {
-        this.navCtrl = navCtrl;
-        this.toastCtrl = toastCtrl;
-        this.navParams = navParams;
-        this.global = global;
-        this.http = http;
-        this.editPasswordMode = false;
-        this.settings = new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["b" /* FormGroup */]({
-            table: new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormControl */](),
-            semi: new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormControl */](),
-            oldpassword: new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormControl */](),
-            newpassword: new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormControl */](),
-            confirmpassword: new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormControl */](),
-            email: new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormControl */]()
-        });
-        this.loadCurrentTable();
-    }
-    SettingsPage.prototype.loadCurrentTable = function () {
-        var _this = this;
-        var jsonSend = {
-            id: this.global.myUsrID
-        };
-        this.http.post('/getSettings', jsonSend).subscribe(function (data) {
-            var jsonResp = JSON.parse(data.text());
-            _this.bedieningTableID = jsonResp.result0.tblBedieningTable_talID;
-            _this.semi = jsonResp.result0.usrIsSemi;
-            _this.emailAddress = jsonResp.result0.usrEmailAddress;
-        }, function (error) {
-            Object(__WEBPACK_IMPORTED_MODULE_5__app_functions__["a" /* handleError */])(_this.navCtrl, error, _this.toastCtrl);
-        });
-    };
-    SettingsPage.prototype.updateInformation = function (value) {
-        var _this = this;
-        var jsonSend = {
-            id: this.global.myUsrID,
-            bedieningTableID: value.table,
-            semi: value.semi,
-            email: value.email
-        };
-        if (this.editPasswordMode && value.newpassword != null || value.newpassword != "") {
-            if (value.newpassword != value.confirmpassword) {
-                Object(__WEBPACK_IMPORTED_MODULE_5__app_functions__["c" /* presentToast */])(this.toastCtrl, "Please ensure that your passwords match.");
-                return false;
-            }
-        }
-        this.http.post('/updateSettings', jsonSend).subscribe(function () {
-            Object(__WEBPACK_IMPORTED_MODULE_5__app_functions__["c" /* presentToast */])(_this.toastCtrl, "Updated!");
-            if (_this.editPasswordMode) {
-                var jsonSend_1 = {
-                    id: _this.global.myUsrID,
-                    oldpassword: value.oldpassword,
-                    newpassword: value.newpassword
-                };
-                _this.http.post('/updatePassword', jsonSend_1).subscribe(function (data) {
-                    var jsonResp = JSON.parse(data.text());
-                    if (jsonResp.jsonRes.success) {
-                        Object(__WEBPACK_IMPORTED_MODULE_5__app_functions__["b" /* presentLongToast */])(_this.toastCtrl, "Updated Password!");
-                        _this.editPasswordMode = false;
-                    }
-                    else {
-                        Object(__WEBPACK_IMPORTED_MODULE_5__app_functions__["c" /* presentToast */])(_this.toastCtrl, "Old Password is incorrect. Please try again.");
-                        return false;
-                    }
-                }, function (error) {
-                    Object(__WEBPACK_IMPORTED_MODULE_5__app_functions__["a" /* handleError */])(_this.navCtrl, error, _this.toastCtrl);
-                });
-            }
-        }, function (error) {
-            Object(__WEBPACK_IMPORTED_MODULE_5__app_functions__["a" /* handleError */])(_this.navCtrl, error, _this.toastCtrl);
-        });
-    };
-    SettingsPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-settings',template:/*ion-inline-start:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\user\settings\settings.html"*/'\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n      	<button ion-button menuToggle right>\n\n    		<ion-icon name="menu"></ion-icon>\n\n      	</button>\n\n    <ion-title>Settings</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n	<h1>Update the settings you wish to change, leave the rest and click Update</h1>\n\n	<form (submit)="updateInformation(settings.value)" [formGroup]="settings">\n\n		<ion-list>\n\n			<ion-item> \n\n				<ion-label floating>Your Bediening Table<span style="color:red">*</span></ion-label>\n\n				<ion-select formControlName="table" [(ngModel)]="bedieningTableID">\n\n					<ion-option value=1>HK</ion-option>\n\n					<ion-option value=2>Weste Senior</ion-option>\n\n					<ion-option value=3>Weste Junior</ion-option>\n\n					<ion-option value=4>Ooste Senior</ion-option>\n\n					<ion-option value=5>Ooste Junior</ion-option>\n\n					<ion-option value=6>Noorde Senior</ion-option>\n\n					<ion-option value=7>Noorde Junior</ion-option>\n\n					<ion-option value=8>Sentraal</ion-option>\n\n					<ion-option value=9>Senaat</ion-option>\n\n					<ion-option value=10>Verre Weste</ion-option>\n\n					<ion-option value=11>Eerste Jaar</ion-option>\n\n				</ion-select>        \n\n			</ion-item>\n\n			<ion-item>\n\n                <ion-label>Semi</ion-label>\n\n                <ion-checkbox right formControlName="semi" [(ngModel)]="semi"></ion-checkbox>\n\n			</ion-item>\n\n			<ion-item>\n\n				<ion-label floating>Update email adress</ion-label>\n\n				<ion-input formControlName="email" type="text" maxlength="100" [(ngModel)]="emailAddress"></ion-input>\n\n			</ion-item>\n\n		</ion-list>\n\n		<button *ngIf="!editPasswordMode" ion-button outline round (click)="editPasswordMode = !editPasswordMode">Change Password</button>\n\n		<button *ngIf="editPasswordMode" ion-button outline round (click)="editPasswordMode = !editPasswordMode">Cancel Changing Password</button>\n\n		<div *ngIf="editPasswordMode">\n\n			<ion-item> \n\n				<ion-label floating>Old Password</ion-label>\n\n				<ion-input formControlName="oldpassword" type="password" maxlength="32"></ion-input>        \n\n			</ion-item>\n\n			<ion-item> \n\n				<ion-label floating>New Password</ion-label>\n\n				<ion-input formControlName="newpassword" type="password" maxlength="32"></ion-input>        \n\n			</ion-item>\n\n			<ion-item> \n\n				<ion-label floating>Confirm Password</ion-label>\n\n				<ion-input formControlName="confirmpassword" type="password" maxlength="32"></ion-input>        \n\n			</ion-item>\n\n		</div>\n\n		<button ion-button outline round type="submit" block>Update</button>\n\n		\n\n	</form>\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\user\settings\settings.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_global_global__["a" /* GlobalProvider */], __WEBPACK_IMPORTED_MODULE_3__http_api__["a" /* Http */]])
-    ], SettingsPage);
-    return SettingsPage;
-}());
-
-//# sourceMappingURL=settings.js.map
-
-/***/ }),
-
-/***/ 125:
+/***/ 118:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -981,7 +307,7 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 125;
+webpackEmptyAsyncContext.id = 118;
 
 /***/ }),
 
@@ -990,7 +316,7 @@ webpackEmptyAsyncContext.id = 125;
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Http; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app_config__ = __webpack_require__(262);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app_config__ = __webpack_require__(260);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(49);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1105,16 +431,16 @@ function getDayMonth(date) {
 
 /***/ }),
 
-/***/ 166:
+/***/ 159:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
 	"../pages/nonnie/sign-out-nonnie/sign-out.module": [
-		292,
+		291,
 		6
 	],
 	"../pages/nonnie/verify/verify-edit-weekend/verify-edit-weekend.module": [
-		291,
+		292,
 		5
 	],
 	"../pages/nonnie/verify/verify-edit/verify-edit.module": [
@@ -1149,12 +475,12 @@ function webpackAsyncContext(req) {
 webpackAsyncContext.keys = function webpackAsyncContextKeys() {
 	return Object.keys(map);
 };
-webpackAsyncContext.id = 166;
+webpackAsyncContext.id = 159;
 module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 208:
+/***/ 201:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1307,7 +633,7 @@ var RegisterPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 209:
+/***/ 202:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1316,7 +642,7 @@ var RegisterPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__http_api__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__tabs_tabs__ = __webpack_require__(210);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__tabs_tabs__ = __webpack_require__(203);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_functions__ = __webpack_require__(15);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1377,15 +703,15 @@ var LoginNonniePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 210:
+/***/ 203:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TabsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__verify_verify__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__weekend_nonnie_weekend__ = __webpack_require__(113);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__sign_out_nonnie_sign_out__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__verify_verify__ = __webpack_require__(206);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__weekend_nonnie_weekend__ = __webpack_require__(208);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__sign_out_nonnie_sign_out__ = __webpack_require__(204);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1417,7 +743,833 @@ var TabsPage = /** @class */ (function () {
 
 /***/ }),
 
+/***/ 204:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SignOutNonniePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__http_api__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_papaparse__ = __webpack_require__(160);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_papaparse___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_papaparse__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_functions__ = __webpack_require__(15);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var SignOutNonniePage = /** @class */ (function () {
+    function SignOutNonniePage(navCtrl, http, toastCtrl) {
+        this.navCtrl = navCtrl;
+        this.http = http;
+        this.toastCtrl = toastCtrl;
+        this.seatingMapList = [];
+        this.getCurrentSignOut();
+    }
+    SignOutNonniePage.prototype.getCurrentSignOut = function () {
+        var _this = this;
+        this.http.get('/currentSignInList').subscribe(function (data) {
+            _this.seatingMapList = [];
+            _this.lunchCount = 0;
+            _this.dinnerCount = 0;
+            var jsonResp = JSON.parse(data.text()).JSONRes;
+            _this.lunchMeal = jsonResp.lunchMeal;
+            _this.dinnerMeal = jsonResp.dinnerMeal;
+            _this.lunchMealStatus = jsonResp.lunchOpenStatus;
+            _this.dinnerMealStatus = jsonResp.dinnerMealStatus;
+            for (var _i = 0, _a = jsonResp.seatingMap; _i < _a.length; _i++) {
+                var element = _a[_i];
+                _this.seatingMapList.push(element);
+                if (element[2] == 2)
+                    _this.lunchCount++;
+                if (element[3] == 2)
+                    _this.dinnerCount++;
+            }
+        }, function (error) {
+            Object(__WEBPACK_IMPORTED_MODULE_4__app_functions__["a" /* handleError */])(_this.navCtrl, error, _this.toastCtrl);
+        });
+    };
+    SignOutNonniePage.prototype.downloadCSV = function () {
+        var csvHeaderA = ["Table", "Student", this.lunchMeal, this.dinnerMeal];
+        var csv = __WEBPACK_IMPORTED_MODULE_3_papaparse__["unparse"]({
+            fields: csvHeaderA,
+            data: this.seatingMapList
+        });
+        var blob = new Blob([csv]);
+        var a = window.document.createElement("a");
+        a.href = window.URL.createObjectURL(blob);
+        var today = new Date();
+        a.download = today.getDate() + "-" + today.getMonth() + " Sign In List.csv";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    };
+    SignOutNonniePage.prototype.refresh = function () {
+        this.getCurrentSignOut();
+    };
+    SignOutNonniePage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-sign-out',template:/*ion-inline-start:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\nonnie\sign-out-nonnie\sign-out.html"*/'<ion-header>\n\n	<ion-navbar>\n\n		<ion-title>Today\'s Sign In List</ion-title>\n\n		<ion-buttons end>\n\n			<button ion-button icon-only (click)="refresh()">\n\n				<ion-icon name="refresh"></ion-icon>\n\n			</button>\n\n			<button ion-button icon-only (click)="downloadCSV()">\n\n				<ion-icon name="download"></ion-icon>\n\n			</button>			\n\n		</ion-buttons>\n\n	</ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n	<table border=1>\n\n		<tr>\n\n			<th width="20%">Table</th>\n\n			<th width="50%">Student</th>\n\n			<th [style.background-color]="lunchMealStatus == 0 ? \'#f53d3d\' : \'#119b05\'"><b>{{ lunchMeal }}</b></th>\n\n			<th [style.background-color]="dinnerMealStatus == 0 ? \'#f53d3d\' : \'#119b05\'"><b>{{ dinnerMeal }}</b></th>\n\n		</tr>\n\n		<tr *ngFor="let student of seatingMapList;">\n\n			<td *ngFor="let field of student;" [style.background-color]="field == 0 ? \'#FFFF00\' : (field == 1 ? \'#f53d3d\' : (field == 2 ? \'#119b05\' : \'#FFFFFF\'))">\n\n				<div *ngIf="field != 0 && field != 1 && field != 2">\n\n					{{ field }}\n\n				</div>	\n\n				<div *ngIf="field == 0 && field != 1 && field != 2">\n\n					Permanent Sign Out\n\n				</div>	\n\n				<div *ngIf="field != 0 && field == 1 && field != 2">\n\n					Signed Out\n\n				</div>\n\n				<div *ngIf="field != 0 && field != 1 && field == 2">\n\n					Signed In\n\n				</div>					\n\n			</td>\n\n		</tr>\n\n	</table>\n\n	<ion-label>Number of Students Signed In for Lunch: {{ lunchCount }}</ion-label>\n\n	<ion-label>Number of Students Signed In for Dinner: {{ dinnerCount }}</ion-label>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\nonnie\sign-out-nonnie\sign-out.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__http_api__["a" /* Http */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */]])
+    ], SignOutNonniePage);
+    return SignOutNonniePage;
+}());
+
+//# sourceMappingURL=sign-out.js.map
+
+/***/ }),
+
+/***/ 205:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return VerifyEditWeekendPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__http_api__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_functions__ = __webpack_require__(15);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var VerifyEditWeekendPage = /** @class */ (function () {
+    function VerifyEditWeekendPage(navCtrl, navParams, http, toastCtrl, viewCtrl) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.http = http;
+        this.toastCtrl = toastCtrl;
+        this.viewCtrl = viewCtrl;
+        this.loadSlotValues();
+    }
+    VerifyEditWeekendPage.prototype.loadSlotValues = function () {
+        var _this = this;
+        this.account = this.navParams.get('account');
+        var reqSend = {
+            id: this.account.usrID
+        };
+        this.http.post('/get-weekend', reqSend).subscribe(// 1 represents signed in
+        function (data) {
+            var jsonResp = JSON.parse(data.text());
+            _this.meals = jsonResp.JSONRes;
+        }, function (error) {
+            Object(__WEBPACK_IMPORTED_MODULE_3__app_functions__["a" /* handleError */])(_this.navCtrl, error, _this.toastCtrl);
+        });
+    };
+    VerifyEditWeekendPage.prototype.updateSlot = function (meal) {
+        var _this = this;
+        meal.status = !meal.status;
+        var reqSend = {
+            id: this.account.usrID,
+            wsiFridayDinner: this.meals[0].status,
+            wsiSaturdayBrunch: this.meals[1].status,
+            wsiSaturdayDinner: this.meals[2].status,
+            wsiSundayBreakfast: this.meals[3].status,
+            wsiSundayLunch: this.meals[4].status,
+            wsiSundayDinner: this.meals[5].status
+        };
+        this.http.post('/updateWeekend', reqSend).subscribe(function (data) { }, function (error) {
+            Object(__WEBPACK_IMPORTED_MODULE_3__app_functions__["a" /* handleError */])(_this.navCtrl, error, _this.toastCtrl);
+        });
+    };
+    VerifyEditWeekendPage.prototype.cancel = function () {
+        this.viewCtrl.dismiss(null);
+    };
+    VerifyEditWeekendPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-verify-edit-weekend',template:/*ion-inline-start:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\nonnie\verify\verify-edit-weekend\verify-edit-weekend.html"*/'<ion-header>\n\n\n\n  <ion-navbar>\n\n	<ion-title>Edit Weekend Sign In</ion-title>\n\n	<ion-buttons start>\n\n		<button ion-button (click)="cancel()">\n\n			<ion-icon name="close"></ion-icon>\n\n		</button>\n\n	</ion-buttons>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n	<h1>Information regarding {{account.fullName}}</h1>\n\n	<ion-list>\n\n		<ion-card color="primary" *ngFor="let meal of meals" (click)="updateSlot(meal)">\n\n			<ion-card-content>   \n\n				<ion-item [style.background-color]="meal.status ? \'#119b05\' : \'#f53d3d\'">          \n\n					<ion-label style="color:white">{{meal.meal}} {{meal.date}}</ion-label>           \n\n				</ion-item>             \n\n			</ion-card-content>\n\n		</ion-card>\n\n	</ion-list>\n\n	<button ion-button outline round block (click)="cancel()">Done</button>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\nonnie\verify\verify-edit-weekend\verify-edit-weekend.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__http_api__["a" /* Http */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ViewController */]])
+    ], VerifyEditWeekendPage);
+    return VerifyEditWeekendPage;
+}());
+
+//# sourceMappingURL=verify-edit-weekend.js.map
+
+/***/ }),
+
+/***/ 206:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return VerifyPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__http_api__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_functions__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__verify_edit_verify_edit__ = __webpack_require__(207);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__verify_edit_weekend_verify_edit_weekend__ = __webpack_require__(205);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var VerifyPage = /** @class */ (function () {
+    function VerifyPage(navCtrl, navParams, toastCtrl, http, alertCtrl, modalCtrl) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.toastCtrl = toastCtrl;
+        this.http = http;
+        this.alertCtrl = alertCtrl;
+        this.modalCtrl = modalCtrl;
+        this.refresh();
+    }
+    VerifyPage.prototype.refresh = function () {
+        this.loadUnverifiedAccounts();
+        this.loadVerifiedAccounts();
+    };
+    VerifyPage.prototype.loadUnverifiedAccounts = function () {
+        var _this = this;
+        this.unverifiedAccounts = [];
+        this.http.get('/getUnverifiedAccounts').subscribe(function (data) {
+            var jsonResp = JSON.parse(data.text());
+            _this.unverifiedAccounts = jsonResp.result0;
+        }, function (error) {
+            Object(__WEBPACK_IMPORTED_MODULE_3__app_functions__["a" /* handleError */])(_this.navCtrl, error, _this.toastCtrl);
+        });
+    };
+    VerifyPage.prototype.loadVerifiedAccounts = function () {
+        var _this = this;
+        this.unverifiedAccounts = [];
+        this.http.get('/getVerifiedAccounts').subscribe(function (data) {
+            var jsonResp = JSON.parse(data.text());
+            _this.verifiedAccounts = jsonResp.result0;
+        }, function (error) {
+            Object(__WEBPACK_IMPORTED_MODULE_3__app_functions__["a" /* handleError */])(_this.navCtrl, error, _this.toastCtrl);
+        });
+    };
+    VerifyPage.prototype.verifyAccount = function (account) {
+        var _this = this;
+        var reqSend = {
+            id: account.usrID
+        };
+        this.http.post('/acceptAccount', reqSend).subscribe(function (data) {
+            _this.refresh();
+            Object(__WEBPACK_IMPORTED_MODULE_3__app_functions__["c" /* presentToast */])(_this.toastCtrl, "Account Accepted");
+        }, function (error) {
+            Object(__WEBPACK_IMPORTED_MODULE_3__app_functions__["a" /* handleError */])(_this.navCtrl, error, _this.toastCtrl);
+        });
+    };
+    VerifyPage.prototype.discardAccount = function (account) {
+        var _this = this;
+        var reqSend = {
+            id: account.usrID
+        };
+        this.http.post('/discardAccount', reqSend).subscribe(function (data) {
+            _this.refresh();
+            Object(__WEBPACK_IMPORTED_MODULE_3__app_functions__["c" /* presentToast */])(_this.toastCtrl, "Account Discarded");
+        }, function (error) {
+            Object(__WEBPACK_IMPORTED_MODULE_3__app_functions__["a" /* handleError */])(_this.navCtrl, error, _this.toastCtrl);
+        });
+    };
+    VerifyPage.prototype.deleteAccount = function (account) {
+        var _this = this;
+        var reqSend = {
+            id: account.usrID
+        };
+        this.http.post('/deleteAccount', reqSend).subscribe(function (data) {
+            _this.refresh();
+            Object(__WEBPACK_IMPORTED_MODULE_3__app_functions__["c" /* presentToast */])(_this.toastCtrl, "Account Deleted");
+        }, function (error) {
+            Object(__WEBPACK_IMPORTED_MODULE_3__app_functions__["a" /* handleError */])(_this.navCtrl, error, _this.toastCtrl);
+        });
+    };
+    VerifyPage.prototype.presentDeleteConfirm = function (account) {
+        var _this = this;
+        var alert = this.alertCtrl.create({
+            title: 'Delete',
+            message: 'Are you sure you want to delete this account?',
+            buttons: [
+                {
+                    text: 'Cancel',
+                    role: 'cancel',
+                    handler: function () {
+                    }
+                },
+                {
+                    text: 'Delete',
+                    handler: function () {
+                        _this.deleteAccount(account);
+                    }
+                }
+            ]
+        });
+        alert.present();
+    };
+    VerifyPage.prototype.editAccount = function (account) {
+        var _this = this;
+        var addModal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_4__verify_edit_verify_edit__["a" /* VerifyEditPage */], { 'account': account });
+        addModal.onDidDismiss(function (result) {
+            if (result) {
+                _this.http.post('/updateAccountInformation', result).subscribe(function (data) {
+                    Object(__WEBPACK_IMPORTED_MODULE_3__app_functions__["c" /* presentToast */])(_this.toastCtrl, 'Successfully Submitted.');
+                    _this.refresh();
+                }, function (error) {
+                    Object(__WEBPACK_IMPORTED_MODULE_3__app_functions__["a" /* handleError */])(_this.navCtrl, error, _this.toastCtrl);
+                });
+            }
+        });
+        addModal.present();
+    };
+    VerifyPage.prototype.editWeekend = function (account) {
+        var addModal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_5__verify_edit_weekend_verify_edit_weekend__["a" /* VerifyEditWeekendPage */], { 'account': account });
+        addModal.onDidDismiss(function (result) { });
+        addModal.present();
+    };
+    VerifyPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-verify',template:/*ion-inline-start:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\nonnie\verify\verify.html"*/'<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Accounts</ion-title>\n\n    <ion-buttons end>\n\n      <button ion-button (click)="refresh()">Refresh</button>\n\n    </ion-buttons>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <h1>\n\n    Verify Accounts\n\n  </h1>\n\n  <ion-list>\n\n    <ion-card class="account card" *ngFor="let account of unverifiedAccounts" color="primary" [style.background-color]="account.usrIsHK ? \'#f53d3d\' : \'#488aff\'">\n\n      <ion-card-header>  \n\n          <ion-item color="primary">\n\n              <ion-label item-start><h1>{{account.fullName}}</h1></ion-label>\n\n              <button ion-button item-end (click)="verifyAccount(account)">Verify</button>\n\n              <button ion-button item-end (click)="discardAccount(account)">Discard</button>\n\n          </ion-item>              \n\n      </ion-card-header>\n\n      <ion-card-content>   \n\n          <ion-item color="primary">          \n\n            <ion-label>Username: {{account.usrUsername}}</ion-label>\n\n          </ion-item>\n\n          <ion-item color="primary">\n\n            <ion-label>Email address: {{account.usrEmailAddress}}</ion-label> \n\n          </ion-item>\n\n          <ion-item color="primary">\n\n            <ion-label>Bediening Table: {{account.talName}}</ion-label> \n\n          </ion-item>\n\n          <ion-item *ngIf="account.usrIsHK" color="primary">\n\n            <ion-label>HK Member</ion-label>  \n\n          </ion-item>            \n\n      </ion-card-content>\n\n    </ion-card>\n\n  </ion-list>\n\n\n\n  <h1>\n\n    Manage Accounts\n\n  </h1>\n\n  <ion-list>\n\n    <ion-card *ngFor="let account of verifiedAccounts" color="primary">\n\n      <ion-card-header>\n\n          <ion-item color="primary">\n\n            <ion-label item-start><h1>{{account.fullName}}</h1></ion-label>\n\n            <button ion-button item-end (click)="editAccount(account)">Edit</button>\n\n            <button ion-button item-end (click)="presentDeleteConfirm(account)">Delete</button>\n\n            <button ion-button item-end (click)="editWeekend(account)">Edit Weekend Sign In</button>\n\n          </ion-item> \n\n      </ion-card-header>\n\n      <ion-card-content>   \n\n        <ion-item color="primary">          \n\n          <ion-label>Username: {{account.usrUsername}}</ion-label>\n\n        </ion-item>\n\n        <ion-item color="primary">\n\n          <ion-label>Email address: {{account.usrEmailAddress}}</ion-label> \n\n        </ion-item>\n\n        <ion-item color="primary">\n\n          <ion-label>Bediening Table: {{account.talName}}</ion-label> \n\n        </ion-item>   \n\n        <ion-item color="primary">\n\n            <ion-label>Semi: {{account.usrIsSemi}}</ion-label> \n\n          </ion-item>            \n\n      </ion-card-content>\n\n    </ion-card>\n\n  </ion-list>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\nonnie\verify\verify.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */],
+            __WEBPACK_IMPORTED_MODULE_2__http_api__["a" /* Http */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* ModalController */]])
+    ], VerifyPage);
+    return VerifyPage;
+}());
+
+//# sourceMappingURL=verify.js.map
+
+/***/ }),
+
+/***/ 207:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return VerifyEditPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(11);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var VerifyEditPage = /** @class */ (function () {
+    function VerifyEditPage(navCtrl, navParams, toastCtrl, viewCtrl) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.toastCtrl = toastCtrl;
+        this.viewCtrl = viewCtrl;
+        this.information = new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["b" /* FormGroup */]({
+            table: new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormControl */](),
+            semi: new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormControl */]()
+        });
+        this.loadAccountInformation();
+    }
+    VerifyEditPage.prototype.loadAccountInformation = function () {
+        this.account = this.navParams.get('account');
+        this.bedieningTableID = this.account.tblBedieningTable_talID;
+        this.semi = this.account.usrIsSemi;
+    };
+    VerifyEditPage.prototype.submit = function (value) {
+        var jsonSend = {
+            id: this.account.usrID,
+            bedieningTableID: value.table,
+            semi: value.semi
+        };
+        this.viewCtrl.dismiss(jsonSend);
+    };
+    VerifyEditPage.prototype.cancel = function () {
+        this.account = this.navParams.get('account');
+        this.viewCtrl.dismiss(null);
+    };
+    VerifyEditPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-verify-edit',template:/*ion-inline-start:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\nonnie\verify\verify-edit\verify-edit.html"*/'<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Edit Account</ion-title>\n\n    <ion-buttons start>\n\n      <button ion-button (click)="cancel()">\n\n        <ion-icon name="close"></ion-icon>\n\n      </button>\n\n    </ion-buttons>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <h1>Information regarding {{account.fullName}}</h1>\n\n  <form (submit)="submit(information.value)" [formGroup]="information">\n\n    <ion-list>\n\n      <ion-item> \n\n        <ion-label floating>Your Bediening Table<span style="color:red">*</span></ion-label>\n\n        <ion-select formControlName="table" [(ngModel)]="bedieningTableID">\n\n          <ion-option value=1>HK</ion-option>\n\n          <ion-option value=2>Weste Senior</ion-option>\n\n          <ion-option value=3>Weste Junior</ion-option>\n\n          <ion-option value=4>Ooste Senior</ion-option>\n\n          <ion-option value=5>Ooste Junior</ion-option>\n\n          <ion-option value=6>Noorde Senior</ion-option>\n\n          <ion-option value=7>Noorde Junior</ion-option>\n\n          <ion-option value=8>Sentraal</ion-option>\n\n          <ion-option value=9>Senaat</ion-option>\n\n          <ion-option value=10>Verre Weste</ion-option>\n\n          <ion-option value=11>Eerste Jaar</ion-option>\n\n        </ion-select>        \n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label>Semi</ion-label>\n\n        <ion-checkbox right formControlName="semi" [(ngModel)]="semi"></ion-checkbox>\n\n      </ion-item>\n\n    </ion-list>\n\n    <button ion-button outline round type="submit" block>Update</button>\n\n		\n\n	</form>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\nonnie\verify\verify-edit\verify-edit.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ViewController */]])
+    ], VerifyEditPage);
+    return VerifyEditPage;
+}());
+
+//# sourceMappingURL=verify-edit.js.map
+
+/***/ }),
+
+/***/ 208:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WeekendNonniePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__http_api__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_papaparse__ = __webpack_require__(160);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_papaparse___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_papaparse__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_functions__ = __webpack_require__(15);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var WeekendNonniePage = /** @class */ (function () {
+    function WeekendNonniePage(navCtrl, navParams, http, toastCtrl) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.http = http;
+        this.toastCtrl = toastCtrl;
+        this.seatingMap = [];
+        this.seatingMapList = [];
+        this.meals = ["Friday Dinner", "Satudray Brunch", "Satudray Dinner", "Sunday Breakfast", "Sunday Lunch", "Sunday Dinner"];
+        this.getWeekendSignIns();
+    }
+    WeekendNonniePage.prototype.getWeekendSignIns = function () {
+        var _this = this;
+        this.http.get('/weekendSignInList').subscribe(function (data) {
+            _this.seatingMap = [];
+            _this.seatingMapList = [];
+            _this.countFrD = 0;
+            _this.countSaB = 0;
+            _this.countSaD = 0;
+            _this.countSuB = 0;
+            _this.countSuL = 0;
+            _this.countSuD = 0;
+            var jsonResp = JSON.parse(data.text());
+            _this.seatingMap = jsonResp.seatingMap;
+            _this.seatingMap.forEach(function (element0) {
+                element0.forEach(function (element1) {
+                    _this.seatingMapList.push(element1);
+                    if (element1[2] == 1)
+                        _this.countFrD++;
+                    if (element1[3] == 1)
+                        _this.countSaB++;
+                    if (element1[4] == 1)
+                        _this.countSaD++;
+                    if (element1[5] == 1)
+                        _this.countSuB++;
+                    if (element1[6] == 1)
+                        _this.countSuL++;
+                    if (element1[7] == 1)
+                        _this.countSuD++;
+                });
+            });
+        }, function (error) {
+            Object(__WEBPACK_IMPORTED_MODULE_4__app_functions__["a" /* handleError */])(_this.navCtrl, error, _this.toastCtrl);
+        });
+    };
+    WeekendNonniePage.prototype.downloadCSV = function () {
+        var csvHeaderA = ["Table", "Student", "Friday Dinner", "Satudray Brunch", "Satudray Dinner", "Sunday Breakfast", "Sunday Lunch", "Sunday Dinner"];
+        var csv = __WEBPACK_IMPORTED_MODULE_3_papaparse__["unparse"]({
+            fields: csvHeaderA,
+            data: this.seatingMapList
+        });
+        // Dummy implementation for Desktop download purpose
+        var blob = new Blob([csv]);
+        var a = window.document.createElement("a");
+        a.href = window.URL.createObjectURL(blob);
+        a.download = "Weekend Sign In " + this.getNextDayOfWeek(5) + "-" + this.getNextDayOfWeek(0) + ".csv";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    };
+    WeekendNonniePage.prototype.getNextDayOfWeek = function (dayOfWeek) {
+        var date = new Date();
+        var resultDate = new Date();
+        resultDate.setDate(date.getDate() + (7 + dayOfWeek - date.getDay()) % 7);
+        return resultDate.getDate().toString() + "/" + resultDate.getMonth().toString();
+    };
+    WeekendNonniePage.prototype.refresh = function () {
+        this.getWeekendSignIns();
+    };
+    WeekendNonniePage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-weekend',template:/*ion-inline-start:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\nonnie\weekend-nonnie\weekend.html"*/'<ion-header>\n\n	<ion-navbar>\n\n		<ion-title>Weekend Sign In List</ion-title>\n\n		<ion-buttons end>\n\n			<button ion-button icon-only (click)="refresh()">\n\n				<ion-icon name="refresh"></ion-icon>\n\n			</button>\n\n			<button ion-button icon-only (click)="downloadCSV()">\n\n				<ion-icon name="download"></ion-icon>\n\n			</button>\n\n		</ion-buttons>\n\n	</ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n	<table border=1>\n\n		<tr>\n\n			<th width="20%">Table</th>\n\n			<th width="50%">Student</th>\n\n			<th *ngFor="let meal of meals"><b>{{ meal }}</b></th>\n\n		</tr>\n\n		<tr *ngFor="let student of seatingMapList; let i = index">\n\n			<td *ngFor="let field of student; let j = index" [style.background-color]="field == 0 ? \'#f53d3d\' : (field == 1 ? \'#119b05\' : \'#FFFFFF\')">\n\n				<div *ngIf="field != 0 && field != 1">					\n\n					{{ field }}\n\n				</div>\n\n				<div *ngIf="field == 0 && field != 1">\n\n					Signed Out\n\n				</div>\n\n				<div *ngIf="field != 0 && field == 1">\n\n					Signed In\n\n				</div>		\n\n			</td>\n\n		</tr>		\n\n	</table>\n\n	<ion-label>Number of Students Signed In on Firday Dinner: {{ countFrD }}</ion-label>\n\n	<ion-label>Number of Students Signed In on Saturday Brunch: {{ countSaB }}</ion-label>\n\n	<ion-label>Number of Students Signed In on Saturday Dinner: {{ countSaD }}</ion-label>\n\n	<ion-label>Number of Students Signed In on Sunday Breakfast: {{ countSuB }}</ion-label>\n\n	<ion-label>Number of Students Signed In on Sunday Lunch: {{ countSuL }}</ion-label>\n\n	<ion-label>Number of Students Signed In on Sunday Dinner: {{ countSuD }}</ion-label>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\nonnie\weekend-nonnie\weekend.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__http_api__["a" /* Http */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */]])
+    ], WeekendNonniePage);
+    return WeekendNonniePage;
+}());
+
+//# sourceMappingURL=weekend.js.map
+
+/***/ }),
+
+/***/ 209:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AnnouncementsAddPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__http_api__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_global_global__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_functions__ = __webpack_require__(15);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var AnnouncementsAddPage = /** @class */ (function () {
+    function AnnouncementsAddPage(navCtrl, navParams, modalCtrl, http, global, viewCtrl, toastCtrl) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.modalCtrl = modalCtrl;
+        this.http = http;
+        this.global = global;
+        this.viewCtrl = viewCtrl;
+        this.toastCtrl = toastCtrl;
+        this.priorityMessage = false;
+        this.newAnn = new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["b" /* FormGroup */]({
+            title: new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormControl */](),
+            message: new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormControl */]()
+        });
+    }
+    AnnouncementsAddPage.prototype.cancel = function () {
+        this.viewCtrl.dismiss(null);
+    };
+    AnnouncementsAddPage.prototype.addAnnouncement = function (value) {
+        if (value.title == null || value.title == "") {
+            Object(__WEBPACK_IMPORTED_MODULE_5__app_functions__["c" /* presentToast */])(this.toastCtrl, "Please fill in title.");
+            return false;
+        }
+        if (value.message == null || value.message == "") {
+            Object(__WEBPACK_IMPORTED_MODULE_5__app_functions__["c" /* presentToast */])(this.toastCtrl, "Please fill in message.");
+            return false;
+        }
+        var jsonArr = {
+            title: value.title,
+            message: value.message,
+            id: this.global.myUsrID,
+            priority: this.priorityMessage
+        };
+        this.newAnn.reset();
+        this.viewCtrl.dismiss(jsonArr);
+    };
+    AnnouncementsAddPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-announcements-add',template:/*ion-inline-start:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\user\announcements\announcements-add\announcements-add.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>Add Announcement</ion-title>\n\n    <ion-buttons start>\n\n      <button ion-button (click)="cancel()">\n\n          <ion-icon name="close"></ion-icon>\n\n      </button>\n\n  </ion-buttons>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n    <form  (submit)="addAnnouncement(newAnn.value)" [formGroup]="newAnn">\n\n        <ion-item>\n\n            <h2>Post New Announcement</h2>\n\n        </ion-item>\n\n        <ion-item> \n\n            <ion-label floating>Enter Title...</ion-label>\n\n            <ion-input formControlName="title" type="text" maxlength="50"></ion-input>        \n\n        </ion-item>\n\n        <ion-item id="message"> \n\n            <ion-label floating>Enter text...</ion-label>\n\n            <ion-textarea rows="10" formControlName="message" type="text" maxlength="10000"></ion-textarea>        \n\n        </ion-item>\n\n        <ion-item>\n\n            <ion-label>Priority</ion-label>\n\n            <ion-checkbox (ionChange)="priorityMessage = !priorityMessage"></ion-checkbox>\n\n        </ion-item>\n\n        <button ion-button outline round type="submit" block>submit</button>\n\n    </form>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\user\announcements\announcements-add\announcements-add.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* ModalController */],
+            __WEBPACK_IMPORTED_MODULE_3__http_api__["a" /* Http */], __WEBPACK_IMPORTED_MODULE_4__providers_global_global__["a" /* GlobalProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ViewController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */]])
+    ], AnnouncementsAddPage);
+    return AnnouncementsAddPage;
+}());
+
+//# sourceMappingURL=announcements-add.js.map
+
+/***/ }),
+
+/***/ 210:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SettingsPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_global_global__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__http_api__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_functions__ = __webpack_require__(15);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var SettingsPage = /** @class */ (function () {
+    function SettingsPage(navCtrl, toastCtrl, navParams, global, http) {
+        this.navCtrl = navCtrl;
+        this.toastCtrl = toastCtrl;
+        this.navParams = navParams;
+        this.global = global;
+        this.http = http;
+        this.editPasswordMode = false;
+        this.settings = new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["b" /* FormGroup */]({
+            table: new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormControl */](),
+            semi: new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormControl */](),
+            oldpassword: new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormControl */](),
+            newpassword: new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormControl */](),
+            confirmpassword: new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormControl */](),
+            email: new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormControl */]()
+        });
+        this.loadCurrentTable();
+    }
+    SettingsPage.prototype.loadCurrentTable = function () {
+        var _this = this;
+        var jsonSend = {
+            id: this.global.myUsrID
+        };
+        this.http.post('/getSettings', jsonSend).subscribe(function (data) {
+            var jsonResp = JSON.parse(data.text());
+            _this.bedieningTableID = jsonResp.result0.tblBedieningTable_talID;
+            _this.semi = jsonResp.result0.usrIsSemi;
+            _this.emailAddress = jsonResp.result0.usrEmailAddress;
+        }, function (error) {
+            Object(__WEBPACK_IMPORTED_MODULE_5__app_functions__["a" /* handleError */])(_this.navCtrl, error, _this.toastCtrl);
+        });
+    };
+    SettingsPage.prototype.updateInformation = function (value) {
+        var _this = this;
+        var jsonSend = {
+            id: this.global.myUsrID,
+            bedieningTableID: value.table,
+            semi: value.semi,
+            email: value.email
+        };
+        if (this.editPasswordMode && value.newpassword != null || value.newpassword != "") {
+            if (value.newpassword != value.confirmpassword) {
+                Object(__WEBPACK_IMPORTED_MODULE_5__app_functions__["c" /* presentToast */])(this.toastCtrl, "Please ensure that your passwords match.");
+                return false;
+            }
+        }
+        this.http.post('/updateSettings', jsonSend).subscribe(function () {
+            Object(__WEBPACK_IMPORTED_MODULE_5__app_functions__["c" /* presentToast */])(_this.toastCtrl, "Updated!");
+            if (_this.editPasswordMode) {
+                var jsonSend_1 = {
+                    id: _this.global.myUsrID,
+                    oldpassword: value.oldpassword,
+                    newpassword: value.newpassword
+                };
+                _this.http.post('/updatePassword', jsonSend_1).subscribe(function (data) {
+                    var jsonResp = JSON.parse(data.text());
+                    if (jsonResp.jsonRes.success) {
+                        Object(__WEBPACK_IMPORTED_MODULE_5__app_functions__["b" /* presentLongToast */])(_this.toastCtrl, "Updated Password!");
+                        _this.editPasswordMode = false;
+                    }
+                    else {
+                        Object(__WEBPACK_IMPORTED_MODULE_5__app_functions__["c" /* presentToast */])(_this.toastCtrl, "Old Password is incorrect. Please try again.");
+                        return false;
+                    }
+                }, function (error) {
+                    Object(__WEBPACK_IMPORTED_MODULE_5__app_functions__["a" /* handleError */])(_this.navCtrl, error, _this.toastCtrl);
+                });
+            }
+        }, function (error) {
+            Object(__WEBPACK_IMPORTED_MODULE_5__app_functions__["a" /* handleError */])(_this.navCtrl, error, _this.toastCtrl);
+        });
+    };
+    SettingsPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-settings',template:/*ion-inline-start:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\user\settings\settings.html"*/'\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n      	<button ion-button menuToggle right>\n\n    		<ion-icon name="menu"></ion-icon>\n\n      	</button>\n\n    <ion-title>Settings</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n	<h1>Update the settings you wish to change, leave the rest and click Update</h1>\n\n	<form (submit)="updateInformation(settings.value)" [formGroup]="settings">\n\n		<ion-list>\n\n			<ion-item> \n\n				<ion-label floating>Your Bediening Table<span style="color:red">*</span></ion-label>\n\n				<ion-select formControlName="table" [(ngModel)]="bedieningTableID">\n\n					<ion-option value=1>HK</ion-option>\n\n					<ion-option value=2>Weste Senior</ion-option>\n\n					<ion-option value=3>Weste Junior</ion-option>\n\n					<ion-option value=4>Ooste Senior</ion-option>\n\n					<ion-option value=5>Ooste Junior</ion-option>\n\n					<ion-option value=6>Noorde Senior</ion-option>\n\n					<ion-option value=7>Noorde Junior</ion-option>\n\n					<ion-option value=8>Sentraal</ion-option>\n\n					<ion-option value=9>Senaat</ion-option>\n\n					<ion-option value=10>Verre Weste</ion-option>\n\n					<ion-option value=11>Eerste Jaar</ion-option>\n\n				</ion-select>        \n\n			</ion-item>\n\n			<ion-item>\n\n                <ion-label>Semi</ion-label>\n\n                <ion-checkbox right formControlName="semi" [(ngModel)]="semi"></ion-checkbox>\n\n			</ion-item>\n\n			<ion-item>\n\n				<ion-label floating>Update email adress</ion-label>\n\n				<ion-input formControlName="email" type="text" maxlength="100" [(ngModel)]="emailAddress"></ion-input>\n\n			</ion-item>\n\n		</ion-list>\n\n		<button *ngIf="!editPasswordMode" ion-button outline round (click)="editPasswordMode = !editPasswordMode">Change Password</button>\n\n		<button *ngIf="editPasswordMode" ion-button outline round (click)="editPasswordMode = !editPasswordMode">Cancel Changing Password</button>\n\n		<div *ngIf="editPasswordMode">\n\n			<ion-item> \n\n				<ion-label floating>Old Password</ion-label>\n\n				<ion-input formControlName="oldpassword" type="password" maxlength="32"></ion-input>        \n\n			</ion-item>\n\n			<ion-item> \n\n				<ion-label floating>New Password</ion-label>\n\n				<ion-input formControlName="newpassword" type="password" maxlength="32"></ion-input>        \n\n			</ion-item>\n\n			<ion-item> \n\n				<ion-label floating>Confirm Password</ion-label>\n\n				<ion-input formControlName="confirmpassword" type="password" maxlength="32"></ion-input>        \n\n			</ion-item>\n\n		</div>\n\n		<button ion-button outline round type="submit" block>Update</button>\n\n		\n\n	</form>\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\bbdnet1882\Documents\Sonop\SonopApp\SonopApp-front-end\src\pages\user\settings\settings.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_global_global__["a" /* GlobalProvider */], __WEBPACK_IMPORTED_MODULE_3__http_api__["a" /* Http */]])
+    ], SettingsPage);
+    return SettingsPage;
+}());
+
+//# sourceMappingURL=settings.js.map
+
+/***/ }),
+
 /***/ 211:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(212);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(234);
+
+
+Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
+//# sourceMappingURL=main.js.map
+
+/***/ }),
+
+/***/ 234:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__http_api__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_http__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_http__ = __webpack_require__(278);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_local_notifications__ = __webpack_require__(286);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_component__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_status_bar__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_splash_screen__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__providers_global_global__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_nonnie_nonnie_module__ = __webpack_require__(289);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_user_user_module__ = __webpack_require__(290);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+var AppModule = /** @class */ (function () {
+    function AppModule() {
+    }
+    AppModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* MyApp */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
+                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* MyApp */], {}, {
+                    links: [
+                        { loadChildren: '../pages/nonnie/sign-out-nonnie/sign-out.module#SignOutPageModule', name: 'SignOutNonniePage', segment: 'sign-out', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/nonnie/verify/verify-edit-weekend/verify-edit-weekend.module#VerifyEditWeekendPageModule', name: 'VerifyEditWeekendPage', segment: 'verify-edit-weekend', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/nonnie/verify/verify.module#VerifyPageModule', name: 'VerifyPage', segment: 'verify', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/nonnie/verify/verify-edit/verify-edit.module#VerifyEditPageModule', name: 'VerifyEditPage', segment: 'verify-edit', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/nonnie/weekend-nonnie/weekend.module#WeekendPageModule', name: 'WeekendNonniePage', segment: 'weekend', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/user/announcements/announcements-add/announcements-add.module#AnnouncementsAddPageModule', name: 'AnnouncementsAddPage', segment: 'announcements-add', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/user/settings/settings.module#SettingsPageModule', name: 'SettingsPage', segment: 'settings', priority: 'low', defaultHistory: [] }
+                    ]
+                }),
+                __WEBPACK_IMPORTED_MODULE_4__angular_http__["c" /* HttpModule */],
+                __WEBPACK_IMPORTED_MODULE_11__pages_nonnie_nonnie_module__["a" /* NonnieModule */],
+                __WEBPACK_IMPORTED_MODULE_12__pages_user_user_module__["a" /* UserModule */]
+            ],
+            bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* IonicApp */]],
+            entryComponents: [
+                __WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* MyApp */],
+            ],
+            providers: [
+                __WEBPACK_IMPORTED_MODULE_8__ionic_native_status_bar__["a" /* StatusBar */],
+                __WEBPACK_IMPORTED_MODULE_9__ionic_native_splash_screen__["a" /* SplashScreen */],
+                { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* IonicErrorHandler */] },
+                __WEBPACK_IMPORTED_MODULE_3__http_api__["a" /* Http */],
+                __WEBPACK_IMPORTED_MODULE_5__ionic_native_http__["a" /* HTTP */],
+                __WEBPACK_IMPORTED_MODULE_10__providers_global_global__["a" /* GlobalProvider */],
+                __WEBPACK_IMPORTED_MODULE_6__ionic_native_local_notifications__["a" /* LocalNotifications */]
+            ]
+        })
+    ], AppModule);
+    return AppModule;
+}());
+
+//# sourceMappingURL=app.module.js.map
+
+/***/ }),
+
+/***/ 260:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CONFIG; });
+var CONFIG = {
+    url: "http://localhost:3000"
+};
+// 10.0.10.225:3000
+// 10.0.5.103:3000 
+//# sourceMappingURL=app-config.js.map
+
+/***/ }),
+
+/***/ 28:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GlobalProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+//import { HttpClient } from '@angular/common/http';
+
+/*
+  Generated class for the GlobalProvider provider.
+
+  See https://angular.io/guide/dependency-injection for more info on providers
+  and Angular DI.
+*/
+var GlobalProvider = /** @class */ (function () {
+    function GlobalProvider() {
+        this.myUsrID = 0;
+        this.mySurname = "";
+        this.isHK = false;
+    }
+    GlobalProvider = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [])
+    ], GlobalProvider);
+    return GlobalProvider;
+}());
+
+//# sourceMappingURL=global.js.map
+
+/***/ }),
+
+/***/ 287:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1505,7 +1657,7 @@ var WeekendPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 212:
+/***/ 288:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1581,177 +1733,20 @@ var SignOutPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 213:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(214);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(236);
-
-
-Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
-//# sourceMappingURL=main.js.map
-
-/***/ }),
-
-/***/ 236:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__http_api__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_http__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_http__ = __webpack_require__(280);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_local_notifications__ = __webpack_require__(288);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_component__ = __webpack_require__(105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_status_bar__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_splash_screen__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__providers_global_global__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_nonnie_nonnie_module__ = __webpack_require__(289);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_user_user_module__ = __webpack_require__(290);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-var AppModule = /** @class */ (function () {
-    function AppModule() {
-    }
-    AppModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["I" /* NgModule */])({
-            declarations: [
-                __WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* MyApp */],
-            ],
-            imports: [
-                __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
-                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* MyApp */], {}, {
-                    links: [
-                        { loadChildren: '../pages/nonnie/verify/verify-edit-weekend/verify-edit-weekend.module#VerifyEditWeekendPageModule', name: 'VerifyEditWeekendPage', segment: 'verify-edit-weekend', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/nonnie/sign-out-nonnie/sign-out.module#SignOutPageModule', name: 'SignOutNonniePage', segment: 'sign-out', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/nonnie/verify/verify.module#VerifyPageModule', name: 'VerifyPage', segment: 'verify', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/nonnie/verify/verify-edit/verify-edit.module#VerifyEditPageModule', name: 'VerifyEditPage', segment: 'verify-edit', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/nonnie/weekend-nonnie/weekend.module#WeekendPageModule', name: 'WeekendNonniePage', segment: 'weekend', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/user/announcements/announcements-add/announcements-add.module#AnnouncementsAddPageModule', name: 'AnnouncementsAddPage', segment: 'announcements-add', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/user/settings/settings.module#SettingsPageModule', name: 'SettingsPage', segment: 'settings', priority: 'low', defaultHistory: [] }
-                    ]
-                }),
-                __WEBPACK_IMPORTED_MODULE_4__angular_http__["c" /* HttpModule */],
-                __WEBPACK_IMPORTED_MODULE_11__pages_nonnie_nonnie_module__["a" /* NonnieModule */],
-                __WEBPACK_IMPORTED_MODULE_12__pages_user_user_module__["a" /* UserModule */]
-            ],
-            bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* IonicApp */]],
-            entryComponents: [
-                __WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* MyApp */],
-            ],
-            providers: [
-                __WEBPACK_IMPORTED_MODULE_8__ionic_native_status_bar__["a" /* StatusBar */],
-                __WEBPACK_IMPORTED_MODULE_9__ionic_native_splash_screen__["a" /* SplashScreen */],
-                { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* IonicErrorHandler */] },
-                __WEBPACK_IMPORTED_MODULE_3__http_api__["a" /* Http */],
-                __WEBPACK_IMPORTED_MODULE_5__ionic_native_http__["a" /* HTTP */],
-                __WEBPACK_IMPORTED_MODULE_10__providers_global_global__["a" /* GlobalProvider */],
-                __WEBPACK_IMPORTED_MODULE_6__ionic_native_local_notifications__["a" /* LocalNotifications */]
-            ]
-        })
-    ], AppModule);
-    return AppModule;
-}());
-
-//# sourceMappingURL=app.module.js.map
-
-/***/ }),
-
-/***/ 262:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CONFIG; });
-var CONFIG = {
-    url: "http://localhost:3000"
-};
-// 10.0.10.225:3000
-// 10.0.5.103:3000 
-//# sourceMappingURL=app-config.js.map
-
-/***/ }),
-
-/***/ 28:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GlobalProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-//import { HttpClient } from '@angular/common/http';
-
-/*
-  Generated class for the GlobalProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
-var GlobalProvider = /** @class */ (function () {
-    function GlobalProvider() {
-        this.myUsrID = 0;
-        this.mySurname = "";
-        this.isHK = false;
-    }
-    GlobalProvider = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [])
-    ], GlobalProvider);
-    return GlobalProvider;
-}());
-
-//# sourceMappingURL=global.js.map
-
-/***/ }),
-
 /***/ 289:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NonnieModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__nonnie_tabs_tabs__ = __webpack_require__(210);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__nonnie_login_nonnie_login__ = __webpack_require__(209);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__nonnie_verify_verify__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__nonnie_weekend_nonnie_weekend__ = __webpack_require__(113);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__nonnie_sign_out_nonnie_sign_out__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__nonnie_verify_verify_edit_verify_edit__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__nonnie_verify_verify_edit_weekend_verify_edit_weekend__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_platform_browser__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_ionic_angular__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_app_component__ = __webpack_require__(105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_http__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__http_api__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_status_bar__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__nonnie_tabs_tabs__ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__nonnie_login_nonnie_login__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_app_component__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_http__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__http_api__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_status_bar__ = __webpack_require__(55);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1768,45 +1763,30 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-
-
-
-
-
 //#endregion
 var NonnieModule = /** @class */ (function () {
     function NonnieModule() {
     }
     NonnieModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_10__angular_core__["I" /* NgModule */])({
+        Object(__WEBPACK_IMPORTED_MODULE_5__angular_core__["I" /* NgModule */])({
             declarations: [
                 __WEBPACK_IMPORTED_MODULE_0__nonnie_tabs_tabs__["a" /* TabsPage */],
                 __WEBPACK_IMPORTED_MODULE_1__nonnie_login_nonnie_login__["a" /* LoginNonniePage */],
-                __WEBPACK_IMPORTED_MODULE_2__nonnie_verify_verify__["a" /* VerifyPage */],
-                __WEBPACK_IMPORTED_MODULE_3__nonnie_weekend_nonnie_weekend__["a" /* WeekendNonniePage */],
-                __WEBPACK_IMPORTED_MODULE_4__nonnie_sign_out_nonnie_sign_out__["a" /* SignOutNonniePage */],
-                __WEBPACK_IMPORTED_MODULE_5__nonnie_verify_verify_edit_verify_edit__["a" /* VerifyEditPage */],
-                __WEBPACK_IMPORTED_MODULE_6__nonnie_verify_verify_edit_weekend_verify_edit_weekend__["a" /* VerifyEditWeekendPage */]
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_7__angular_platform_browser__["a" /* BrowserModule */],
-                __WEBPACK_IMPORTED_MODULE_8_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_9__app_app_component__["a" /* MyApp */]),
-                __WEBPACK_IMPORTED_MODULE_11__angular_http__["c" /* HttpModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["a" /* BrowserModule */],
+                __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_4__app_app_component__["a" /* MyApp */]),
+                __WEBPACK_IMPORTED_MODULE_6__angular_http__["c" /* HttpModule */],
             ],
-            bootstrap: [__WEBPACK_IMPORTED_MODULE_8_ionic_angular__["b" /* IonicApp */]],
+            bootstrap: [__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["b" /* IonicApp */]],
             entryComponents: [
                 __WEBPACK_IMPORTED_MODULE_0__nonnie_tabs_tabs__["a" /* TabsPage */],
                 __WEBPACK_IMPORTED_MODULE_1__nonnie_login_nonnie_login__["a" /* LoginNonniePage */],
-                __WEBPACK_IMPORTED_MODULE_2__nonnie_verify_verify__["a" /* VerifyPage */],
-                __WEBPACK_IMPORTED_MODULE_3__nonnie_weekend_nonnie_weekend__["a" /* WeekendNonniePage */],
-                __WEBPACK_IMPORTED_MODULE_4__nonnie_sign_out_nonnie_sign_out__["a" /* SignOutNonniePage */],
-                __WEBPACK_IMPORTED_MODULE_5__nonnie_verify_verify_edit_verify_edit__["a" /* VerifyEditPage */],
-                __WEBPACK_IMPORTED_MODULE_6__nonnie_verify_verify_edit_weekend_verify_edit_weekend__["a" /* VerifyEditWeekendPage */]
             ],
             providers: [
-                __WEBPACK_IMPORTED_MODULE_13__ionic_native_status_bar__["a" /* StatusBar */],
-                { provide: __WEBPACK_IMPORTED_MODULE_10__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_8_ionic_angular__["c" /* IonicErrorHandler */] },
-                __WEBPACK_IMPORTED_MODULE_12__http_api__["a" /* Http */]
+                __WEBPACK_IMPORTED_MODULE_8__ionic_native_status_bar__["a" /* StatusBar */],
+                { provide: __WEBPACK_IMPORTED_MODULE_5__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["c" /* IonicErrorHandler */] },
+                __WEBPACK_IMPORTED_MODULE_7__http_api__["a" /* Http */]
             ]
         })
     ], NonnieModule);
@@ -1830,24 +1810,16 @@ var NonnieModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__http_api__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_status_bar__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__login_login__ = __webpack_require__(107);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__register_register__ = __webpack_require__(208);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__announcements_announcements__ = __webpack_require__(108);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__announcements_announcements_add_announcements_add__ = __webpack_require__(114);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__weekend_weekend__ = __webpack_require__(211);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__sign_out_sign_out__ = __webpack_require__(212);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__settings_settings__ = __webpack_require__(115);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__providers_global_global__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_native_splash_screen__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__register_register__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__providers_global_global__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_splash_screen__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__announcements_announcements__ = __webpack_require__(108);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-
-
-
-
 
 
 
@@ -1867,12 +1839,8 @@ var UserModule = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_3__angular_core__["I" /* NgModule */])({
             declarations: [
                 __WEBPACK_IMPORTED_MODULE_7__login_login__["a" /* LoginPage */],
-                __WEBPACK_IMPORTED_MODULE_9__announcements_announcements__["a" /* AnnouncementsPage */],
-                __WEBPACK_IMPORTED_MODULE_10__announcements_announcements_add_announcements_add__["a" /* AnnouncementsAddPage */],
                 __WEBPACK_IMPORTED_MODULE_8__register_register__["a" /* RegisterPage */],
-                __WEBPACK_IMPORTED_MODULE_11__weekend_weekend__["a" /* WeekendPage */],
-                __WEBPACK_IMPORTED_MODULE_12__sign_out_sign_out__["a" /* SignOutPage */],
-                __WEBPACK_IMPORTED_MODULE_13__settings_settings__["a" /* SettingsPage */],
+                __WEBPACK_IMPORTED_MODULE_11__announcements_announcements__["a" /* AnnouncementsPage */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -1882,19 +1850,15 @@ var UserModule = /** @class */ (function () {
             bootstrap: [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* IonicApp */]],
             entryComponents: [
                 __WEBPACK_IMPORTED_MODULE_7__login_login__["a" /* LoginPage */],
-                __WEBPACK_IMPORTED_MODULE_9__announcements_announcements__["a" /* AnnouncementsPage */],
-                __WEBPACK_IMPORTED_MODULE_10__announcements_announcements_add_announcements_add__["a" /* AnnouncementsAddPage */],
                 __WEBPACK_IMPORTED_MODULE_8__register_register__["a" /* RegisterPage */],
-                __WEBPACK_IMPORTED_MODULE_11__weekend_weekend__["a" /* WeekendPage */],
-                __WEBPACK_IMPORTED_MODULE_12__sign_out_sign_out__["a" /* SignOutPage */],
-                __WEBPACK_IMPORTED_MODULE_13__settings_settings__["a" /* SettingsPage */],
+                __WEBPACK_IMPORTED_MODULE_11__announcements_announcements__["a" /* AnnouncementsPage */]
             ],
             providers: [
                 __WEBPACK_IMPORTED_MODULE_6__ionic_native_status_bar__["a" /* StatusBar */],
-                __WEBPACK_IMPORTED_MODULE_15__ionic_native_splash_screen__["a" /* SplashScreen */],
+                __WEBPACK_IMPORTED_MODULE_10__ionic_native_splash_screen__["a" /* SplashScreen */],
                 { provide: __WEBPACK_IMPORTED_MODULE_3__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* IonicErrorHandler */] },
                 __WEBPACK_IMPORTED_MODULE_5__http_api__["a" /* Http */],
-                __WEBPACK_IMPORTED_MODULE_14__providers_global_global__["a" /* GlobalProvider */],
+                __WEBPACK_IMPORTED_MODULE_9__providers_global_global__["a" /* GlobalProvider */],
             ]
         })
     ], UserModule);
@@ -1905,5 +1869,5 @@ var UserModule = /** @class */ (function () {
 
 /***/ })
 
-},[213]);
+},[211]);
 //# sourceMappingURL=main.js.map
