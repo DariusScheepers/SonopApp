@@ -3,12 +3,12 @@ import { NavController, ToastController } from 'ionic-angular';
 import { FormGroup, FormControl} from '@angular/forms';
 //import { HomePage } from '../home/home';
 import { Http } from '../../http-api';
-import { AnnouncementsPage } from '../user/announcements/announcements';
 import { RegisterPage } from '../user/register/register';
 import { GlobalProvider } from "../../providers/global/global";
 import { presentToast, handleError } from '../../app-functions';
 import { LoginNonniePage } from '../nonnie/login-nonnie/login';
-import { LoginModel } from '../../../models/login.model';
+import { LoginModel } from '../../../functions/src/models/login.model';
+import { StudentLoginModel } from '../../../functions/src/models/student.model';
 
 @Component({
   selector: 'page-login',
@@ -55,19 +55,20 @@ export class LoginPage {
     (
       (data) =>
       {      
-        var jsonResp = JSON.parse(data.text());
-        if (jsonResp.JSONRes.success)
+        let student: StudentLoginModel = JSON.parse(data.text());
+        if (student.success)
         {
-          if (jsonResp.JSONRes.verified)
+          if (student.studentInfo.verified)
           {
             presentToast(this.toastCtrl,"Logged in!");
-            this.global.myUsrID = jsonResp.JSONRes.usrID;
-            this.global.mySurname = jsonResp.JSONRes.surname;
-            this.global.isHK = jsonResp.JSONRes.isHK;
-            if (jsonResp.JSONRes.isTheBestCoder)
+            this.global.myUsrID = Number(student.studentInfo.studentNumber);
+            this.global.mySurname = student.studentInfo.surname;
+            this.global.isHK = student.studentInfo.isHk;
+            if (student.isBestCoder) {
               this.global.isHK = true;
+            }
             
-            this.navCtrl.setRoot(AnnouncementsPage);
+            // this.navCtrl.setRoot(AnnouncementsPage);
           }
           else
             presentToast(this.toastCtrl,"Your account has not yet been verified. Please try again later.");

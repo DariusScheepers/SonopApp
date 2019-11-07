@@ -4,6 +4,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Http } from '../../../../http-api';
 import { GlobalProvider } from "../../../../providers/global/global";
 import { presentToast } from '../../../../app-functions';
+import { AnnouncementModel } from '../../../../../functions/src/models/announcement.model';
 
 @IonicPage()
 @Component({
@@ -27,7 +28,7 @@ export class AnnouncementsAddPage {
         this.viewCtrl.dismiss(null);
     }
 
-	public addAnnouncement(value:any)
+	public addAnnouncement(value: AnnouncementModel)
     {
 		if (value.title == null || value.title == "")
         {
@@ -40,15 +41,15 @@ export class AnnouncementsAddPage {
             return false;
         }
 
-        let jsonArr = {
-            title : value.title,
-            message : value.message,
-            id : this.global.myUsrID,
-            priority: this.priorityMessage
-        };
+        let newAnnouncement = new AnnouncementModel(
+            value.title,
+            value.message,
+            this.priorityMessage,
+            this.global.myUsrID.toString(),
+        );
 		
 		this.newAnn.reset();
-        this.viewCtrl.dismiss(jsonArr);
+        this.viewCtrl.dismiss(newAnnouncement);
 
 	}
 }
