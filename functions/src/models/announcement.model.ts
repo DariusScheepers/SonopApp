@@ -1,16 +1,16 @@
-import { DocumentReference } from "@google-cloud/firestore";
+// import { DocumentReference } from "@google-cloud/firestore";
 
 export class AnnouncementModel {
     title: string;
     message: string;
     datePosted: number | string;
     priority: boolean;
-    postedBy: string | DocumentReference;
+    postedBy: string | any; // DocumentReference
     constructor(
         title: string,
         message: string,
         priority: boolean,
-        postedBy: string | DocumentReference,
+        postedBy: string | any, // DocumentReference
         datePosted: number = 0
     ) {
         this.title = title;

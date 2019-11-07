@@ -70,7 +70,7 @@ export class AnnouncementsPage {
                 this.announcements.forEach(element => {
                     element.message = element.message .replace(/\n/g, '<br>');
                     
-                    let date = new Date(element.datePosted);
+                    let date = new Date(Number(element.datePosted));
                     element.datePosted = date.toLocaleString(); //date.toTimeString() + " - " + date.toDateString() + date.toISOString() + 
                 });
             },

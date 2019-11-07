@@ -1,5 +1,5 @@
 import { BedieningTable } from "./bediening-table.enum";
-import { DocumentReference } from "@google-cloud/firestore";
+// import { DocumentReference } from "@google-cloud/firestore";
 
 export class StudentModel {
     username: string;
@@ -9,7 +9,7 @@ export class StudentModel {
     surname: string;
     studentNumber: string;
     firstYearYear: number;
-    bedieningTable: BedieningTable | DocumentReference;
+    bedieningTable: BedieningTable | any; // DocumentReference
     semi: boolean;
     isHk: boolean;
     verified: boolean;
