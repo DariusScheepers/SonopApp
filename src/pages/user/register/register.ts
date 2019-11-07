@@ -4,13 +4,17 @@ import { FormGroup, FormControl} from '@angular/forms';
 import { Http } from '../../../http-api';
 import { LoginPage } from '../../login/login';
 import { presentToast, handleError } from '../../../app-functions';
+import { StudentModel } from '../../../../functions/src/models/student.model'
+import { bedieningTableModels, BedieningTableModel } from '../../../../functions/src/models/bediening-table.enum'
 
 @Component({
   selector: 'page-register',
   templateUrl: 'register.html'
 })
 export class RegisterPage {
-    regUser:any;
+    regUser: any | StudentModel;
+
+    tables: BedieningTableModel[] = bedieningTableModels;
 
     constructor(public http: Http, public navCtrl: NavController, public toastCtrl: ToastController)
     {
@@ -69,10 +73,10 @@ export class RegisterPage {
         {
             presentToast(this.toastCtrl,"Please fill in your first year year.");
             return false;
-        }
-        else if (value.bedieningtable == null || !(value.bedieningtable >= 1 && value.bedieningtable <= 11))
+        }                
+        else if (value.bedieningtable == null || value.bedieningtable == "")
         {
-            presentToast(this.toastCtrl,"Please select the table you sit at bedienings.");
+            presentToast(this.toastCtrl,"Please select the table you sit at bediening.");
             return false;
         }
         else if (value.password == null || value.password == "")
@@ -108,24 +112,24 @@ export class RegisterPage {
 
             if (value.semi == null)
                 value.semi = false;
-            var jsonArr: any = {
-                username: value.username,
-                password: value.password,
-                email: value.email,
-                name: value.fname,
-                surname: value.sname,
-                studentnumber: value.studentnumber,
-                firstyearyear: value.firstyearyear,
-                bedieningtable: value.bedieningtable,
-                semi: value.semi,
-                isHk: HKMode
-            };        
+            var jsonArr: StudentModel = new StudentModel(
+                value.username,
+                value.password,
+                value.email,
+                value.fname,
+                value.sname,
+                value.studentnumber,
+                value.firstyearyear,
+                value.bedieningtable,
+                value.semi,
+                HKMode
+            );
             this.http.post("/addUser", jsonArr).subscribe
             (
                 (response) => 
                 {
                     var jsonResp = JSON.parse(response.text());
-                    if(jsonResp.success)
+                    if (jsonResp.success)
                     {
                         this.navCtrl.setRoot(LoginPage);
                         presentToast(this.toastCtrl,"Registration successful! Please a while for verification then log in.");                        

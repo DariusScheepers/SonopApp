@@ -5,6 +5,7 @@ import { GlobalProvider } from "../../../providers/global/global";
 import { FormGroup, FormControl } from '@angular/forms';
 import { AnnouncementsAddPage } from './announcements-add/announcements-add';
 import { presentToast, handleError } from '../../../app-functions';
+import { AnnouncementModel } from '../../../../functions/src/models/announcement.model';
 
 @Component({
   selector: 'page-announcements',
@@ -12,7 +13,7 @@ import { presentToast, handleError } from '../../../app-functions';
 })
 export class AnnouncementsPage {
 
-    announcements:any;
+    announcements: AnnouncementModel[];
     announcement:any;
 
     votd:any;
@@ -69,8 +70,8 @@ export class AnnouncementsPage {
                 this.announcements.forEach(element => {
                     element.message = element.message .replace(/\n/g, '<br>');
                     
-                    let date = new Date(element.date);
-                    element.date = date.toLocaleString(); //date.toTimeString() + " - " + date.toDateString() + date.toISOString() + 
+                    let date = new Date(element.datePosted);
+                    element.datePosted = date.toLocaleString(); //date.toTimeString() + " - " + date.toDateString() + date.toISOString() + 
                 });
             },
             (error) =>
