@@ -24,22 +24,25 @@ export class BibleVerseService extends DataService {
     private async downloadBibleVerse() {
         const url = 'http://beta.ourmanna.com/api/v1/get/?format=json';
         // const proxyUrl = 'http://cors-anywhere.herokuapp.com/' + url;
-    
-        this.request({
+        let bibleVerseJSON = null;
+        
+        await this.request({
             url: url,
             json: true
-        }, (error: any, response: any, body: any) => {
+        }, async (error: any, response: any, body: any) => {
             if (response && !error && response.statusCode === 200) {
-                this.freeUpBibleVerses();
-
+                await this.freeUpBibleVerses();
+                bibleVerseJSON = body;
                 const date = new Date().getTime().toString();
-                const newBibleVerseEntry = new FirebaseIdentifier(this.collection, date, body);
-                this.database.writeToDatabase(newBibleVerseEntry);
+                const newBibleVerseEntry = new FirebaseIdentifier(this.collection, date, {bibleVerseJSON});
+                await this.database.writeToDatabase(newBibleVerseEntry);
             }
             else {
                 console.log("Error: " + error);
             }
-        });   
+        });
+        
+        return bibleVerseJSON;
     }
 
     private setRecurrenceRule() {
@@ -51,8 +54,8 @@ export class BibleVerseService extends DataService {
         });
     }
 
-    private freeUpBibleVerses() {
+    private async freeUpBibleVerses() {
         const collectionToFreeUp = new FirebaseIdentifier(this.collection);
-        this.database.deleteCollection(collectionToFreeUp);
+        await this.database.deleteCollection(collectionToFreeUp);
     }
 }

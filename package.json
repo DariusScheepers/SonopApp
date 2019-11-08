@@ -9,11 +9,11 @@
     "clean": "ionic-app-scripts clean",
     "build": "ionic-app-scripts build",
     "lint": "ionic-app-scripts lint",
-    "rebuild:functions": "cd functions && npm run build && cd ..",
-    "rebuild:all": "npm run build --prod && npm run rebuild:functions",
+    "build:functions": "cd functions && npm run build && cd ..",
+    "build:all": "npm run build --prod && npm run build:functions",
     "serve:functions-hosting": "firebase serve --only functions,hosting",
-    "rebuild:functions:serve": "npm run rebuild:functions && npm run serve:functions-hosting",
-    "build:all:deploy": "npm run rebuild:all && firebase deploy"
+    "build:functions:serve": "npm run build:functions && npm run serve:functions-hosting",
+    "build:all:deploy": "npm run build:all && firebase deploy"
   },
   "dependencies": {
     "@angular/animations": "5.2.11",
@@ -46,6 +46,7 @@
     "ionic-angular": "3.9.2",
     "ionicons": "3.0.0",
     "papaparse": "^4.6.3",
+    "request": "^2.88.0",
     "rxjs": "5.5.11",
     "sw-toolbox": "3.6.0",
     "zone.js": "0.8.26"

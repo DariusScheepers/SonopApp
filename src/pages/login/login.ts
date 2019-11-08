@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, ToastController } from 'ionic-angular';
 import { FormGroup, FormControl} from '@angular/forms';
-//import { HomePage } from '../home/home';
 import { Http } from '../../http-api';
 import { RegisterPage } from '../user/register/register';
 import { GlobalProvider } from "../../providers/global/global";
@@ -9,6 +8,7 @@ import { presentToast, handleError } from '../../app-functions';
 import { LoginNonniePage } from '../nonnie/login-nonnie/login';
 import { LoginModel } from '../../../functions/src/models/login.model';
 import { StudentLoginModel } from '../../../functions/src/models/student.model';
+import { AnnouncementsPage } from '../user/announcements/announcements';
 
 @Component({
   selector: 'page-login',
@@ -68,7 +68,7 @@ export class LoginPage {
               this.global.isHK = true;
             }
             
-            // this.navCtrl.setRoot(AnnouncementsPage);
+            this.navCtrl.setRoot(AnnouncementsPage);
           }
           else
             presentToast(this.toastCtrl,"Your account has not yet been verified. Please try again later.");

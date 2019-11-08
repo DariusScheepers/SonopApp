@@ -1,11 +1,11 @@
-import * as functions from 'firebase-functions';
-import * as express from 'express';
-const scheduler = require('node-schedule');
-const request = require('request');
-const cors = require('cors');
+import * as functions from "firebase-functions";
+import * as express from "express";
+import * as scheduler from "node-schedule";
+import * as cors from "cors";
+import * as admin from "firebase-admin";
+import * as request from "request";
 import { FirebaseDataBase } from './database/firebase.database.service';
 import { UserService } from './services/user.service';
-import * as admin from 'firebase-admin';
 import { BibleVerseService } from './services/bible-verse.service';
 import { BedieningTableService } from './services/bediening-tables.service';
 import { AnnouncementsService } from './services/announcements.service';
@@ -13,7 +13,7 @@ admin.initializeApp(functions.config().firebase);
 const database = admin.firestore();
 
 const dataBaseService = new FirebaseDataBase(database);
-const bibleVerseService = new BibleVerseService(dataBaseService, scheduler, request);
+const bibleVerseService = new BibleVerseService(dataBaseService, request, scheduler);
 const bedieningTableService = new BedieningTableService(dataBaseService);
 const userService = new UserService(dataBaseService, bedieningTableService);
 const announcementsService = new AnnouncementsService(dataBaseService, userService);
