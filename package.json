@@ -13,7 +13,8 @@
     "build:all": "npm run build --prod && npm run build:functions",
     "serve:functions-hosting": "firebase serve --only functions,hosting",
     "build:functions:serve": "npm run build:functions && npm run serve:functions-hosting",
-    "build:all:deploy": "npm run build:all && firebase deploy"
+    "build:all:deploy": "npm run build:all && firebase deploy",
+    "build:functions:deploy": "npm run build:functions && firebase deploy"
   },
   "dependencies": {
     "@angular/animations": "5.2.11",

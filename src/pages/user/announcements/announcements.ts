@@ -44,8 +44,7 @@ export class AnnouncementsPage {
                 if (!jsonResp.bibleVerseJSON)
                     handleError(this.navCtrl,"Cant retreive Bible Verse of the Day",this.toastCtrl);
                 else
-                {
-                    
+                {                    
                     this.votd = jsonResp.bibleVerseJSON.verse.details;
                     this.votdRef = jsonResp.bibleVerseJSON.verse.notice;
                 }    

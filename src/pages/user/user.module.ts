@@ -12,12 +12,14 @@ import { RegisterPage } from './register/register';
 import { GlobalProvider } from "../../providers/global/global";
 import { SplashScreen } from "@ionic-native/splash-screen";
 import { AnnouncementsPage } from './announcements/announcements';
+import { AnnouncementsAddPage } from './announcements/announcements-add/announcements-add';
 
 @NgModule({
     declarations: [
         LoginPage,
         RegisterPage,
-        AnnouncementsPage
+        AnnouncementsPage,
+        AnnouncementsAddPage
     ],
     imports: [
         BrowserModule,
@@ -28,7 +30,8 @@ import { AnnouncementsPage } from './announcements/announcements';
     entryComponents: [
         LoginPage,
         RegisterPage,
-        AnnouncementsPage
+        AnnouncementsPage,
+        AnnouncementsAddPage
     ],
     providers: [
         StatusBar,

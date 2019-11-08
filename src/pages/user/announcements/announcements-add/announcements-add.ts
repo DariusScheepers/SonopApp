@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, ViewController, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ModalController, ViewController, ToastController } from 'ionic-angular';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Http } from '../../../../http-api';
 import { GlobalProvider } from "../../../../providers/global/global";
 import { presentToast } from '../../../../app-functions';
 import { AnnouncementModel } from '../../../../../functions/src/models/announcement.model';
 
-@IonicPage()
 @Component({
 	selector: 'page-announcements-add',
 	templateUrl: 'announcements-add.html',

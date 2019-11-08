@@ -1,21 +1,21 @@
 import { DataService } from "./data.service";
 import { FirebaseDataBase } from "../database/firebase.database.service";
 import { FirebaseIdentifier } from "../models/database-identifier.model";
+import requestPromise = require("request-promise");
+import * as scheduler from "node-schedule";
 
 export class BibleVerseService extends DataService {
     collection = 'bibleVerses';
-    scheduler: any;
-    request: any;
-    constructor(database: FirebaseDataBase, request: any, scheduler: any) {
+    constructor(database: FirebaseDataBase) {
         super(database);
-        this.scheduler = scheduler;
-        this.request = request;
         
-        this.downloadBibleVerse();
+        // this.downloadBibleVerse();
         this.setRecurrenceRule();
     }
 
     async getTodayBibleVerse() {
+        return await this.downloadBibleVerse();
+
         const bibleVerseIdentifier = new FirebaseIdentifier(this.collection);
         const bibleVerses = await this.database.readFromDatabaseMultipleItems(bibleVerseIdentifier);
         return bibleVerses[bibleVerses.length - 1];
@@ -25,37 +25,41 @@ export class BibleVerseService extends DataService {
         const url = 'http://beta.ourmanna.com/api/v1/get/?format=json';
         // const proxyUrl = 'http://cors-anywhere.herokuapp.com/' + url;
         let bibleVerseJSON = null;
-        
-        await this.request({
+        const requestParam = {
             url: url,
             json: true
-        }, async (error: any, response: any, body: any) => {
-            if (response && !error && response.statusCode === 200) {
-                await this.freeUpBibleVerses();
-                bibleVerseJSON = body;
-                const date = new Date().getTime().toString();
-                const newBibleVerseEntry = new FirebaseIdentifier(this.collection, date, {bibleVerseJSON});
-                await this.database.writeToDatabase(newBibleVerseEntry);
-            }
-            else {
-                console.log("Error: " + error);
-            }
+        }
+        await requestPromise(requestParam).then(body => {
+            bibleVerseJSON = body;
+            console.log('Info: ', bibleVerseJSON);     
+        }).catch(error => {
+            console.log('Error: ', error);        
         });
+        
+        return await this.writeBibleVerseToDatabase({bibleVerseJSON})
+    }
+
+    private async writeBibleVerseToDatabase(bibleVerseJSON: any) {
+        // await this.freeUpBibleVerses();
+        // const name = new Date().getTime().toString();
+        // const newBibleVerseEntry = new FirebaseIdentifier(this.collection, name, bibleVerseJSON)
+        // await this.database.writeToDatabase(newBibleVerseEntry);
+        console.log('Info: In', bibleVerseJSON);
         
         return bibleVerseJSON;
     }
 
     private setRecurrenceRule() {
-        let bibleVerseTimeRule = new this.scheduler.RecurrenceRule();
+        let bibleVerseTimeRule = new scheduler.RecurrenceRule();
         bibleVerseTimeRule.hour = 0;  // 0
         bibleVerseTimeRule.minute = 1; // 1
-        this.scheduler.scheduleJob(bibleVerseTimeRule, async() => {
+        scheduler.scheduleJob(bibleVerseTimeRule, async() => {
             this.downloadBibleVerse();
         });
     }
 
-    private async freeUpBibleVerses() {
-        const collectionToFreeUp = new FirebaseIdentifier(this.collection);
-        await this.database.deleteCollection(collectionToFreeUp);
-    }
+    // private async freeUpBibleVerses() {
+    //     const collectionToFreeUp = new FirebaseIdentifier(this.collection);
+    //     await this.database.deleteCollection(collectionToFreeUp);
+    // }
 }
