@@ -4,7 +4,7 @@ import { IonicModule, IonicApp, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from '../../app/app.component';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { HttpModule } from '@angular/http';
-import { Http } from '../../http-api';
+import { Http, BibleVerseAPI } from '../../http-api';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { LoginPage } from '../login/login';
@@ -38,6 +38,7 @@ import { AnnouncementsAddPage } from './announcements/announcements-add/announce
         SplashScreen,
         {provide: ErrorHandler, useClass: IonicErrorHandler},
         Http,
+        BibleVerseAPI,
         GlobalProvider,
     ]
   })

@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-import { Http } from '../http-api';
+import { Http, BibleVerseAPI } from '../http-api';
 import { HttpModule} from '@angular/http';
 import { HTTP } from '@ionic-native/http';
 import { LocalNotifications } from '@ionic-native/local-notifications';
@@ -33,6 +33,7 @@ import { UserModule } from '../pages/user/user.module';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Http,
+    BibleVerseAPI,
     HTTP,
     GlobalProvider,
     LocalNotifications

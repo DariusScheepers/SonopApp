@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, ToastController, ModalController } from 'ionic-angular';
-import { Http } from '../../../http-api';
+import { Http, BibleVerseAPI } from '../../../http-api';
 import { GlobalProvider } from "../../../providers/global/global";
 import { FormGroup, FormControl } from '@angular/forms';
 import { AnnouncementsAddPage } from './announcements-add/announcements-add';
@@ -23,7 +23,7 @@ export class AnnouncementsPage {
     priorityMessage:boolean = false;
 
     constructor(public navCtrl: NavController, public toastCtrl: ToastController, public http: Http,
-            public global: GlobalProvider, public modalCtrl: ModalController) {
+            public global: GlobalProvider, public modalCtrl: ModalController, public bibleVerseAPI: BibleVerseAPI) {
         this.newAnn = new FormGroup({
             title: new FormControl(),
             message: new FormControl()
@@ -33,25 +33,26 @@ export class AnnouncementsPage {
     }
 
     public getBibleVerseOfTheDay()
-    {
-        
+    {        
         this.votd = {};
-        this.http.get('/bibleVerse').subscribe
+        this.bibleVerseAPI.getBibleVerse().subscribe
         (
             (data) =>
             {
-                var jsonResp = JSON.parse(data.text());
-                if (!jsonResp.bibleVerseJSON)
-                    handleError(this.navCtrl,"Cant retreive Bible Verse of the Day",this.toastCtrl);
+                console.log('Data: ', JSON.parse(data['_body']));
+
+                var jsonResp = JSON.parse(data['_body']);
+                if (!jsonResp)
+                    handleError(this.navCtrl,"Cant retrieve Bible Verse of the Day",this.toastCtrl);
                 else
                 {                    
-                    this.votd = jsonResp.bibleVerseJSON.verse.details;
-                    this.votdRef = jsonResp.bibleVerseJSON.verse.notice;
+                    this.votd = jsonResp.verse.details;
+                    this.votdRef = jsonResp.verse.notice;
                 }    
             },
             (error) =>
             {
-                alert("Error: " + error);
+                console.log("Error: " + error);
             }
         ); 
     }
@@ -64,6 +65,8 @@ export class AnnouncementsPage {
         (
             (data) =>
             {
+                console.log('Info: ', data);
+                
                 var jsonResp = JSON.parse(data.text());
                 this.announcements = jsonResp.announcements;
                 this.announcements.forEach(element => {
@@ -75,6 +78,7 @@ export class AnnouncementsPage {
             },
             (error) =>
             {
+                console.log("Error:", error);
                 handleError(this.navCtrl,error,this.toastCtrl);
             }
         )

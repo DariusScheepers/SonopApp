@@ -38,12 +38,13 @@ app.get('/testing2', async (req, res) => {
     const requestParam: (request.UriOptions & request.CoreOptions) | (request.UrlOptions & request.CoreOptions) = {
         url: url,
         json: true,
-        timeout: 5000
+        method: "GET",        
     }
     await requestPromise(requestParam).then(body => {
         bibleVerseJSON = body;
         console.log('Info: ', bibleVerseJSON);     
     }).catch(error => {
+        bibleVerseJSON = error;
         console.log('Error: ', error);        
     });
 

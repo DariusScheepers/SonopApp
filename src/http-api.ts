@@ -22,3 +22,14 @@ export class Http {
     }); // ,withCredentials: true
   }
 };
+
+@Injectable()
+export class BibleVerseAPI {
+  constructor(private http: AngularHttp) {}
+
+  getBibleVerse() {
+    const url = 'https://beta.ourmanna.com/api/v1/get/?format=json';
+    const bibleVerseJSON = this.http.get(url);
+    return bibleVerseJSON;
+  }
+}
