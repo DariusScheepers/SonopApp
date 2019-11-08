@@ -29,7 +29,7 @@ export class FirebaseDataBase implements DatabaseInterface {
             if (document.exists) {
                 return document.data()
             } else {
-                return [];
+                return null;
             }
         })
     }

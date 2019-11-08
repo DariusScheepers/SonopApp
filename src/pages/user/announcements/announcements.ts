@@ -39,8 +39,6 @@ export class AnnouncementsPage {
         (
             (data) =>
             {
-                console.log('Data: ', JSON.parse(data['_body']));
-
                 var jsonResp = JSON.parse(data['_body']);
                 if (!jsonResp)
                     handleError(this.navCtrl,"Cant retrieve Bible Verse of the Day",this.toastCtrl);

@@ -9,13 +9,11 @@ export class BibleVerseService extends DataService {
     constructor(database: FirebaseDataBase) {
         super(database);
         
-        // this.downloadBibleVerse();
+        this.downloadBibleVerse();
         this.setRecurrenceRule();
     }
 
     async getTodayBibleVerse() {
-        return await this.downloadBibleVerse();
-
         const bibleVerseIdentifier = new FirebaseIdentifier(this.collection);
         const bibleVerses = await this.database.readFromDatabaseMultipleItems(bibleVerseIdentifier);
         return bibleVerses[bibleVerses.length - 1];
@@ -40,11 +38,10 @@ export class BibleVerseService extends DataService {
     }
 
     private async writeBibleVerseToDatabase(bibleVerseJSON: any) {
-        // await this.freeUpBibleVerses();
-        // const name = new Date().getTime().toString();
-        // const newBibleVerseEntry = new FirebaseIdentifier(this.collection, name, bibleVerseJSON)
-        // await this.database.writeToDatabase(newBibleVerseEntry);
-        console.log('Info: In', bibleVerseJSON);
+        await this.freeUpBibleVerses();
+        const name = new Date().getTime().toString();
+        const newBibleVerseEntry = new FirebaseIdentifier(this.collection, name, bibleVerseJSON)
+        await this.database.writeToDatabase(newBibleVerseEntry);
         
         return bibleVerseJSON;
     }
@@ -58,8 +55,8 @@ export class BibleVerseService extends DataService {
         });
     }
 
-    // private async freeUpBibleVerses() {
-    //     const collectionToFreeUp = new FirebaseIdentifier(this.collection);
-    //     await this.database.deleteCollection(collectionToFreeUp);
-    // }
+    private async freeUpBibleVerses() {
+        const collectionToFreeUp = new FirebaseIdentifier(this.collection);
+        await this.database.deleteCollection(collectionToFreeUp);
+    }
 }
