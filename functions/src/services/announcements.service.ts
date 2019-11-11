@@ -4,13 +4,15 @@ import { AnnouncementModel } from "../models/announcement.model";
 import { FirebaseIdentifier } from "../models/database-identifier.model";
 import { UserService } from "./user.service";
 import { StudentModel } from "../models/student.model";
+import * as scheduler from "node-schedule";
 
 export class AnnouncementsService extends DataService {
     collection = 'announcements';
-    userService: UserService
+    userService: UserService;
     constructor(database: FirebaseDataBase, userService: UserService) {
         super(database);
         this.userService = userService;
+        this.setRecurrenceRule();
     }
 
     async addAnnouncement(announcement: AnnouncementModel) {
@@ -32,5 +34,19 @@ export class AnnouncementsService extends DataService {
             announcement.postedBy = postedBy;
         };
         return {announcements};
+    }
+
+    private async clearAnnouncements() {
+        const deleteAllAnnouncements = new FirebaseIdentifier(this.collection);
+        await this.database.deleteCollection(deleteAllAnnouncements);
+    }
+
+    private async setRecurrenceRule() {
+        let bibleVerseTimeRule = new scheduler.RecurrenceRule();
+        bibleVerseTimeRule.dayOfWeek = 0;  // 0
+        bibleVerseTimeRule.hour = 17; // 17
+        scheduler.scheduleJob(bibleVerseTimeRule, async() => {
+            await this.clearAnnouncements();
+        });
     }
 }

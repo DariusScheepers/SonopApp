@@ -8,22 +8,22 @@ import { presentToast, handleError } from '../../../app-functions';
 import { AnnouncementModel } from '../../../../functions/src/models/announcement.model';
 
 @Component({
-  selector: 'page-announcements',
-  templateUrl: 'announcements.html'
+    selector: 'page-announcements',
+    templateUrl: 'announcements.html'
 })
 export class AnnouncementsPage {
 
     announcements: AnnouncementModel[];
-    announcement:any;
+    announcement: any;
 
-    votd:any;
-    votdRef:any;
+    votd: any;
+    votdRef: any;
 
-    newAnn:any;
-    priorityMessage:boolean = false;
+    newAnn: any;
+    priorityMessage: boolean = false;
 
     constructor(public navCtrl: NavController, public toastCtrl: ToastController, public http: Http,
-            public global: GlobalProvider, public modalCtrl: ModalController, public bibleVerseAPI: BibleVerseAPI) {
+        public global: GlobalProvider, public modalCtrl: ModalController, public bibleVerseAPI: BibleVerseAPI) {
         this.newAnn = new FormGroup({
             title: new FormControl(),
             message: new FormControl()
@@ -32,80 +32,59 @@ export class AnnouncementsPage {
         this.updateAnnouncements();
     }
 
-    public getBibleVerseOfTheDay()
-    {        
+    public getBibleVerseOfTheDay() {
         this.votd = {};
-        this.bibleVerseAPI.getBibleVerse().subscribe
-        (
-            (data) =>
-            {
-                var jsonResp = JSON.parse(data['_body']);
-                if (!jsonResp)
-                    handleError(this.navCtrl,"Cant retrieve Bible Verse of the Day",this.toastCtrl);
-                else
-                {                    
-                    this.votd = jsonResp.verse.details;
-                    this.votdRef = jsonResp.verse.notice;
-                }    
-            },
-            (error) =>
-            {
-                console.log("Error: " + error);
+        this.bibleVerseAPI.getBibleVerse().subscribe(data => {
+            var jsonResp = JSON.parse(data['_body']);
+            if (!jsonResp)
+                handleError(this.navCtrl, "Cant retrieve Bible Verse of the Day", this.toastCtrl);
+            else {
+                this.votd = jsonResp.verse.details;
+                this.votdRef = jsonResp.verse.notice;
             }
-        ); 
+        },
+        (error) => {
+            console.log("Error: " + error);
+        });
     }
 
-    public updateAnnouncements()
-    {
+    public updateAnnouncements() {
         this.announcements = [];
         this.announcement = {};
-        this.http.get('/getAnnouncements').subscribe
-        (
-            (data) =>
-            {
-                const jsonResp = JSON.parse(data.text());
-                this.announcements = jsonResp.announcements;
-                this.announcements.forEach(element => {
-                    element.message = element.message .replace(/\n/g, '<br>');
-                    
-                    let date = new Date(Number(element.datePosted));
-                    element.datePosted = date.toLocaleString(); //date.toTimeString() + " - " + date.toDateString() + date.toISOString() + 
-                    console.log('Info: ', element.datePosted);
-                    
-                });
-            },
-            (error) =>
-            {
-                handleError(this.navCtrl,error,this.toastCtrl);
-            }
-        )
+        this.http.get('/getAnnouncements').subscribe(data => {
+            const jsonResp = JSON.parse(data.text());
+            this.announcements = jsonResp.announcements;
+            this.announcements.forEach(element => {
+                element.message = element.message.replace(/\n/g, '<br>');
+
+                let date = new Date(Number(element.datePosted));
+                element.datePosted = date.toLocaleString();
+                console.log('Info: ', element.datePosted);
+
+            });
+        },
+        (error) => {
+            handleError(this.navCtrl, error, this.toastCtrl);
+        });
     }
 
-    public addAnnouncement()
-    {
+    public addAnnouncement() {
         let addModal = this.modalCtrl.create(AnnouncementsAddPage);
-        addModal.onDidDismiss(result => 
-        {
-            if (result) {                        
-                this.http.post("/addAnnouncement", result).subscribe
-                (
-                    (data) =>
-                    {
-                        presentToast(this.toastCtrl,"Successfully Submitted");
-                        this.updateAnnouncements();
-                    },
-                    (error) =>
-                    {
-                        
-                    }
-                );            
+        addModal.onDidDismiss(result => {
+            if (result) {
+                this.http.post("/addAnnouncement", result).subscribe(data => {
+                    presentToast(this.toastCtrl, "Successfully Submitted");
+                    this.updateAnnouncements();
+                },
+                (error) => {
+
+                });
             }
         });
         addModal.present();
     }
 
-    public refresh()
-    {
+    public refresh() {
         this.updateAnnouncements();
     }
 }
