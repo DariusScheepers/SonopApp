@@ -16,8 +16,8 @@ export class AnnouncementsService extends DataService {
     async addAnnouncement(announcement: AnnouncementModel) {
         const datePosted = new Date().getTime();
         announcement.datePosted = datePosted;
-        announcement.postedBy = await this.userService.getStudentReference(announcement.postedBy as string);
-        const title = announcement.title.replace(/\ /g,"") + "_" + datePosted.toString();
+        announcement.postedBy = await this.userService.getStudentReference(announcement.postedBy as string) as FirebaseFirestore.DocumentReference;
+        const title = announcement.title.replace(/\ /g,"");
         const announcementToInsert = new FirebaseIdentifier(this.collection, title, announcement);
         await this.database.writeToDatabase(announcementToInsert);
         return {"success": true};
@@ -26,12 +26,11 @@ export class AnnouncementsService extends DataService {
     async getAnnouncements() {
         const allAnnouncements = new FirebaseIdentifier(this.collection);
         const announcements = await this.database.readFromDatabaseMultipleItems(allAnnouncements) as AnnouncementModel[];
-        announcements.forEach(async announcement => {
-            const student = await this.database.readDataWithReference(announcement.postedBy as FirebaseFirestore.DocumentReference) as StudentModel;
-            // const postedBy = student.name + " " + student.surname;
-            // announcement.postedBy = postedBy;
-            announcement.postedBy = student;
-        });
+        for (const announcement of announcements) {
+            const student = (await this.database.readDataWithReference(announcement.postedBy as FirebaseFirestore.DocumentReference)) as StudentModel;
+            const postedBy = student.name + " " + student.surname;
+            announcement.postedBy = postedBy;
+        };
         return {announcements};
     }
 }

@@ -1,5 +1,5 @@
 import { DatabaseInterface } from "./database.interface";
-import { FirebaseIdentifier } from "../models/database-identifier.model";
+import { FirebaseIdentifier, FirebaseIdentifierAttributeValue } from "../models/database-identifier.model";
 
 export class FirebaseDataBase implements DatabaseInterface {
 
@@ -8,15 +8,27 @@ export class FirebaseDataBase implements DatabaseInterface {
         this.database = database;
     }
 
-    async writeToDatabase(databaseIdentifier: FirebaseIdentifier) {
+    async writeToDatabase(databaseIdentifier: FirebaseIdentifier): Promise<FirebaseFirestore.WriteResult> {
         return await this.database.collection(databaseIdentifier.collection)
             .doc(databaseIdentifier.document)
             .set(databaseIdentifier.data);
     }
 
-    readDatabaseSingleItemReference(databaseIdentifier: FirebaseIdentifier) {
+    async readFromDatabaseWithProperty(databaseIdentifierAttributeValue: FirebaseIdentifierAttributeValue, referencesOnly = false): Promise<FirebaseFirestore.DocumentReference[] | FirebaseFirestore.DocumentData[]> {
+        const documents = await this.database.collection(databaseIdentifierAttributeValue.collection)
+            .where(
+                databaseIdentifierAttributeValue.attribute,
+                databaseIdentifierAttributeValue.queryOperator,
+                databaseIdentifierAttributeValue.value
+            ).get();
+        return referencesOnly
+            ? documents.docs.map(document => document.ref)
+            : documents.docs.map(document => document.data());
+    }
+
+    readDatabaseSingleItemReference(databaseIdentifier: FirebaseIdentifier): FirebaseFirestore.DocumentReference {
         return this.database.collection(databaseIdentifier.collection)
-        .doc(databaseIdentifier.document)
+            .doc(databaseIdentifier.document);
     }
 
     async readFromDatabaseSingleItem(databaseIdentifier: FirebaseIdentifier) {
@@ -25,20 +37,14 @@ export class FirebaseDataBase implements DatabaseInterface {
     }
 
     async readDataWithReference(documentReference: FirebaseFirestore.DocumentReference) {
-        return await documentReference.get().then(document => {
-            if (document.exists) {
-                return document.data()
-            } else {
-                return null;
-            }
-        })
+        const document = await documentReference.get();
+        return document.data();
     }
 
     async readFromDatabaseMultipleItems(databaseIdentifier: FirebaseIdentifier) {
         const collectionToRead = await this.database.collection(databaseIdentifier.collection).get();
         return collectionToRead.docs.map(document => document.data());
     }
-
 
     async updateDatabaseItem(databaseIdentifier: FirebaseIdentifier) {
         await this.database.collection(databaseIdentifier.collection)

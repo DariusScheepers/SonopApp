@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, ToastController } from 'ionic-angular';
-import { FormGroup, FormControl} from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { Http } from '../../http-api';
 import { RegisterPage } from '../user/register/register';
 import { GlobalProvider } from "../../providers/global/global";
@@ -24,12 +24,11 @@ export class LoginPage {
   constructor(public navCtrl: NavController, public toastCtrl: ToastController, public http: Http, public global: GlobalProvider) {
     this.user = new FormGroup({
       studentNumber: new FormControl()
-      });
+    });
   }
 
 
-  public splashScreenLoaded()
-  {
+  public splashScreenLoaded() {
     this.splashScreenReady = true;
     this.splashScreenVisibility = "visible";
     setTimeout(() => {
@@ -37,8 +36,7 @@ export class LoginPage {
     }, this.splashScreenOnLength);
   }
 
-  public login(value: any)
-  {
+  public login(value: any) {
     if (value.studentNumber.length < 8) {
       presentToast(this.toastCtrl, 'Student number is too short');
       return;
@@ -48,50 +46,39 @@ export class LoginPage {
     }
 
     let jsonArr: LoginModel = {
-      studentNumber : value.studentNumber
+      studentNumber: value.studentNumber
     };
 
-    this.http.post("/login", jsonArr).subscribe
-    (
-      (data) =>
-      {      
-        let student: StudentLoginModel = JSON.parse(data.text());
-        if (student.success)
-        {
-          if (student.studentInfo.verified)
-          {
-            presentToast(this.toastCtrl,"Logged in!");
-            this.global.myUsrID = Number(student.studentInfo.studentNumber);
-            this.global.mySurname = student.studentInfo.surname;
-            this.global.isHK = student.studentInfo.isHk;
-            if (student.isBestCoder) {
-              this.global.isHK = true;
-            }
-            
-            this.navCtrl.setRoot(AnnouncementsPage);
+    this.http.post("/login", jsonArr).subscribe(data => {
+      let student: StudentLoginModel = JSON.parse(data.text());
+      if (student.success) {
+        if (student.studentInfo.verified) {
+          presentToast(this.toastCtrl, "Logged in!");
+          this.global.myUsrID = Number(student.studentInfo.studentNumber);
+          this.global.mySurname = student.studentInfo.surname;
+          this.global.isHK = student.studentInfo.isHk;
+          if (student.isBestCoder) {
+            this.global.isHK = true;
           }
-          else
-            presentToast(this.toastCtrl,"Your account has not yet been verified. Please try again later.");
+
+          this.navCtrl.setRoot(AnnouncementsPage);
+        } else {
+          presentToast(this.toastCtrl, "Your account has not yet been verified. Please try again later.");
         }
-        else
-        {
-          presentToast(this.toastCtrl,"Invalid Login. Try Again.");
-        }
-      },
-      (error) =>
-      {
-        handleError(this.navCtrl,error,this.toastCtrl);         
       }
-    );
+      else {
+        presentToast(this.toastCtrl, "Invalid Login. Try Again.");
+      }
+    }, (error) => {
+      handleError(this.navCtrl, error, this.toastCtrl);
+    });
   }
 
-  public openRegister()
-  {
-	  this.navCtrl.push(RegisterPage);
+  public openRegister() {
+    this.navCtrl.push(RegisterPage);
   }
 
-  public goToNonnieLogin()
-  {
+  public goToNonnieLogin() {
     this.navCtrl.push(LoginNonniePage);
   }
 }

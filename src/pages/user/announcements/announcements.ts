@@ -63,20 +63,19 @@ export class AnnouncementsPage {
         (
             (data) =>
             {
-                console.log('Info: ', data);
-                
-                var jsonResp = JSON.parse(data.text());
+                const jsonResp = JSON.parse(data.text());
                 this.announcements = jsonResp.announcements;
                 this.announcements.forEach(element => {
                     element.message = element.message .replace(/\n/g, '<br>');
                     
                     let date = new Date(Number(element.datePosted));
                     element.datePosted = date.toLocaleString(); //date.toTimeString() + " - " + date.toDateString() + date.toISOString() + 
+                    console.log('Info: ', element.datePosted);
+                    
                 });
             },
             (error) =>
             {
-                console.log("Error:", error);
                 handleError(this.navCtrl,error,this.toastCtrl);
             }
         )
