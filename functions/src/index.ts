@@ -68,3 +68,18 @@ app.post('/addAnnouncement', async (req, res) => {
     const received = await announcementsService.addAnnouncement(req.body);
     res.send(received);
 });
+
+app.post('/getSettings', async (req, res) => {
+    const received = await userService.getStudentByID(req.body);
+    res.send(received);
+});
+
+app.post('/updateSettings', async (req, res) => {
+    const received = await userService.updateStudentInformation(req.body);
+    res.send(received);
+});
+
+app.post('/updatePassword', async (req, res) => {
+    const received = await userService.updateStudentPassword(req.body);
+    res.send(received);
+});

@@ -3,8 +3,8 @@ import { FirebaseDataBase } from "../database/firebase.database.service";
 import { AnnouncementModel } from "../models/announcement.model";
 import { FirebaseIdentifier } from "../models/database-identifier.model";
 import { UserService } from "./user.service";
-import { StudentModel } from "../models/student.model";
 import * as scheduler from "node-schedule";
+import { wipeAnnouncementsSchedule } from "../constants/announcements-schedule.constant";
 
 export class AnnouncementsService extends DataService {
     collection = 'announcements';
@@ -29,7 +29,7 @@ export class AnnouncementsService extends DataService {
         const allAnnouncements = new FirebaseIdentifier(this.collection);
         const announcements = await this.database.readFromDatabaseMultipleItems(allAnnouncements) as AnnouncementModel[];
         for (const announcement of announcements) {
-            const student = (await this.database.readDataWithReference(announcement.postedBy as FirebaseFirestore.DocumentReference)) as StudentModel;
+            const student = await this.userService.getStudentValueFromReference(announcement.postedBy);
             const postedBy = student.name + " " + student.surname;
             announcement.postedBy = postedBy;
         };
@@ -43,8 +43,8 @@ export class AnnouncementsService extends DataService {
 
     private async setRecurrenceRule() {
         let bibleVerseTimeRule = new scheduler.RecurrenceRule();
-        bibleVerseTimeRule.dayOfWeek = 0;  // 0
-        bibleVerseTimeRule.hour = 17; // 17
+        bibleVerseTimeRule.dayOfWeek = wipeAnnouncementsSchedule.dayOfWeek;  // 0
+        bibleVerseTimeRule.hour = wipeAnnouncementsSchedule.hour; // 17
         scheduler.scheduleJob(bibleVerseTimeRule, async() => {
             await this.clearAnnouncements();
         });

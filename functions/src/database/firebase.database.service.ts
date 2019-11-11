@@ -14,16 +14,14 @@ export class FirebaseDataBase implements DatabaseInterface {
             .set(databaseIdentifier.data);
     }
 
-    async readFromDatabaseWithProperty(databaseIdentifierAttributeValue: FirebaseIdentifierAttributeValue, referencesOnly = false): Promise<FirebaseFirestore.DocumentReference[] | FirebaseFirestore.DocumentData[]> {
+    async readFromDatabaseWithProperty(databaseIdentifierAttributeValue: FirebaseIdentifierAttributeValue): Promise<FirebaseFirestore.QueryDocumentSnapshot[]> {
         const documents = await this.database.collection(databaseIdentifierAttributeValue.collection)
             .where(
                 databaseIdentifierAttributeValue.attribute,
                 databaseIdentifierAttributeValue.queryOperator,
                 databaseIdentifierAttributeValue.value
             ).get();
-        return referencesOnly
-            ? documents.docs.map(document => document.ref)
-            : documents.docs.map(document => document.data());
+        return documents.docs;
     }
 
     readDatabaseSingleItemReference(databaseIdentifier: FirebaseIdentifier): FirebaseFirestore.DocumentReference {
@@ -31,7 +29,7 @@ export class FirebaseDataBase implements DatabaseInterface {
             .doc(databaseIdentifier.document);
     }
 
-    async readFromDatabaseSingleItem(databaseIdentifier: FirebaseIdentifier) {
+    async readFromDatabaseSingleItem(databaseIdentifier: FirebaseIdentifier): Promise<FirebaseFirestore.DocumentData | undefined> {
         const documentToRead = this.readDatabaseSingleItemReference(databaseIdentifier);
         return await this.readDataWithReference(documentToRead);
     }

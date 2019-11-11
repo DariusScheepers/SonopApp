@@ -1,7 +1,8 @@
 import { DataService } from "./data.service";
 import { FirebaseDataBase } from "../database/firebase.database.service";
 import { FirebaseIdentifier, FirebaseIdentifierAttributeValue, queryOperators } from "../models/database-identifier.model";
-import { bedieningTableModels, BedieningTable } from "../models/bediening-table.enum";
+import { BedieningTable, BedieningTableModel } from "../models/bediening-table.enum";
+import { bedieningTables } from "../constants/bediening-tables.constant";
 
 export class BedieningTableService extends DataService {
     collection = 'bedieningTables';
@@ -14,7 +15,7 @@ export class BedieningTableService extends DataService {
         const toDeleteAllTables = new FirebaseIdentifier(this.collection);
         this.database.deleteCollection(toDeleteAllTables);
 
-        bedieningTableModels.forEach(async (table) => {
+        bedieningTables.forEach(async (table) => {
             const tableName = table.value.replace(/\ /, '');
             const tableToInsert = new FirebaseIdentifier(this.collection, tableName, table);
             await this.database.writeToDatabase(tableToInsert);
@@ -28,10 +29,15 @@ export class BedieningTableService extends DataService {
             queryOperators.equal,
             bedieningTable
         );
-        const references = await this.database.readFromDatabaseWithProperty(getBedieningTableDoc, true);
+        const references = await this.database.readFromDatabaseWithProperty(getBedieningTableDoc);
         if (references.length > 0) {
-            return references[0];
+            return references[0].ref;
         }
         return null;
+    }
+
+    async getTableValueFromReference(reference: FirebaseFirestore.DocumentReference): Promise<BedieningTableModel> {
+        const table = await this.database.readDataWithReference(reference as FirebaseFirestore.DocumentReference);
+        return table as BedieningTableModel;
     }
 }

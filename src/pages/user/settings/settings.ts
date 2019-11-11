@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { GlobalProvider } from "../../../providers/global/global";
 import { Http } from '../../../http-api';
 import { FormGroup, FormControl } from '@angular/forms';
 import { presentToast, handleError, presentLongToast } from '../../../app-functions';
+import { UserIdentificationModel } from '../../../../functions/src/models/user-identification.model';
+import { StudentModel, StudentUpdateModel, StudentUpdatePasswordModel } from '../../../../functions/src/models/student.model';
+import { SuccessResponseModel } from '../../../../functions/src/models/success-response.model'
 
-@IonicPage()
 @Component({
   	selector: 'page-settings',
   	templateUrl: 'settings.html',
@@ -31,17 +33,19 @@ export class SettingsPage {
 
 	public loadCurrentTable()
 	{
-		let jsonSend = {
-			id: this.global.myUsrID
-		};
+		let jsonSend: UserIdentificationModel = new UserIdentificationModel(this.global.myUsrID);
 		this.http.post('/getSettings', jsonSend).subscribe
 		(
 			(data) =>
 			{
-				var jsonResp = JSON.parse(data.text());
-				this.bedieningTableID = jsonResp.result0.tblBedieningTable_talID;
-				this.semi = jsonResp.result0.usrIsSemi;
-				this.emailAddress = jsonResp.result0.usrEmailAddress;	
+				console.log('Info: ', data);
+				
+				let jsonResp: StudentModel = JSON.parse(data.text());
+				console.log('Info: ', jsonResp);
+
+				this.bedieningTableID = jsonResp.bedieningTable;
+				this.semi = jsonResp.isSemi;
+				this.emailAddress = jsonResp.email;	
 			},
 			(error) =>
 			{
@@ -52,10 +56,10 @@ export class SettingsPage {
 
 	public updateInformation(value: any)
 	{
-		var jsonSend = {
-			id: this.global.myUsrID,
-			bedieningTableID: value.table,
-			semi: value.semi,
+		let jsonSend: StudentUpdateModel = {
+			studentID: this.global.myUsrID,
+			bedieningTable: value.table,
+			isSemi: value.semi,
 			email: value.email
 		}
 
@@ -75,19 +79,19 @@ export class SettingsPage {
 				presentToast(this.toastCtrl,"Updated!");
 				if (this.editPasswordMode)
 				{
-					let jsonSend =
+					let jsonSend: StudentUpdatePasswordModel =
 					{
-						id: this.global.myUsrID,
-						oldpassword: value.oldpassword,
-						newpassword: value.newpassword
+						studentID: this.global.myUsrID,
+						oldPassword: value.oldpassword,
+						newPassword: value.newpassword
 					};
 					
 					this.http.post('/updatePassword',jsonSend).subscribe
 					(
 						(data) =>
 						{
-							var jsonResp = JSON.parse(data.text());
-							if (jsonResp.jsonRes.success)
+							var jsonResp: SuccessResponseModel = JSON.parse(data.text());
+							if (jsonResp.success)
 							{
 								presentLongToast(this.toastCtrl,"Updated Password!");
 								this.editPasswordMode = false;

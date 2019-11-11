@@ -4,8 +4,10 @@ import { FormGroup, FormControl} from '@angular/forms';
 import { Http } from '../../../http-api';
 import { LoginPage } from '../../login/login';
 import { presentToast, handleError } from '../../../app-functions';
-import { StudentModel } from '../../../../functions/src/models/student.model'
-import { bedieningTableModels, BedieningTableModel } from '../../../../functions/src/models/bediening-table.enum'
+import { StudentModel } from '../../../../functions/src/models/student.model';
+import { BedieningTableModel } from '../../../../functions/src/models/bediening-table.enum';
+import { bedieningTables } from '../../../../functions/src/constants/bediening-tables.constant'
+import { SuccessResponseModel } from '../../../../functions/src/models/success-response.model'
 
 @Component({
   selector: 'page-register',
@@ -14,7 +16,7 @@ import { bedieningTableModels, BedieningTableModel } from '../../../../functions
 export class RegisterPage {
     regUser: any | StudentModel;
 
-    tables: BedieningTableModel[] = bedieningTableModels;
+    tables: BedieningTableModel[] = bedieningTables;
 
     constructor(public http: Http, public navCtrl: NavController, public toastCtrl: ToastController)
     {
@@ -128,7 +130,7 @@ export class RegisterPage {
             (
                 (response) => 
                 {
-                    var jsonResp = JSON.parse(response.text());
+                    var jsonResp: SuccessResponseModel = JSON.parse(response.text());
                     if (jsonResp.success)
                     {
                         this.navCtrl.setRoot(LoginPage);

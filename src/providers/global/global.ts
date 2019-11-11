@@ -10,7 +10,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class GlobalProvider {
 
-	public myUsrID: number = 0;
+	public myUsrID: string = null;
 	public mySurname: string = "";
 	public isHK:boolean = false;
 	constructor() {

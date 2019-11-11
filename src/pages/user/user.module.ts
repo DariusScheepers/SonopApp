@@ -13,6 +13,8 @@ import { GlobalProvider } from "../../providers/global/global";
 import { SplashScreen } from "@ionic-native/splash-screen";
 import { AnnouncementsPage } from './announcements/announcements';
 import { AnnouncementsAddPage } from './announcements/announcements-add/announcements-add';
+import { SignOutPageModule } from './sign-out/sign-out.module';
+import { SettingsPageModule } from './settings/settings.module';
 
 @NgModule({
     declarations: [
@@ -25,6 +27,8 @@ import { AnnouncementsAddPage } from './announcements/announcements-add/announce
         BrowserModule,
         IonicModule.forRoot(MyApp),
         HttpModule,
+        SignOutPageModule,
+        SettingsPageModule
     ],
     bootstrap: [IonicApp],
     entryComponents: [

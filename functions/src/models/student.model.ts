@@ -1,5 +1,6 @@
 import { BedieningTable } from "./bediening-table.enum";
 // import { DocumentReference } from "@google-cloud/firestore";
+import { SuccessResponseModel } from "./success-response.model"
 
 export class StudentModel {
     username: string;
@@ -10,7 +11,7 @@ export class StudentModel {
     studentNumber: string;
     firstYearYear: number;
     bedieningTable: BedieningTable | any; // DocumentReference
-    semi: boolean;
+    isSemi: boolean;
     isHk: boolean;
     verified: boolean;
     constructor(
@@ -22,7 +23,7 @@ export class StudentModel {
         studentNumber: string,
         firstYearYear: number,
         bedieningTable: BedieningTable,
-        semi: boolean,
+        isSemi: boolean,
         isHk: boolean,
         verified: boolean = false
     ) {
@@ -34,24 +35,39 @@ export class StudentModel {
         this.studentNumber = studentNumber;
         this.firstYearYear = firstYearYear;
         this.bedieningTable = bedieningTable;
-        this.semi = semi;
+        this.isSemi = isSemi;
         this.isHk = isHk;
         this.verified = verified;
     }
 }
 
-export class StudentLoginModel {
+export class StudentLoginModel implements SuccessResponseModel {
+    studentID: string;
     studentInfo: StudentModel;
     success: boolean;
     isBestCoder: boolean;
     constructor(
+        studentID: string,
         studentInfo: StudentModel,
         success: boolean,
         isBestCoder: boolean
     ) {
+        this.studentID = studentID;
         this.studentInfo = studentInfo;
         this.success = success;
         this.isBestCoder = isBestCoder;
     }
+}
 
+export interface StudentUpdateModel {
+    studentID: string;
+    bedieningTable: string;
+    isSemi: boolean;
+    email: string;
+}
+
+export interface StudentUpdatePasswordModel {
+    studentID: string;
+    oldPassword: string;
+    newPassword: string;
 }

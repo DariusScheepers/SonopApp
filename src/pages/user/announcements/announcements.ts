@@ -35,7 +35,7 @@ export class AnnouncementsPage {
     public getBibleVerseOfTheDay() {
         this.votd = {};
         this.bibleVerseAPI.getBibleVerse().subscribe(data => {
-            var jsonResp = JSON.parse(data['_body']);
+            const jsonResp = JSON.parse(data['_body']);
             if (!jsonResp)
                 handleError(this.navCtrl, "Cant retrieve Bible Verse of the Day", this.toastCtrl);
             else {
