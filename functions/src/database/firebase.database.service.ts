@@ -14,6 +14,22 @@ export class FirebaseDataBase implements DatabaseInterface {
             .set(databaseIdentifier.data);
     }
 
+    async readFromDatabaseSingleItem(databaseIdentifier: FirebaseIdentifier): Promise<FirebaseFirestore.DocumentSnapshot> {
+        const documentToRead = await this.database.collection(databaseIdentifier.collection)
+            .doc(databaseIdentifier.document).get();
+        return documentToRead;
+    }
+
+    async readDataWithReference(documentReference: FirebaseFirestore.DocumentReference): Promise<FirebaseFirestore.DocumentSnapshot> {
+        const document = await documentReference.get();
+        return document;
+    }
+
+    async readFromDatabaseMultipleItems(databaseIdentifier: FirebaseIdentifier): Promise<FirebaseFirestore.QueryDocumentSnapshot[]> {
+        const collectionToRead = await this.database.collection(databaseIdentifier.collection).get();
+        return collectionToRead.docs;
+    }
+
     async readFromDatabaseWithProperty(databaseIdentifierAttributeValue: FirebaseIdentifierAttributeValue): Promise<FirebaseFirestore.QueryDocumentSnapshot[]> {
         let documentsUnordered = this.database.collection(databaseIdentifierAttributeValue.collection)
             .where(
@@ -28,28 +44,8 @@ export class FirebaseDataBase implements DatabaseInterface {
         return documents.docs;
     }
 
-    async readFromDatabaseSingleItem(databaseIdentifier: FirebaseIdentifier): Promise<FirebaseFirestore.DocumentData | undefined> {
-        const documentToRead = await this.database.collection(databaseIdentifier.collection).doc(databaseIdentifier.document).get();
-        return documentToRead.data();
-    }
-
-    async readFromDatabaseSingleItemReference(databaseIdentifier: FirebaseIdentifier): Promise<FirebaseFirestore.DocumentReference> {
-        const documentToRead = await this.database.collection(databaseIdentifier.collection).doc(databaseIdentifier.document).get();
-        return documentToRead.ref;
-    }
-
-    async readDataWithReference(documentReference: FirebaseFirestore.DocumentReference) {
-        const document = await documentReference.get();
-        return document.data();
-    }
-
-    async readFromDatabaseMultipleItems(databaseIdentifier: FirebaseIdentifier) {
-        const collectionToRead = await this.database.collection(databaseIdentifier.collection).get();
-        return collectionToRead.docs.map(document => document.data());
-    }
-
-    async updateDatabaseItem(databaseIdentifier: FirebaseIdentifier) {
-        await this.database.collection(databaseIdentifier.collection)
+    async updateDatabaseItem(databaseIdentifier: FirebaseIdentifier): Promise<FirebaseFirestore.WriteResult> {
+        return await this.database.collection(databaseIdentifier.collection)
             .doc(databaseIdentifier.document)
             .update(databaseIdentifier.data);
     }

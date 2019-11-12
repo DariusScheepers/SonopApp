@@ -9,9 +9,10 @@ import { UserService } from './services/user.service';
 import { BedieningTableService } from './services/bediening-tables.service';
 import { AnnouncementsService } from './services/announcements.service';
 import { environment } from "./constants/environment.constant";
+import { WeekendService } from "./services/weekend.service";
 
 if (environment.development) {
-    var serviceAccount = require("../../../CredentialKeys/sonopapptest1-firebase-adminsdk-eegpd-3498ef9f84.json");
+    var serviceAccount = require("../../../CredentialKeys/sonopapptest1-firebase-adminsdk-eegpd-0036d9b018.json");
     admin.initializeApp({
       credential: admin.credential.cert(serviceAccount),
       databaseURL: "https://sonopapptest1.firebaseio.com"
@@ -26,6 +27,7 @@ const dataBaseService = new FirebaseDataBase(database);
 const bedieningTableService = new BedieningTableService(dataBaseService);
 const userService = new UserService(dataBaseService, bedieningTableService);
 const announcementsService = new AnnouncementsService(dataBaseService, userService);
+const weekendService = new WeekendService(dataBaseService, userService);
 
 const app = express();
 app.use(cors());
@@ -80,7 +82,7 @@ app.post('/addAnnouncement', async (req, res) => {
 });
 
 app.post('/getSettings', async (req, res) => {
-    const received = await userService.getStudentByID(req.body);
+    const received = await userService.getStudentDataByID(req.body);
     res.send(received);
 });
 
@@ -91,5 +93,10 @@ app.post('/updateSettings', async (req, res) => {
 
 app.post('/updatePassword', async (req, res) => {
     const received = await userService.updateStudentPassword(req.body);
+    res.send(received);
+});
+
+app.post('/get-weekend', async (req, res) => {
+    const received = await weekendService.getStudentWeekendDetails(req.body);
     res.send(received);
 });

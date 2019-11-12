@@ -25,22 +25,19 @@ export class BedieningTableService extends DataService {
         });
     }
 
-    async getBedieningTableReference(bedieningTable: BedieningTable) {
+    async getBedieningTableByTableValue(bedieningTable: BedieningTable) {
         const getBedieningTableDoc = new FirebaseIdentifierAttributeValue(
             this.collection,
             'value',
             QueryOperators.equal,
             bedieningTable
         );
-        const references = await this.database.readFromDatabaseWithProperty(getBedieningTableDoc);
-        if (references.length > 0) {
-            return references[0].ref;
-        }
-        return null;
+        const references = await this.database.readFromDatabaseWithProperty(getBedieningTableDoc);        
+        return references[0];        
     }
 
     async getTableValueFromReference(reference: FirebaseFirestore.DocumentReference): Promise<BedieningTableModel> {
         const table = await this.database.readDataWithReference(reference);
-        return table as BedieningTableModel;
+        return table.data() as BedieningTableModel;
     }
 }

@@ -3,6 +3,8 @@ import { NavController, ToastController } from 'ionic-angular';
 import { GlobalProvider } from "../../../providers/global/global";
 import { Http } from '../../../http-api';
 import { handleError, presentLongToast } from '../../../app-functions';
+import { UserIdentificationModel } from '../../../../functions/src/models/user-identification.model';
+import { WeekendModel } from '../../../../functions/src/models/weekend.model';
 
 @Component({
 	selector: 'page-weekend',
@@ -26,16 +28,14 @@ export class WeekendPage {
 
 	public loadSlotValues()
 	{
-		let reqSend = {
-			id: this.global.myUsrID
-		}
+		let reqSend: UserIdentificationModel = new UserIdentificationModel(this.global.myUsrID);
 		this.http.post('/get-weekend', reqSend).subscribe
 		( // 1 represents signed in
 			(data) =>
 			{
-				var jsonResp = JSON.parse(data.text());
-				console.log('da', jsonResp.JSONRes);
-				this.meals = jsonResp.JSONRes;
+				var jsonResp: WeekendModel = JSON.parse(data.text());
+				console.log('da', jsonResp);
+				this.meals = jsonResp;
 			},
 			(error) =>
 			{

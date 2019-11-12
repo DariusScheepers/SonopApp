@@ -36,15 +36,13 @@ export class SettingsPage {
 
 	public loadCurrentTable() {
 		let jsonSend: UserIdentificationModel = new UserIdentificationModel(this.global.myUsrID);
-		this.http.post('/getSettings', jsonSend).subscribe(
-			(data) => {
+		this.http.post('/getSettings', jsonSend).subscribe(data => {
 				let jsonResp: StudentModel = JSON.parse(data.text());
 
 				this.bedieningTableID = jsonResp.bedieningTable;
 				this.semi = jsonResp.isSemi;
 				this.emailAddress = jsonResp.email;
-			},
-			(error) => {
+			}, (error) => {
 				handleError(this.navCtrl, error, this.toastCtrl);
 			}
 		)
@@ -65,38 +63,33 @@ export class SettingsPage {
 			}
 		}
 
-		this.http.post('/updateSettings', jsonSend).subscribe(
-			_ => {
-				presentToast(this.toastCtrl, "Updated Information!");
-				if (this.editPasswordMode) {
-					let jsonSend: StudentUpdatePasswordModel =
-					{
-						studentID: this.global.myUsrID,
-						oldPassword: value.oldpassword,
-						newPassword: value.newpassword
-					};
+		this.http.post('/updateSettings', jsonSend).subscribe(data => {
+			presentToast(this.toastCtrl, "Updated Information!");
+			if (this.editPasswordMode) {
+				let jsonSend: StudentUpdatePasswordModel =
+				{
+					studentID: this.global.myUsrID,
+					oldPassword: value.oldpassword,
+					newPassword: value.newpassword
+				};
 
-					this.http.post('/updatePassword', jsonSend).subscribe(
-						(data) => {
-							var jsonResp: SuccessResponseModel = JSON.parse(data.text());
-							if (jsonResp.success) {
-								presentLongToast(this.toastCtrl, "Updated Password!");
-								this.editPasswordMode = false;
-							}
-							else {
-								presentToast(this.toastCtrl, "Old Password is incorrect. Please try again.");
-								return false;
-							}
-						},
-						(error) => {
-							handleError(this.navCtrl, error, this.toastCtrl);
-						}
-					)
-				}
-			},
-			(error) => {
-				handleError(this.navCtrl, error, this.toastCtrl);
+				this.http.post('/updatePassword', jsonSend).subscribe(data => {
+					var jsonResp: SuccessResponseModel = JSON.parse(data.text());
+					if (jsonResp.success) {
+						presentLongToast(this.toastCtrl, "Updated Password!");
+						this.editPasswordMode = false;
+					}
+					else {
+						presentToast(this.toastCtrl, "Old Password is incorrect. Please try again.");
+						return false;
+					}
+				},
+				(error) => {
+					handleError(this.navCtrl, error, this.toastCtrl);
+				})
 			}
-		)
+		}, (error) => {
+			handleError(this.navCtrl, error, this.toastCtrl);
+		})
 	}
 }

@@ -15,6 +15,7 @@ import { AnnouncementsPage } from './announcements/announcements';
 import { AnnouncementsAddPage } from './announcements/announcements-add/announcements-add';
 import { SignOutPageModule } from './sign-out/sign-out.module';
 import { SettingsPageModule } from './settings/settings.module';
+import { WeekendPageModule } from './weekend/weekend.module';
 
 @NgModule({
     declarations: [
@@ -28,7 +29,8 @@ import { SettingsPageModule } from './settings/settings.module';
         IonicModule.forRoot(MyApp),
         HttpModule,
         SignOutPageModule,
-        SettingsPageModule
+        SettingsPageModule,
+        WeekendPageModule
     ],
     bootstrap: [IonicApp],
     entryComponents: [
