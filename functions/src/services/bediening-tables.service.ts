@@ -1,6 +1,6 @@
 import { DataService } from "./data.service";
 import { FirebaseDataBase } from "../database/firebase.database.service";
-import { FirebaseIdentifier, FirebaseIdentifierAttributeValue, queryOperators } from "../models/database-identifier.model";
+import { FirebaseIdentifier, FirebaseIdentifierAttributeValue, QueryOperators } from "../models/database-identifier.model";
 import { BedieningTable, BedieningTableModel } from "../models/bediening-table.enum";
 import { bedieningTables } from "../constants/bediening-tables.constant";
 import { environment } from "../constants/environment.constant";
@@ -29,7 +29,7 @@ export class BedieningTableService extends DataService {
         const getBedieningTableDoc = new FirebaseIdentifierAttributeValue(
             this.collection,
             'value',
-            queryOperators.equal,
+            QueryOperators.equal,
             bedieningTable
         );
         const references = await this.database.readFromDatabaseWithProperty(getBedieningTableDoc);

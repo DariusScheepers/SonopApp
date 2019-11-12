@@ -15,12 +15,16 @@ export class FirebaseDataBase implements DatabaseInterface {
     }
 
     async readFromDatabaseWithProperty(databaseIdentifierAttributeValue: FirebaseIdentifierAttributeValue): Promise<FirebaseFirestore.QueryDocumentSnapshot[]> {
-        const documents = await this.database.collection(databaseIdentifierAttributeValue.collection)
+        let documentsUnordered = this.database.collection(databaseIdentifierAttributeValue.collection)
             .where(
                 databaseIdentifierAttributeValue.attribute,
                 databaseIdentifierAttributeValue.queryOperator,
                 databaseIdentifierAttributeValue.value
-            ).get();
+            );
+        for (const order of databaseIdentifierAttributeValue.orderBy) {
+            documentsUnordered = documentsUnordered.orderBy(order.attribute, order.direction);
+        };
+        const documents = await documentsUnordered.get();
         return documents.docs;
     }
 

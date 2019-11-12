@@ -1,7 +1,7 @@
 import { DataService } from "./data.service";
 import { FirebaseDataBase } from "../database/firebase.database.service";
 import { AnnouncementModel } from "../models/announcement.model";
-import { FirebaseIdentifier } from "../models/database-identifier.model";
+import { FirebaseIdentifier, FirebaseIdentifierAttributeValue, QueryOperators, OrderByDirection } from "../models/database-identifier.model";
 import { UserService } from "./user.service";
 import * as scheduler from "node-schedule";
 import { wipeAnnouncementsSchedule } from "../constants/announcements-schedule.constant";
@@ -26,8 +26,23 @@ export class AnnouncementsService extends DataService {
     }
 
     async getAnnouncements() {
-        const allAnnouncements = new FirebaseIdentifier(this.collection);
-        const announcements = await this.database.readFromDatabaseMultipleItems(allAnnouncements) as AnnouncementModel[];
+        const allAnnouncementsSearch = new FirebaseIdentifierAttributeValue(
+            this.collection,
+            'datePosted',
+            QueryOperators.greaterThan,
+            0,
+            [
+                {
+                    attribute: 'datePosted',
+                    direction: OrderByDirection.descending
+                }
+            ]
+        );
+        const announcementsSnapshots = await this.database.readFromDatabaseWithProperty(allAnnouncementsSearch);
+        let announcements = announcementsSnapshots.map(document => document.data()) as AnnouncementModel[];
+        announcements = announcements.sort((x, y) => {
+            return (x.priority === y.priority) ? 0 : x ? 1 : -1;
+        });
         for (const announcement of announcements) {
             const student = await this.userService.getStudentValueFromReference(announcement.postedBy);
             const postedBy = student.name + " " + student.surname;

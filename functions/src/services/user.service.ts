@@ -1,7 +1,7 @@
 import { LoginModel } from "../models/login.model";
 import { DataService } from "./data.service";
 import { FirebaseDataBase } from "../database/firebase.database.service";
-import { FirebaseIdentifier, FirebaseIdentifierAttributeValue, queryOperators } from "../models/database-identifier.model";
+import { FirebaseIdentifier, FirebaseIdentifierAttributeValue, QueryOperators } from "../models/database-identifier.model";
 import { StudentModel, StudentLoginModel, StudentUpdateModel, StudentUpdatePasswordModel } from "../models/student.model";
 import { BedieningTableService } from "./bediening-tables.service";
 import { BedieningTable } from "../models/bediening-table.enum";
@@ -21,7 +21,7 @@ export class UserService extends DataService {
         const searchForStudent = new FirebaseIdentifierAttributeValue(
             this.collection,
             'studentNumber',
-            queryOperators.equal,
+            QueryOperators.equal,
             loginModel.studentNumber.toString()
         );
         const students = await this.database.readFromDatabaseWithProperty(searchForStudent);

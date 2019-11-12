@@ -26,21 +26,33 @@ export class FirebaseIdentifier extends DatabaseIdentifier {
 export class FirebaseIdentifierAttributeValue {
     collection: string;
     attribute: string;
-    queryOperator: queryOperators;
+    queryOperator: QueryOperators;
     value: any;
-    constructor(collection: string, attribute: string, queryOperator: queryOperators, value: any) {
+    orderBy: OrderBy[];
+    constructor(collection: string, attribute: string, queryOperator: QueryOperators, value: any, orderBy: OrderBy[] = []) {
         this.collection = collection;
         this.attribute = attribute;
         this.queryOperator = queryOperator;
         this.value = value;
+        this.orderBy = orderBy;
     }
 }
 
-export enum queryOperators {
+export interface OrderBy {
+    attribute: string;
+    direction: OrderByDirection;
+}
+
+export enum QueryOperators {
     lessThan = "<",
     lessThanEqual = "<=",
     equal = "==",
     greaterThan = ">",
     greaterThanEqual = ">=",
     arrayContains = "array-contains"
+}
+
+export enum OrderByDirection {
+    ascending = 'asc',
+    descending = 'desc'
 }
