@@ -1,6 +1,5 @@
 import * as functions from "firebase-functions";
 import * as express from "express";
-// import * as scheduler from "node-schedule";
 import * as cors from "cors";
 import * as admin from "firebase-admin";
 import * as request from "request";
@@ -9,7 +8,18 @@ import { FirebaseDataBase } from './database/firebase.database.service';
 import { UserService } from './services/user.service';
 import { BedieningTableService } from './services/bediening-tables.service';
 import { AnnouncementsService } from './services/announcements.service';
-admin.initializeApp(functions.config().firebase);
+import { environment } from "./constants/environment.constant";
+
+if (environment.development) {
+    var serviceAccount = require("../../../CredentialKeys/sonopapptest1-firebase-adminsdk-eegpd-3498ef9f84.json");
+    admin.initializeApp({
+      credential: admin.credential.cert(serviceAccount),
+      databaseURL: "https://sonopapptest1.firebaseio.com"
+    });
+} else {
+    admin.initializeApp(functions.config().firebase);    
+}
+
 const database = admin.firestore();
 
 const dataBaseService = new FirebaseDataBase(database);

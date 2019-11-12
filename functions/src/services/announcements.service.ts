@@ -20,7 +20,7 @@ export class AnnouncementsService extends DataService {
         announcement.datePosted = datePosted;
         announcement.postedBy = await this.userService.getStudentReference(announcement.postedBy as string) as FirebaseFirestore.DocumentReference;
         const title = announcement.title.replace(/\ /g,"");
-        const announcementToInsert = new FirebaseIdentifier(this.collection, title, announcement);
+        const announcementToInsert = new FirebaseIdentifier(this.collection, title, announcement, true);
         await this.database.writeToDatabase(announcementToInsert);
         return {"success": true};
     }

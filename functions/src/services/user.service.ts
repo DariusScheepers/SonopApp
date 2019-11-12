@@ -42,7 +42,7 @@ export class UserService extends DataService {
     async register(studentModel: StudentModel): Promise<SuccessResponseModel> {
         studentModel.verified = false;
         studentModel.bedieningTable = await this.bedieningTableService.getBedieningTableReference(studentModel.bedieningTable as BedieningTable);
-        const newStudentToWrite = new FirebaseIdentifier(this.collection, studentModel.studentNumber.toString(), studentModel);
+        const newStudentToWrite = new FirebaseIdentifier(this.collection, studentModel.studentNumber.toString(), studentModel, true);
         await this.database.writeToDatabase(newStudentToWrite);
         const response: SuccessResponseModel = {
             success: true
@@ -54,13 +54,10 @@ export class UserService extends DataService {
         return bestCodersStudentNumbers.includes(studentModel.studentNumber);    
     }
 
-    async getStudentReference(studentNumber: string): Promise<FirebaseFirestore.DocumentReference | null> {
-        const getStudentDoc = new FirebaseIdentifierAttributeValue(this.collection, 'studentNumber', queryOperators.equal, studentNumber);
-        const references = await this.database.readFromDatabaseWithProperty(getStudentDoc);
-        if (references.length > 0) {
-            return references[0].ref as FirebaseFirestore.DocumentReference;
-        }
-        return null;
+    async getStudentReference(studentID: string): Promise<FirebaseFirestore.DocumentReference> {
+        const getStudentDoc = new FirebaseIdentifier(this.collection, studentID);
+        const reference = await this.database.readFromDatabaseSingleItemReference(getStudentDoc);
+        return reference;
     }
 
     async getStudentValueFromReference(reference: FirebaseFirestore.DocumentReference): Promise<StudentModel> {
@@ -71,11 +68,17 @@ export class UserService extends DataService {
     async getStudentByID(userID: UserIdentificationModel) {
         const searchForStudent = new FirebaseIdentifier(this.collection, userID.id);
         const student = await this.database.readFromDatabaseSingleItem(searchForStudent) as StudentModel;
+        const bedieningTableReference = student.bedieningTable;
+        console.log('Info: ', bedieningTableReference);
+        
+        const bedieningTable = await this.bedieningTableService.getTableValueFromReference(bedieningTableReference);
+        student.bedieningTable = bedieningTable.value;
+        
         return student;
-        student.bedieningTable = (await this.bedieningTableService.getTableValueFromReference(student.bedieningTable)).value;
     }
 
     async updateStudentInformation(studentUpdateInfo: StudentUpdateModel) {
+        studentUpdateInfo.bedieningTable = await this.bedieningTableService.getBedieningTableReference(studentUpdateInfo.bedieningTable as BedieningTable);
         const updateStudent = new FirebaseIdentifier(this.collection, studentUpdateInfo.studentID, studentUpdateInfo);
         await this.database.updateDatabaseItem(updateStudent);
     }
@@ -86,9 +89,14 @@ export class UserService extends DataService {
         let response: SuccessResponseModel = {
             success: false
         }
+        console.log('Info: current', student.password);
+        console.log('Info: old', studentUpdatePassword.oldPassword);
+        
         if (student.password != studentUpdatePassword.oldPassword) {
             return response;
         }
+        const updateStudent = new FirebaseIdentifier(this.collection, studentUpdatePassword.studentID, {password: studentUpdatePassword.newPassword});
+        await this.database.updateDatabaseItem(updateStudent);
         response.success = true;
         return response;        
     }

@@ -7,6 +7,8 @@ import { presentToast, handleError, presentLongToast } from '../../../app-functi
 import { UserIdentificationModel } from '../../../../functions/src/models/user-identification.model';
 import { StudentModel, StudentUpdateModel, StudentUpdatePasswordModel } from '../../../../functions/src/models/student.model';
 import { SuccessResponseModel } from '../../../../functions/src/models/success-response.model'
+import { BedieningTableModel } from '../../../../functions/src/models/bediening-table.enum';
+import { bedieningTables } from '../../../../functions/src/constants/bediening-tables.constant'
 
 @Component({
   	selector: 'page-settings',
@@ -19,6 +21,7 @@ export class SettingsPage {
 	semi:any;
 	emailAddress:any;
 	editPasswordMode:boolean = false;
+    tables: BedieningTableModel[] = bedieningTables;
 	constructor(public navCtrl: NavController, public toastCtrl: ToastController, public navParams: NavParams, public global: GlobalProvider, public http: Http) {
 		this.settings = new FormGroup({
 			table: new FormControl(),
@@ -38,10 +41,7 @@ export class SettingsPage {
 		(
 			(data) =>
 			{
-				console.log('Info: ', data);
-				
 				let jsonResp: StudentModel = JSON.parse(data.text());
-				console.log('Info: ', jsonResp);
 
 				this.bedieningTableID = jsonResp.bedieningTable;
 				this.semi = jsonResp.isSemi;
@@ -76,7 +76,7 @@ export class SettingsPage {
 		(
 			() =>
 			{			
-				presentToast(this.toastCtrl,"Updated!");
+				presentToast(this.toastCtrl,"Updated Information!");
 				if (this.editPasswordMode)
 				{
 					let jsonSend: StudentUpdatePasswordModel =

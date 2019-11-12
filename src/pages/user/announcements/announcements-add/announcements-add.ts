@@ -40,7 +40,7 @@ export class AnnouncementsAddPage {
             value.title,
             value.message,
             this.priorityMessage,
-            this.global.myUsrID.toString(),
+            this.global.myUsrID,
         );
 
         this.newAnn.reset();

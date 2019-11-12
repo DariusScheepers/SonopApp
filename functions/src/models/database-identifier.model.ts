@@ -8,7 +8,7 @@ export class DatabaseIdentifier {
 export class FirebaseIdentifier extends DatabaseIdentifier {
     collection: string
     document: string
-    constructor(collection: string, document: string = "", data?: any, addTimeStamp: boolean = true) {
+    constructor(collection: string, document: string = "", data?: any, addTimeStamp: boolean = false) {
         super(data);
         this.collection = collection;
         this.document = addTimeStamp 

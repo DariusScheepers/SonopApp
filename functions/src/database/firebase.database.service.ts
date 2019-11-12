@@ -24,14 +24,14 @@ export class FirebaseDataBase implements DatabaseInterface {
         return documents.docs;
     }
 
-    readDatabaseSingleItemReference(databaseIdentifier: FirebaseIdentifier): FirebaseFirestore.DocumentReference {
-        return this.database.collection(databaseIdentifier.collection)
-            .doc(databaseIdentifier.document);
+    async readFromDatabaseSingleItem(databaseIdentifier: FirebaseIdentifier): Promise<FirebaseFirestore.DocumentData | undefined> {
+        const documentToRead = await this.database.collection(databaseIdentifier.collection).doc(databaseIdentifier.document).get();
+        return documentToRead.data();
     }
 
-    async readFromDatabaseSingleItem(databaseIdentifier: FirebaseIdentifier): Promise<FirebaseFirestore.DocumentData | undefined> {
-        const documentToRead = this.readDatabaseSingleItemReference(databaseIdentifier);
-        return await this.readDataWithReference(documentToRead);
+    async readFromDatabaseSingleItemReference(databaseIdentifier: FirebaseIdentifier): Promise<FirebaseFirestore.DocumentReference> {
+        const documentToRead = await this.database.collection(databaseIdentifier.collection).doc(databaseIdentifier.document).get();
+        return documentToRead.ref;
     }
 
     async readDataWithReference(documentReference: FirebaseFirestore.DocumentReference) {

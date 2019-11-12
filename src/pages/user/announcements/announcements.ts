@@ -59,8 +59,6 @@ export class AnnouncementsPage {
 
                 let date = new Date(Number(element.datePosted));
                 element.datePosted = date.toLocaleString();
-                console.log('Info: ', element.datePosted);
-
             });
         },
         (error) => {

@@ -61,7 +61,7 @@ export class StudentLoginModel implements SuccessResponseModel {
 
 export interface StudentUpdateModel {
     studentID: string;
-    bedieningTable: string;
+    bedieningTable: BedieningTable | any; // DocumentReference
     isSemi: boolean;
     email: string;
 }

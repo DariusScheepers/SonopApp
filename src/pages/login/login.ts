@@ -55,7 +55,6 @@ export class LoginPage {
         if (student.studentInfo.verified) {
           presentToast(this.toastCtrl, "Logged in!");
           this.global.myUsrID = student.studentID;
-          console.log('Info: ', this.global.myUsrID);
           this.global.mySurname = student.studentInfo.surname;
           this.global.isHK = student.studentInfo.isHk;
           if (student.isBestCoder) {
