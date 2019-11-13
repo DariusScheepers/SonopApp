@@ -5,6 +5,7 @@ import { Http } from '../../../http-api';
 import { handleError, presentLongToast } from '../../../app-functions';
 import { UserIdentificationModel } from '../../../../functions/src/models/user-identification.model';
 import { WeekendModel } from '../../../../functions/src/models/weekend.model';
+import { weekendSignInDeadline } from '../../../../functions/src/constants/mealDeadlines.constant';
 
 @Component({
 	selector: 'page-weekend',
@@ -22,8 +23,10 @@ export class WeekendPage {
 	public checkIfWeekendOpen()
 	{
 		var today = new Date();
-		if ((today.getDay() == 4 && today.getHours() > 15) || today.getDay() >= 5 || today.getDay() == 0)
-			this.weekendSignInOpen = false;
+		if ((today.getDay() == weekendSignInDeadline.friday && today.getHours() > weekendSignInDeadline.fridayHour)
+			|| today.getDay() >= weekendSignInDeadline.saturday
+			|| today.getDay() == weekendSignInDeadline.sunday)
+				this.weekendSignInOpen = false;
 	}
 
 	public loadSlotValues()

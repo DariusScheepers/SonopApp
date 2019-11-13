@@ -10,6 +10,7 @@ import { BedieningTableService } from './services/bediening-tables.service';
 import { AnnouncementsService } from './services/announcements.service';
 import { environment } from "./constants/environment.constant";
 import { WeekendService } from "./services/weekend.service";
+import { WeekdayService } from "./services/weekday.service";
 
 if (environment.development) {
     var serviceAccount = require("../../../CredentialKeys/sonopapptest1-firebase-adminsdk-eegpd-0036d9b018.json");
@@ -28,6 +29,7 @@ const bedieningTableService = new BedieningTableService(dataBaseService);
 const userService = new UserService(dataBaseService, bedieningTableService);
 const announcementsService = new AnnouncementsService(dataBaseService, userService);
 const weekendService = new WeekendService(dataBaseService, userService);
+const weekdayService = new WeekdayService(dataBaseService, userService);
 
 const app = express();
 app.use(cors());
@@ -106,7 +108,12 @@ app.post('/updateWeekend', async (req, res) => {
     res.send(received);
 });
 
-// app.post('/get-week', async (req, res) => {
-//     const received = await weekendService.updateWeekendForStudent(req.body);
-//     res.send(received);
-// });
+app.post('/get-week', async (req, res) => {
+    const received = await weekdayService.getStudentWeekdayDetails(req.body);
+    res.send(received);
+});
+
+app.post('/updateWeekend', async (req, res) => {
+    const received = await weekdayService.updateWeekdayForStudent(req.body);
+    res.send(received);
+});

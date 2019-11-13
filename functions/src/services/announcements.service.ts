@@ -12,6 +12,7 @@ export class AnnouncementsService extends DataService {
     constructor(database: FirebaseDataBase, userService: UserService) {
         super(database);
         this.userService = userService;
+        
         this.setRecurrenceRule();
     }
 

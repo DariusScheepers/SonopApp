@@ -3,6 +3,8 @@ import { NavController, ToastController } from 'ionic-angular';
 import { GlobalProvider } from "../../../providers/global/global";
 import { Http } from '../../../http-api';
 import { handleError } from '../../../app-functions';
+import { WeekdayModel } from '../../../../functions/src/models/weekday.model'
+import { UserIdentificationModel } from '../../../../functions/src/models/user-identification.model';
 
 @Component({
 	selector: 'page-sign-out',
@@ -17,15 +19,13 @@ export class SignOutPage {
 
 	public loadSlotValues()
 	{
-		let reqSend = {
-			id: this.global.myUsrID
-		}
+		let reqSend: UserIdentificationModel = new UserIdentificationModel(this.global.myUsrID);
 		this.http.post('/get-week', reqSend).subscribe
 		(
 			(data) =>
 			{
 				var jsonResp = JSON.parse(data.text());
-				this.meals = jsonResp.JSONRes;
+				this.meals = jsonResp;
 			},
 			(error) =>
 			{
@@ -38,17 +38,17 @@ export class SignOutPage {
 	{
 		meal.status = ++meal.status % 3;
 
-		let reqSend = {
-			id: this.global.myUsrID,
-			wsoMondayLunch: this.meals[0].status,
-			wsoMondayDinner: this.meals[1].status,
-			wsoTuesdayLunch: this.meals[2].status,
-			wsoTuesdayDinner: this.meals[3].status,
-			wsoWednesdayLunch: this.meals[4].status,
-			wsoWednesdayDinner: this.meals[5].status,
-			wsoThursdayLunch: this.meals[6].status,
-			wsoThursdayDinner: this.meals[7].status,
-			wsoFridayLunch: this.meals[8].status
+		let reqSend: WeekdayModel = {
+			student: this.global.myUsrID,
+			mondayLunch: this.meals[0].status,
+			mondayDinner: this.meals[1].status,
+			tuesdayLunch: this.meals[2].status,
+			tuesdayDinner: this.meals[3].status,
+			wednesdayLunch: this.meals[4].status,
+			wednesdayDinner: this.meals[5].status,
+			thursdayLunch: this.meals[6].status,
+			thursdayDinner: this.meals[7].status,
+			fridayLunch: this.meals[8].status
 		};
 		this.http.post('/updateWeeklySignOut', reqSend).subscribe
 		(

@@ -1,3 +1,5 @@
+import { getNextDayOfWeek } from "../utils/date.util";
+
 export class WeekendModel implements WeekendMealsModel {
     fridayDinner: boolean = false;
     saturdayBrunch: boolean = false;
@@ -8,18 +10,6 @@ export class WeekendModel implements WeekendMealsModel {
     student: any;
     constructor(student: any) {
         this.student = student;
-    }
-}
-
-export function createInitialWeekendEntry(student: any): WeekendModel {
-    return {
-        student: student,
-        fridayDinner: false,
-        saturdayBrunch: false,
-        saturdayDinner: false,
-        sundayBreakfast: false,
-        sundayDinner: false,
-        sundayLunch: false
     }
 }
 
@@ -38,46 +28,39 @@ export interface WeekendMealDetail {
     date: string;
 }
 
-export function getNextDayOfWeek(dayOfWeek: number): string {
-    let date = new Date();
-    let resultDate = new Date();
-    resultDate.setDate(date.getDate() + (7 + dayOfWeek - date.getDay()) % 7);
-
-    return resultDate.getDate().toString() + "/" + (resultDate.getMonth() + 1).toString();
-}
-
 export function getWeekendMeals(weekendDetailFromStudent: WeekendModel): WeekendMealDetail[] {
-    const weekendMeals: WeekendMealDetail[] = [];
-    weekendMeals.push({
-        meal: WeekendMeals.FridayDinner,
-        status: weekendDetailFromStudent.fridayDinner,
-        date: getNextDayOfWeek(5)
-    });
-    weekendMeals.push({
-        meal: WeekendMeals.SaturdayBrunch,
-        status: weekendDetailFromStudent.saturdayBrunch,
-        date: getNextDayOfWeek(6)
-    });
-    weekendMeals.push({
-        meal: WeekendMeals.SaturdayDinner,
-        status: weekendDetailFromStudent.saturdayDinner,
-        date: getNextDayOfWeek(6)
-    });
-    weekendMeals.push({
-        meal: WeekendMeals.SundayBreakfast,
-        status: weekendDetailFromStudent.sundayBreakfast,
-        date: getNextDayOfWeek(0)
-    });
-    weekendMeals.push({
-        meal: WeekendMeals.SundayLunch,
-        status: weekendDetailFromStudent.sundayLunch,
-        date: getNextDayOfWeek(0)
-    });
-    weekendMeals.push({
-        meal: WeekendMeals.SundayDinner,
-        status: weekendDetailFromStudent.sundayDinner,
-        date: getNextDayOfWeek(0)
-    });
+    const weekendMeals: WeekendMealDetail[] = [
+        {
+            meal: WeekendMeals.FridayDinner,
+            status: weekendDetailFromStudent.fridayDinner,
+            date: getNextDayOfWeek(5)
+        },
+        {
+            meal: WeekendMeals.SaturdayBrunch,
+            status: weekendDetailFromStudent.saturdayBrunch,
+            date: getNextDayOfWeek(6)
+        },
+        {
+            meal: WeekendMeals.SaturdayDinner,
+            status: weekendDetailFromStudent.saturdayDinner,
+            date: getNextDayOfWeek(6)
+        },
+        {
+            meal: WeekendMeals.SundayBreakfast,
+            status: weekendDetailFromStudent.sundayBreakfast,
+            date: getNextDayOfWeek(0)
+        },
+        {
+            meal: WeekendMeals.SundayLunch,
+            status: weekendDetailFromStudent.sundayLunch,
+            date: getNextDayOfWeek(0)
+        },
+        {
+            meal: WeekendMeals.SundayDinner,
+            status: weekendDetailFromStudent.sundayDinner,
+            date: getNextDayOfWeek(0)
+        },
+    ]
     return weekendMeals;
 }
 
@@ -89,6 +72,18 @@ export function getWeekendMealStatuses(weekendDetailFromStudent: WeekendModel): 
         sundayBreakfast: weekendDetailFromStudent.sundayBreakfast,
         sundayLunch: weekendDetailFromStudent.sundayLunch,
         sundayDinner: weekendDetailFromStudent.sundayDinner
+    }
+}
+
+export function createInitialWeekendEntry(student: any): WeekendModel {
+    return {
+        student: student,
+        fridayDinner: false,
+        saturdayBrunch: false,
+        saturdayDinner: false,
+        sundayBreakfast: false,
+        sundayDinner: false,
+        sundayLunch: false
     }
 }
 

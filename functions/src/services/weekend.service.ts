@@ -5,6 +5,8 @@ import { WeekendModel, WeekendMealDetail, getWeekendMeals, getWeekendMealStatuse
 import { FirebaseIdentifier } from "../models/database-identifier.model";
 import { UserIdentificationModel } from "../models/user-identification.model";
 import { SuccessResponseModel } from "../models/success-response.model";
+import * as scheduler from "node-schedule";
+import { weekendResetSignIn } from "../constants/mealResets.constant";
 
 export class WeekendService extends DataService {
     collection = 'weekend';
@@ -15,16 +17,29 @@ export class WeekendService extends DataService {
         this.userService = userService;
         
         this.populateWeekendMeals();
+        this.setRecurrenceRule();
     }
 
     private async populateWeekendMeals() {
         const students = await this.userService.getAllVerifiedStudents();
         for (const student of students) {
-            const documentID = this.getWeekendDocumentIDFromStudentID(student.id);
-            const weekend = createInitialWeekendEntry(student.ref);
-            const studentWeekendToInsert = new FirebaseIdentifier(this.collection, documentID, weekend);
-            await this.database.writeToDatabase(studentWeekendToInsert);
+            await this.addWeekendEntryForStudent(student);
         }
+    }
+
+    async addWeekendEntryForStudent(studentSnapshot: FirebaseFirestore.DocumentSnapshot) {
+        const documentID = this.getWeekendDocumentIDFromStudentID(studentSnapshot.id);
+        const searchForWeekend = new FirebaseIdentifier(this.collection, documentID);
+        const weekend = await this.database.readFromDatabaseSingleItem(searchForWeekend);
+        if (!weekend.exists) {
+            await this.resetStudentSignIn(documentID, studentSnapshot.ref);
+        }
+    }
+
+    private async resetStudentSignIn(documentID: string, studentReference: any) {
+        const weekend = createInitialWeekendEntry(studentReference);
+        const studentWeekendToInsert = new FirebaseIdentifier(this.collection, documentID, weekend);
+        await this.database.writeToDatabase(studentWeekendToInsert);
     }
 
     async getStudentWeekendDetails(userID: UserIdentificationModel) {
@@ -53,5 +68,27 @@ export class WeekendService extends DataService {
             success: true
         }
         return response;
+    }
+
+    private setRecurrenceRule() {
+        let weekendResetsRule = new scheduler.RecurrenceRule();
+        weekendResetsRule.dayOfWeek = weekendResetSignIn.dayOfWeek;
+        weekendResetsRule.hour = weekendResetSignIn.hour;
+        weekendResetsRule.minute = weekendResetSignIn.minute;
+        weekendResetsRule.second = weekendResetSignIn.second;
+        scheduler.scheduleJob(weekendResetsRule, async _ => {
+            await this.resetWeekendSignIn();
+        });
+    }
+
+    private async resetWeekendSignIn() {
+        const findAllWeekendEntries = new FirebaseIdentifier(this.collection);
+        const weekends = await this.database.readFromDatabaseMultipleItems(findAllWeekendEntries);
+        for (const weekendEntry of weekends) {
+            const documentID = weekendEntry.id;
+            const weekend = weekendEntry.data() as WeekendModel;
+            const studentReference = weekend.student;
+            await this.resetStudentSignIn(documentID, studentReference);
+        }
     }
 }
