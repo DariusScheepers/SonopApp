@@ -113,7 +113,7 @@ app.post('/get-week', async (req, res) => {
     res.send(received);
 });
 
-app.post('/updateWeekend', async (req, res) => {
+app.post('/updateWeeklySignOut', async (req, res) => {
     const received = await weekdayService.updateWeekdayForStudent(req.body);
     res.send(received);
 });

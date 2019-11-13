@@ -13,49 +13,41 @@ import { weekendSignInDeadline } from '../../../../functions/src/constants/mealD
 })
 export class WeekendPage {
 
-	weekendSignInOpen:boolean = true;
-	meals:any;
+	weekendSignInOpen: boolean = true;
+	meals: any;
 	constructor(public navCtrl: NavController, public global: GlobalProvider, public http: Http, public toastCtrl: ToastController) {
 		this.checkIfWeekendOpen();
 		this.loadSlotValues();
 	}
 
-	public checkIfWeekendOpen()
-	{
-		var today = new Date();
+	public checkIfWeekendOpen() {
+		let today = new Date();
 		if ((today.getDay() == weekendSignInDeadline.friday && today.getHours() > weekendSignInDeadline.fridayHour)
 			|| today.getDay() >= weekendSignInDeadline.saturday
-			|| today.getDay() == weekendSignInDeadline.sunday)
+			|| today.getDay() == weekendSignInDeadline.sunday) {
 				this.weekendSignInOpen = false;
+			}
 	}
 
-	public loadSlotValues()
-	{
+	public loadSlotValues() {
 		let reqSend: UserIdentificationModel = new UserIdentificationModel(this.global.myUsrID);
-		this.http.post('/get-weekend', reqSend).subscribe
-		( // 1 represents signed in
-			(data) =>
-			{
-				var jsonResp: WeekendModel = JSON.parse(data.text());
+		this.http.post('/get-weekend', reqSend).subscribe(data => {
+				let jsonResp: WeekendModel = JSON.parse(data.text());
 				this.meals = jsonResp;
-			},
-			(error) =>
-			{
+			}, (error) => {
 				handleError(this.navCtrl, error, this.toastCtrl);
 			}
-		)
+		);
 	}
 
-	public updateSlot(meal)
-	{
+	public updateSlot(meal) {
 		if (!this.weekendSignInOpen) {
 			presentLongToast(this.toastCtrl, `Sign in for the weekend has closed`);
 			return;
 		}
-		else 
-		{
+		else {
 			meal.status = !meal.status;
-	
+
 			let reqSend: WeekendModel = {
 				student: this.global.myUsrID,
 				fridayDinner: this.meals[0].status,
@@ -65,15 +57,12 @@ export class WeekendPage {
 				sundayLunch: this.meals[4].status,
 				sundayDinner: this.meals[5].status
 			}
-			this.http.post('/updateWeekend', reqSend).subscribe
-			(
-				(data) =>
-				{},
-				(error) =>
-				{
+			this.http.post('/updateWeekend', reqSend).subscribe(data => {
+
+				}, (error) => {
 					handleError(this.navCtrl, error, this.toastCtrl);
 				}
-			)			
+			);
 		}
 	}
 }

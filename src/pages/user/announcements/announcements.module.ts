@@ -16,4 +16,4 @@ import { AnnouncementsAddPage } from './announcements-add/announcements-add';
     AnnouncementsAddPage
   ]
 })
-export class WeekendPageModule {}
+export class AnnouncementsPageModule {}

@@ -14,6 +14,7 @@ import { SplashScreen } from "@ionic-native/splash-screen";
 import { SignOutPageModule } from './sign-out/sign-out.module';
 import { SettingsPageModule } from './settings/settings.module';
 import { WeekendPageModule } from './weekend/weekend.module';
+import { AnnouncementsPageModule } from './announcements/announcements.module';
 
 @NgModule({
     declarations: [
@@ -26,7 +27,8 @@ import { WeekendPageModule } from './weekend/weekend.module';
         HttpModule,
         SignOutPageModule,
         SettingsPageModule,
-        WeekendPageModule
+        WeekendPageModule,
+        AnnouncementsPageModule
     ],
     bootstrap: [IonicApp],
     entryComponents: [

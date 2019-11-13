@@ -11,14 +11,14 @@
     <p>Sign Out closes every weekday at 11:00 for Lunch and 15:00 for Dinner.</p>
     <ion-list>
         <ion-card color="primary" class="weekendSlots card" *ngFor="let meal of meals" (click)="updateSlot(meal)">
-            <ion-card-content *ngIf="meal.openStatus" [style.background-color]="meal.status == 0 ? '#FFFF00' : (meal.status == 1 ? '#f53d3d' : '#119b05')">   
-                <ion-item [style.background-color]="meal.status == 0 ? '#FFFF00' : (meal.status == 1 ? '#f53d3d' : '#119b05')">          
-					<ion-label [style.color]="meal.status == 0 ? '#000000' : '#ffffff'">{{meal.meal}} {{meal.date}}</ion-label> 
+            <ion-card-content *ngIf="meal.openStatus" [style.background-color]="meal.status == WeekdaySignInStatus.signedOutPermanent ? '#FFFF00' : (meal.status == WeekdaySignInStatus.signedOutTemporarily ? '#f53d3d' : '#119b05')">   
+                <ion-item [style.background-color]="meal.status == WeekdaySignInStatus.signedOutPermanent ? '#FFFF00' : (meal.status == WeekdaySignInStatus.signedOutTemporarily ? '#f53d3d' : '#119b05')">          
+					<ion-label [style.color]="meal.status == WeekdaySignInStatus.signedOutPermanent ? '#000000' : '#ffffff'">{{meal.meal}} {{meal.date}}</ion-label> 
                 </ion-item> 
-                <ion-item [style.background-color]="meal.status == 0 ? '#FFFF00' : (meal.status == 1 ? '#f53d3d' : '#119b05')">
-                    <ion-label end *ngIf="meal.status == 0">Permanently Signed Out</ion-label>
-                    <ion-label end *ngIf="meal.status == 1">Signed out for Now</ion-label>
-                    <ion-label end *ngIf="meal.status == 2">Signed In</ion-label>
+                <ion-item [style.background-color]="meal.status == WeekdaySignInStatus.signedOutPermanent ? '#FFFF00' : (meal.status == WeekdaySignInStatus.signedOutTemporarily ? '#f53d3d' : '#119b05')">
+                    <ion-label end *ngIf="meal.status == WeekdaySignInStatus.signedOutPermanent">Permanently Signed Out</ion-label>
+                    <ion-label end *ngIf="meal.status == WeekdaySignInStatus.signedOutTemporarily">Signed out for Now</ion-label>
+                    <ion-label end *ngIf="meal.status == WeekdaySignInStatus.signedIn">Signed In</ion-label>
                 </ion-item>           
             </ion-card-content>
         </ion-card>
