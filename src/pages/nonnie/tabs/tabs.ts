@@ -11,7 +11,6 @@ export class TabsPage {
   tab2Root = WeekendNonniePage;
   tab3Root = SignOutNonniePage;
 
-
   constructor() {
 
   }

@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, ViewController } from 'ionic-angular';
+import { NavController, NavParams, ToastController, ViewController } from 'ionic-angular';
 import { FormGroup, FormControl } from '@angular/forms';
 
-@IonicPage()
 @Component({
   selector: 'page-verify-edit',
   templateUrl: 'verify-edit.html',

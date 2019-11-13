@@ -11,6 +11,7 @@ import { AnnouncementsService } from './services/announcements.service';
 import { environment } from "./constants/environment.constant";
 import { WeekendService } from "./services/weekend.service";
 import { WeekdayService } from "./services/weekday.service";
+import { NonnieService } from "./services/nonnie.service";
 
 if (environment.development) {
     var serviceAccount = require("../../../CredentialKeys/sonopapptest1-firebase-adminsdk-eegpd-0036d9b018.json");
@@ -30,10 +31,19 @@ const userService = new UserService(dataBaseService, bedieningTableService);
 const announcementsService = new AnnouncementsService(dataBaseService, userService);
 const weekendService = new WeekendService(dataBaseService, userService);
 const weekdayService = new WeekdayService(dataBaseService, userService);
+const nonnieService = new NonnieService(
+    dataBaseService,
+    userService,
+    bedieningTableService,
+    weekendService,
+    weekdayService
+);
 
 const app = express();
 app.use(cors());
 exports.app = functions.https.onRequest(app);
+
+//#region Temporary testing
 
 app.get('/testing', (req, res) => {
     console.log("success con1");
@@ -62,6 +72,10 @@ app.get('/testRequest', async (req, res) => {
 
     res.send({success, message: "Nice3", "testing": 2, bibleVerseJSON});           
 });
+
+//#endregion
+
+//#region User front end requests
 
 app.post('/login', async (req, res) => {
     const received = await userService.login(req.body);
@@ -117,3 +131,39 @@ app.post('/updateWeeklySignOut', async (req, res) => {
     const received = await weekdayService.updateWeekdayForStudent(req.body);
     res.send(received);
 });
+
+//#endregion
+
+//#region Nonnie front end requests
+
+app.post('/nonnie-login', (req, res) => {
+    const response = nonnieService.nonnieLogin(req.body);
+    res.send(response);
+});
+
+app.get('/getUnverifiedAccounts', async (req, res) => {
+    const response = await nonnieService.getUnverifiedAccounts();
+    res.send(response);
+});
+
+app.get('/getVerifiedAccounts', async (req, res) => {
+    const response = await nonnieService.getVerifiedAccounts();
+    res.send(response);
+});
+
+app.post('/acceptAccount', (req, res) => {
+    const response = nonnieService.verifyAccount(req.body);
+    res.send(response);
+});
+
+app.post('/discardAccount', (req, res) => {
+    const response = userService.deleteStudent(req.body);
+    res.send(response);
+});
+
+app.post('/deleteAccount', (req, res) => {
+    const response = userService.deleteStudent(req.body);
+    res.send(response);
+});
+
+//#endregion

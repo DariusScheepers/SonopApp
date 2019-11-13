@@ -54,7 +54,7 @@ export class AnnouncementsService extends DataService {
 
     private async clearAnnouncements() {
         const deleteAllAnnouncements = new FirebaseIdentifier(this.collection);
-        await this.database.deleteCollection(deleteAllAnnouncements);
+        await this.database.deleteTable(deleteAllAnnouncements);
     }
 
     private async setRecurrenceRule() {

@@ -9,5 +9,8 @@ import { SignOutNonniePage } from './sign-out';
   imports: [
     IonicPageModule.forChild(SignOutNonniePage),
   ],
+  entryComponents: [
+    SignOutNonniePage
+  ]
 })
 export class SignOutPageModule {}

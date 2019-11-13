@@ -57,6 +57,6 @@ export class BibleVerseService extends DataService {
 
     private async freeUpBibleVerses() {
         const collectionToFreeUp = new FirebaseIdentifier(this.collection);
-        await this.database.deleteCollection(collectionToFreeUp);
+        await this.database.deleteTable(collectionToFreeUp);
     }
 }

@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, ToastController } from 'ionic-angular';
+import { NavController, ToastController } from 'ionic-angular';
 import { Http } from '../../../http-api';
 import * as papa from 'papaparse';
 import { handleError } from '../../../app-functions';
 
-@IonicPage()
 @Component({
     selector: 'page-sign-out',
     templateUrl: 'sign-out.html',

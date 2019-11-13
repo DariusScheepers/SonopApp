@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ViewController, ToastController } from 'ionic-angular';
 import { Http } from '../../../../http-api';
 import { handleError } from '../../../../app-functions';
 
-@IonicPage()
 @Component({
   selector: 'page-verify-edit-weekend',
   templateUrl: 'verify-edit-weekend.html',

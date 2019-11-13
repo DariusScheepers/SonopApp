@@ -16,7 +16,6 @@ export class SignOutPage {
 	WeekdaySignInStatus = WeekdaySignInStatus;
 	constructor(public navCtrl: NavController, public global: GlobalProvider, public http: Http, public toastCtrl: ToastController) {
 		this.loadSlotValues();
-		let a = WeekdaySignInStatus.signedOutTemporarily
 	}
 
 	public loadSlotValues() {
@@ -48,7 +47,7 @@ export class SignOutPage {
 		this.http.post('/updateWeeklySignOut', reqSend).subscribe(data => { 
 
 			}, (error) => {
-					handleError(this.navCtrl, error, this.toastCtrl);
+				handleError(this.navCtrl, error, this.toastCtrl);
 			}
 		);
 	}

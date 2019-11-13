@@ -21,7 +21,7 @@ export class WeekendService extends DataService {
     }
 
     private async populateWeekendMeals() {
-        const students = await this.userService.getAllVerifiedStudents();
+        const students = await this.userService.getAllStudents();
         for (const student of students) {
             await this.addWeekendEntryForStudent(student);
         }

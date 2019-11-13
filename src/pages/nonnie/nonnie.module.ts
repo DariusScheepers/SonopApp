@@ -1,5 +1,3 @@
-
-//#region nonnie
 import { TabsPage } from '../nonnie/tabs/tabs';
 import { LoginNonniePage } from '../nonnie/login-nonnie/login';
 import { BrowserModule } from '@angular/platform-browser';
@@ -9,7 +7,9 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { Http } from '../../http-api';
 import { StatusBar } from '@ionic-native/status-bar';
-//#endregion
+import { VerifyPageModule } from './verify/verify.module';
+import { SignOutPageModule } from './sign-out-nonnie/sign-out.module';
+import { WeekendPageModule } from './weekend-nonnie/weekend.module';
 
 @NgModule({
     declarations: [  
@@ -20,6 +20,9 @@ import { StatusBar } from '@ionic-native/status-bar';
         BrowserModule,
         IonicModule.forRoot(MyApp),
         HttpModule,
+        VerifyPageModule,
+        WeekendPageModule,
+        SignOutPageModule
     ],
     bootstrap: [IonicApp],
     entryComponents: [

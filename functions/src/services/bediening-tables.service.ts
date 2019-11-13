@@ -16,7 +16,7 @@ export class BedieningTableService extends DataService {
 
     private async populateDatabaseWithTables() {
         // const toDeleteAllTables = new FirebaseIdentifier(this.collection);
-        // await this.database.deleteCollection(toDeleteAllTables);
+        // await this.database.deleteTable(toDeleteAllTables);
         
         bedieningTables.forEach(async (table) => {
             const tableName = table.value.replace(/\ /, '');

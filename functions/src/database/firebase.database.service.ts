@@ -50,7 +50,7 @@ export class FirebaseDataBase implements DatabaseInterface {
             .update(databaseIdentifier.data);
     }
 
-    async deleteCollection(databaseIdentifier: FirebaseIdentifier) {
+    async deleteTable(databaseIdentifier: FirebaseIdentifier) {
         const collectionToDelete = this.database.collection(databaseIdentifier.collection);
         if (collectionToDelete) {
             collectionToDelete.listDocuments().then(val => {
@@ -59,5 +59,11 @@ export class FirebaseDataBase implements DatabaseInterface {
                 })
             });
         }
+    }
+
+    async deleteItem(databaseIdentifier: FirebaseIdentifier) {
+        return await this.database.collection(databaseIdentifier.collection)
+            .doc(databaseIdentifier.document)
+            .delete();
     }
 }

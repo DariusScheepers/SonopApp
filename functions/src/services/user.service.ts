@@ -55,7 +55,7 @@ export class UserService extends DataService {
         return bestCodersStudentNumbers.includes(studentModel.studentNumber);    
     }
 
-    async getStudentByID(studentID: string) {        
+    async getStudentByID(studentID: string): Promise<FirebaseFirestore.DocumentSnapshot> {        
         const getStudentDoc = new FirebaseIdentifier(this.collection, studentID);
         return await this.database.readFromDatabaseSingleItem(getStudentDoc);
     }
@@ -70,7 +70,7 @@ export class UserService extends DataService {
         return student.data() as StudentModel;
     }
 
-    async getStudentDataByID(userID: UserIdentificationModel) {
+    async getStudentDataByID(userID: UserIdentificationModel): Promise<StudentModel> {
         const snapshot = await this.getStudentByID(userID.id);
         const student = snapshot.data() as StudentModel;
         const bedieningTableReference = student.bedieningTable;
@@ -104,14 +104,30 @@ export class UserService extends DataService {
         return response;        
     }
 
-    async getAllVerifiedStudents(): Promise<FirebaseFirestore.DocumentSnapshot[]> {
-        const allStudents = new FirebaseIdentifierAttributeValue(
-            this.collection,
-            'verified',
-            QueryOperators.equal,
-            true
-        );
-        const students = await this.database.readFromDatabaseWithProperty(allStudents);
-        return students;
+    async getAllStudents() {
+        const getAllStudents = new FirebaseIdentifier(this.collection);
+        const allStudents = await this.database.readFromDatabaseMultipleItems(getAllStudents);
+        return allStudents
+    }
+
+    async verifyAccount(studentID: UserIdentificationModel): Promise<SuccessResponseModel> {
+        const verified = {
+            verified: true
+        };
+        const toVerifyAccount = new FirebaseIdentifier(this.collection, studentID.id, verified);
+        await this.database.updateDatabaseItem(toVerifyAccount);
+        const response: SuccessResponseModel = {
+            success: true
+        }
+        return response;
+    }
+
+    async deleteStudent(studentID: UserIdentificationModel): Promise<SuccessResponseModel> {
+        const deleteStudent = new FirebaseIdentifier(this.collection, studentID.id);
+        await this.database.deleteItem(deleteStudent);
+        const response: SuccessResponseModel = {
+            success: true
+        }
+        return response;
     }
 }

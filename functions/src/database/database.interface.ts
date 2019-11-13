@@ -5,5 +5,5 @@ export interface DatabaseInterface {
     readFromDatabaseSingleItem(databaseIdentifier: DatabaseIdentifier): void;
     readFromDatabaseMultipleItems(databaseIdentifier: DatabaseIdentifier): any;
     updateDatabaseItem(databaseIdentifier: DatabaseIdentifier): void;
-    deleteCollection(databaseIdentifier: DatabaseIdentifier): void;
+    deleteTable(databaseIdentifier: DatabaseIdentifier): void;
 }

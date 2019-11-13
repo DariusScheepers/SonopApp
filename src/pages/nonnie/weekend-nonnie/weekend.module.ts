@@ -9,5 +9,8 @@ import { WeekendNonniePage } from './weekend';
   imports: [
     IonicPageModule.forChild(WeekendNonniePage),
   ],
+  entryComponents: [
+    WeekendNonniePage
+  ]
 })
 export class WeekendPageModule {}

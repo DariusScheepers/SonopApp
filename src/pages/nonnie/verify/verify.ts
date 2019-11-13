@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, AlertController, ModalController } from 'ionic-angular';
+import { NavController, NavParams, ToastController, AlertController, ModalController } from 'ionic-angular';
 import { Http } from '../../../http-api';
 import { presentToast, handleError } from '../../../app-functions';
 import { VerifyEditPage } from './verify-edit/verify-edit';
 import { VerifyEditWeekendPage } from './verify-edit-weekend/verify-edit-weekend';
+import { StudentAccountInformation } from '../../../../functions/src/models/nonnie.model';
+import { UserIdentificationModel } from '../../../../functions/src/models/user-identification.model';
 
-@IonicPage()
 @Component({
 	selector: 'page-verify',
 	templateUrl: 'verify.html',
@@ -33,8 +34,8 @@ export class VerifyPage {
 		(
 			(data) =>
 			{
-				var jsonResp = JSON.parse(data.text());
-				this.unverifiedAccounts = jsonResp.result0;
+				let jsonResp: StudentAccountInformation = JSON.parse(data.text());
+				this.unverifiedAccounts = jsonResp;
 			},
 			(error) =>
 			{
@@ -50,8 +51,8 @@ export class VerifyPage {
 		(
 			(data) =>
 			{
-				var jsonResp = JSON.parse(data.text());
-				this.verifiedAccounts = jsonResp.result0;
+				let jsonResp: StudentAccountInformation = JSON.parse(data.text());
+				this.verifiedAccounts = jsonResp;
 			},
 			(error) =>
 			{
@@ -60,10 +61,10 @@ export class VerifyPage {
 		)
 	}
 
-	public verifyAccount(account:any)
+	public verifyAccount(account: StudentAccountInformation)
 	{
 		let reqSend = {
-			id: account.usrID
+			id: account.studentID
 		};
 
 		this.http.post('/acceptAccount', reqSend).subscribe
@@ -80,10 +81,10 @@ export class VerifyPage {
 		)
 	}
 
-	public discardAccount(account)
+	public discardAccount(account: StudentAccountInformation)
 	{
-		let reqSend = {
-			id: account.usrID
+		let reqSend: UserIdentificationModel = {
+			id: account.studentID
 		};
 		
 		this.http.post('/discardAccount', reqSend).subscribe
@@ -100,10 +101,10 @@ export class VerifyPage {
 		)
 	}
 
-	public deleteAccount(account)
+	public deleteAccount(account: StudentAccountInformation)
 	{
-		let reqSend = {
-			id: account.usrID
+		let reqSend: UserIdentificationModel = {
+			id: account.studentID
 		};
 
 		this.http.post('/deleteAccount', reqSend).subscribe
@@ -120,7 +121,7 @@ export class VerifyPage {
 		);
 	}
 
-	public presentDeleteConfirm(account) {
+	public presentDeleteConfirm(account: StudentAccountInformation) {
         let alert = this.alertCtrl.create({
             title: 'Delete',
             message: 'Are you sure you want to delete this account?',
@@ -142,7 +143,7 @@ export class VerifyPage {
         alert.present();
 	}
 	
-	public editAccount(account)
+	public editAccount(account: StudentAccountInformation)
 	{
 		let addModal = this.modalCtrl.create(VerifyEditPage, {'account': account});
         addModal.onDidDismiss(result => {

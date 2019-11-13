@@ -4,6 +4,8 @@ import { FormGroup, FormControl} from '@angular/forms';
 import { Http } from '../../../http-api';
 import { TabsPage } from '../tabs/tabs';
 import { presentToast, handleError } from '../../../app-functions';
+import { NonnieLoginModel } from '../../../../functions/src/models/nonnie.model';
+import { SuccessResponseModel } from '../../../../functions/src/models/success-response.model';
 
 @Component({
   selector: 'page-login',
@@ -26,16 +28,16 @@ export class LoginNonniePage {
       return;
     }
 
-    var jsonArr = {
-      "password" : value.pass
+    let jsonArr: NonnieLoginModel = {
+      password: value.pass
     };
 
     this.http.post("/nonnie-login", jsonArr).subscribe
     (
       (data) =>
       {      
-        var jsonResp = JSON.parse(data.text());
-        if (jsonResp.JSONRes.success)
+        let jsonResp: SuccessResponseModel = JSON.parse(data.text());
+        if (jsonResp.success)
         {
           presentToast(this.toastCtrl, "Logged in!");
           this.navCtrl.setRoot(TabsPage);
