@@ -1,4 +1,4 @@
-export class WeekendModel {
+export class WeekendModel implements WeekendMealsModel {
     fridayDinner: boolean = false;
     saturdayBrunch: boolean = false;
     saturdayDinner: boolean = false;
@@ -11,6 +11,27 @@ export class WeekendModel {
     }
 }
 
+export function createInitialWeekendEntry(student: any): WeekendModel {
+    return {
+        student: student,
+        fridayDinner: false,
+        saturdayBrunch: false,
+        saturdayDinner: false,
+        sundayBreakfast: false,
+        sundayDinner: false,
+        sundayLunch: false
+    }
+}
+
+export interface WeekendMealsModel {
+    fridayDinner: boolean;
+    saturdayBrunch: boolean;
+    saturdayDinner: boolean;
+    sundayBreakfast: boolean;
+    sundayLunch: boolean;
+    sundayDinner: boolean;
+}
+
 export interface WeekendMealDetail {
     meal: WeekendMeals;
     status: boolean;
@@ -18,8 +39,8 @@ export interface WeekendMealDetail {
 }
 
 export function getNextDayOfWeek(dayOfWeek: number): string {
-    var date = new Date();
-    var resultDate = new Date();
+    let date = new Date();
+    let resultDate = new Date();
     resultDate.setDate(date.getDate() + (7 + dayOfWeek - date.getDay()) % 7);
 
     return resultDate.getDate().toString() + "/" + (resultDate.getMonth() + 1).toString();
@@ -58,6 +79,17 @@ export function getWeekendMeals(weekendDetailFromStudent: WeekendModel): Weekend
         date: getNextDayOfWeek(0)
     });
     return weekendMeals;
+}
+
+export function getWeekendMealStatuses(weekendDetailFromStudent: WeekendModel): WeekendMealsModel {
+    return {
+        fridayDinner: weekendDetailFromStudent.fridayDinner,
+        saturdayBrunch: weekendDetailFromStudent.saturdayBrunch,
+        saturdayDinner: weekendDetailFromStudent.saturdayDinner,
+        sundayBreakfast: weekendDetailFromStudent.sundayBreakfast,
+        sundayLunch: weekendDetailFromStudent.sundayLunch,
+        sundayDinner: weekendDetailFromStudent.sundayDinner
+    }
 }
 
 export enum WeekendMeals {

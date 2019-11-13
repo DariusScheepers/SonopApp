@@ -100,3 +100,13 @@ app.post('/get-weekend', async (req, res) => {
     const received = await weekendService.getStudentWeekendDetails(req.body);
     res.send(received);
 });
+
+app.post('/updateWeekend', async (req, res) => {
+    const received = await weekendService.updateWeekendForStudent(req.body);
+    res.send(received);
+});
+
+// app.post('/get-week', async (req, res) => {
+//     const received = await weekendService.updateWeekendForStudent(req.body);
+//     res.send(received);
+// });

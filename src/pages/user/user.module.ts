@@ -11,8 +11,6 @@ import { LoginPage } from '../login/login';
 import { RegisterPage } from './register/register';
 import { GlobalProvider } from "../../providers/global/global";
 import { SplashScreen } from "@ionic-native/splash-screen";
-import { AnnouncementsPage } from './announcements/announcements';
-import { AnnouncementsAddPage } from './announcements/announcements-add/announcements-add';
 import { SignOutPageModule } from './sign-out/sign-out.module';
 import { SettingsPageModule } from './settings/settings.module';
 import { WeekendPageModule } from './weekend/weekend.module';
@@ -21,8 +19,6 @@ import { WeekendPageModule } from './weekend/weekend.module';
     declarations: [
         LoginPage,
         RegisterPage,
-        AnnouncementsPage,
-        AnnouncementsAddPage
     ],
     imports: [
         BrowserModule,
@@ -35,9 +31,7 @@ import { WeekendPageModule } from './weekend/weekend.module';
     bootstrap: [IonicApp],
     entryComponents: [
         LoginPage,
-        RegisterPage,
-        AnnouncementsPage,
-        AnnouncementsAddPage
+        RegisterPage
     ],
     providers: [
         StatusBar,

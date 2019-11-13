@@ -34,7 +34,6 @@ export class WeekendPage {
 			(data) =>
 			{
 				var jsonResp: WeekendModel = JSON.parse(data.text());
-				console.log('da', jsonResp);
 				this.meals = jsonResp;
 			},
 			(error) =>
@@ -54,14 +53,14 @@ export class WeekendPage {
 		{
 			meal.status = !meal.status;
 	
-			let reqSend = {
-				id: this.global.myUsrID,
-				wsiFridayDinner: this.meals[0].status,
-				wsiSaturdayBrunch: this.meals[1].status,
-				wsiSaturdayDinner: this.meals[2].status,
-				wsiSundayBreakfast: this.meals[3].status,
-				wsiSundayLunch: this.meals[4].status,
-				wsiSundayDinner: this.meals[5].status
+			let reqSend: WeekendModel = {
+				student: this.global.myUsrID,
+				fridayDinner: this.meals[0].status,
+				saturdayBrunch: this.meals[1].status,
+				saturdayDinner: this.meals[2].status,
+				sundayBreakfast: this.meals[3].status,
+				sundayLunch: this.meals[4].status,
+				sundayDinner: this.meals[5].status
 			}
 			this.http.post('/updateWeekend', reqSend).subscribe
 			(
