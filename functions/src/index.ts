@@ -12,7 +12,6 @@ import { environment } from "./constants/environment.constant";
 import { WeekendService } from "./services/weekend.service";
 import { WeekdayService } from "./services/weekday.service";
 import { NonnieService } from "./services/nonnie.service";
-import { emailConfig } from "./constants/emailer.constant";
 import { EmailerService } from "./services/emailer.service";
 
 if (environment.development) {
