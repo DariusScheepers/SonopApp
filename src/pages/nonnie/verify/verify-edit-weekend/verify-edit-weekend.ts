@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ViewController, ToastController } from 'ionic-angular';
 import { Http } from '../../../../http-api';
 import { handleError } from '../../../../app-functions';
+import { StudentAccountInformation } from '../../../../../functions/src/models/nonnie.model';
+import { WeekendModel } from '../../../../../functions/src/models/weekend.model';
+import { UserIdentificationModel } from '../../../../../functions/src/models/user-identification.model';
 
 @Component({
   selector: 'page-verify-edit-weekend',
@@ -9,7 +12,7 @@ import { handleError } from '../../../../app-functions';
 })
 export class VerifyEditWeekendPage {
 
-	account: any;
+	account: StudentAccountInformation;
 	meals:any;
 	constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, 
 			public toastCtrl: ToastController, public viewCtrl: ViewController) {
@@ -19,15 +22,15 @@ export class VerifyEditWeekendPage {
 	public loadSlotValues()
 	{
 		this.account = this.navParams.get('account');
-		let reqSend = {
-			id: this.account.usrID
+		let reqSend: UserIdentificationModel = {
+			id: this.account.studentID
 		}
 		this.http.post('/get-weekend', reqSend).subscribe
-		( // 1 represents signed in
+		(
 			(data) =>
 			{
-				var jsonResp = JSON.parse(data.text());
-				this.meals = jsonResp.JSONRes;
+				let jsonResp: WeekendModel[] = JSON.parse(data.text());
+				this.meals = jsonResp;
 			},
 			(error) =>
 			{
@@ -40,14 +43,14 @@ export class VerifyEditWeekendPage {
 	{
 		meal.status = !meal.status;
 
-		let reqSend = {
-			id: this.account.usrID,
-			wsiFridayDinner: this.meals[0].status,
-			wsiSaturdayBrunch: this.meals[1].status,
-			wsiSaturdayDinner: this.meals[2].status,
-			wsiSundayBreakfast: this.meals[3].status,
-			wsiSundayLunch: this.meals[4].status,
-			wsiSundayDinner: this.meals[5].status
+		let reqSend: WeekendModel = {
+			student: this.account.studentID,
+			fridayDinner: this.meals[0].status,
+			saturdayBrunch: this.meals[1].status,
+			saturdayDinner: this.meals[2].status,
+			sundayBreakfast: this.meals[3].status,
+			sundayLunch: this.meals[4].status,
+			sundayDinner: this.meals[5].status
 		}
 		this.http.post('/updateWeekend', reqSend).subscribe
 		(

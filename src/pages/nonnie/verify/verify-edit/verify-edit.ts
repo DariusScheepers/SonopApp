@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController, ViewController } from 'ionic-angular';
 import { FormGroup, FormControl } from '@angular/forms';
+import { StudentAccountInformation } from '../../../../../functions/src/models/nonnie.model';
+import { BedieningTableModel } from '../../../../../functions/src/models/bediening-table.enum';
+import { bedieningTables } from '../../../../../functions/src/constants/bediening-tables.constant';
+import { StudentUpdateForNonnieModel } from '../../../../../functions/src/models/student.model';
 
 @Component({
   selector: 'page-verify-edit',
@@ -8,10 +12,12 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class VerifyEditPage {
 
-	account:any;
+	account: StudentAccountInformation;
 	information:any;
 	bedieningTableID:any;
 	semi:any;
+
+    tables: BedieningTableModel[] = bedieningTables;
 	constructor(public navCtrl: NavController, public navParams: NavParams,
 			public toastCtrl: ToastController, public viewCtrl: ViewController) {
 		this.information = new FormGroup({
@@ -24,16 +30,16 @@ export class VerifyEditPage {
 	public loadAccountInformation()
 	{
 		this.account = this.navParams.get('account');
-		this.bedieningTableID = this.account.tblBedieningTable_talID;
-		this.semi = this.account.usrIsSemi;
+		this.bedieningTableID = this.account.bedieningTable;
+		this.semi = this.account.isSemi;
 	}
 
 	public submit(value: any)
 	{
-		let jsonSend = {
-			id: this.account.usrID,
-			bedieningTableID: value.table,
-			semi: value.semi
+		let jsonSend: StudentUpdateForNonnieModel = {
+			studentID: this.account.studentID,
+			bedieningTable: value.table,
+			isSemi: value.semi
 		};
 
 		this.viewCtrl.dismiss(jsonSend);

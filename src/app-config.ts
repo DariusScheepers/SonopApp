@@ -1,7 +1,8 @@
 import { environment } from '../functions/src/constants/environment.constant';
+import { firebaseServe, firebaseSite } from '../functions/src/constants/destinations.constant';
 
 export let CONFIG = {
-    url: environment.development ? "http://localhost:5000" : "https://sonopapptest1.firebaseapp.com"
+    url: environment.development ? firebaseServe : firebaseSite
 }
 
 //http://localhost:5000

@@ -32,7 +32,7 @@ export class WeekendPage {
 	public loadSlotValues() {
 		let reqSend: UserIdentificationModel = new UserIdentificationModel(this.global.myUsrID);
 		this.http.post('/get-weekend', reqSend).subscribe(data => {
-				let jsonResp: WeekendModel = JSON.parse(data.text());
+				let jsonResp: WeekendModel[] = JSON.parse(data.text());
 				this.meals = jsonResp;
 			}, (error) => {
 				handleError(this.navCtrl, error, this.toastCtrl);

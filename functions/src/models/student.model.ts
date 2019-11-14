@@ -59,11 +59,17 @@ export class StudentLoginModel implements SuccessResponseModel {
     }
 }
 
-export interface StudentUpdateModel {
+export interface StudentUpdateModel extends StudentUpdateForNonnieModel {
     studentID: string;
     bedieningTable: BedieningTable | any; // DocumentReference
     isSemi: boolean;
     email: string;
+}
+
+export interface StudentUpdateForNonnieModel {
+    studentID: string;
+    bedieningTable: BedieningTable | any; // DocumentReference
+    isSemi: boolean;
 }
 
 export interface StudentUpdatePasswordModel {

@@ -6,8 +6,8 @@ import { LoginPage } from '../../login/login';
 import { presentToast, handleError } from '../../../app-functions';
 import { StudentModel } from '../../../../functions/src/models/student.model';
 import { BedieningTableModel } from '../../../../functions/src/models/bediening-table.enum';
-import { bedieningTables } from '../../../../functions/src/constants/bediening-tables.constant'
-import { SuccessResponseModel } from '../../../../functions/src/models/success-response.model'
+import { bedieningTables } from '../../../../functions/src/constants/bediening-tables.constant';
+import { SuccessResponseModel } from '../../../../functions/src/models/success-response.model';
 
 @Component({
   selector: 'page-register',

@@ -9,6 +9,11 @@ import { BedieningTableService } from "./bediening-tables.service";
 import { UserIdentificationModel } from "../models/user-identification.model";
 import { WeekendService } from "./weekend.service";
 import { WeekdayService } from "./weekday.service";
+import { sortArrayAlphabetically } from "../utils/array.util";
+import { bedieningTables } from "../constants/bediening-tables.constant";
+import { BedieningTable } from "../models/bediening-table.enum";
+import { getMealNumberByTime, MealType, SignOutListInformation, WeekdayMealDetail } from "../models/weekday.model";
+import { weekdayDeadlines } from "../constants/mealDeadlines.constant";
 
 export class NonnieService extends DataService {
     collection = 'nonnie';
@@ -49,7 +54,9 @@ export class NonnieService extends DataService {
 
     async getVerifiedAccounts(): Promise<StudentAccountInformation[]> {
         const accounts = await this.compileAllStudentAccountsInformation();
-        const verifiedAccounts = accounts.filter(account => account.verified);
+        let orderedAccounts = sortArrayAlphabetically(accounts, 'fullName');
+        orderedAccounts = sortArrayAlphabetically(orderedAccounts, 'bedieningTable');
+        const verifiedAccounts = orderedAccounts.filter(orderedAccounts => orderedAccounts.verified);
         return verifiedAccounts;
     }
 
@@ -91,5 +98,95 @@ export class NonnieService extends DataService {
             response.success = true;
         }
         return response;
+    }
+
+    async getStudentsPerTableForWeekend(): Promise<{seatingMap: any[][][]}> {
+        let seatingMap: any[][][] = [];
+        for (const bedieningTable of bedieningTables) {
+            const bedieningTableMap: any[][] = [];
+            const bedieningTableName = bedieningTable.value;
+            const studentsAtTable = await this.findAllVerifiedStudentsForBedieningTable(bedieningTableName);
+            for (const studentSnapshot of studentsAtTable) {
+                const weekendWithStudentAndTable: any[] = [];
+                const student = studentSnapshot.data() as StudentModel;
+                const weekendDetails = await this.weekendService.getStudentWeekendDetails({id: studentSnapshot.id});
+                weekendWithStudentAndTable.push(
+                    student.name + " " + student.surname,
+                    bedieningTableName
+                );
+                weekendDetails.forEach(weekendDetail => {
+                    weekendWithStudentAndTable.push(weekendDetail.status);
+                });
+                bedieningTableMap.push(weekendWithStudentAndTable);
+            }
+            seatingMap.push(bedieningTableMap);
+        }
+        return {seatingMap: seatingMap};
+    }
+
+    private async findAllVerifiedStudentsForBedieningTable(bedieningTable: BedieningTable): Promise<FirebaseFirestore.QueryDocumentSnapshot[]> {
+        let studentsOfBedieningTable: FirebaseFirestore.QueryDocumentSnapshot[] = [];
+        const studentSnapshots = await this.userService.getAllStudents();
+        for (const studentSnapshot of studentSnapshots) {
+            const student = studentSnapshot.data() as StudentModel;
+            const bedieningTableOfStudent = await this.bedieningTableService.getTableValueFromReference(student.bedieningTable);
+            if (student.verified && bedieningTableOfStudent.value === bedieningTable) {
+                studentsOfBedieningTable.push(studentSnapshot);
+            }
+        }
+        return studentsOfBedieningTable;
+    }
+
+    async getStudentsPerTableForWeekday(): Promise<SignOutListInformation> {
+        const todaySignOutListInfo = await this.getTodaySignOutList();
+        const signOutList = todaySignOutListInfo.signOutList;
+        const lunchMeal = todaySignOutListInfo.lunchMeal;
+        const dinnerMeal = todaySignOutListInfo.dinnerMeal;
+        const today = new Date();
+        const lunchOpen = today.getHours() < weekdayDeadlines.lunchDeadlineHour;
+        const dinnerOpen = today.getHours() < weekdayDeadlines.dinnerDeadlineHour;
+
+        return {
+            seatingMap: signOutList,
+            lunchMeal: lunchMeal,
+            lunchOpenStatus: lunchOpen,
+            dinnerMeal: dinnerMeal,
+            dinnerOpenStatus: dinnerOpen
+        };
+    }
+
+    private async getTodaySignOutList(): Promise<{signOutList: any[], lunchMeal: string, dinnerMeal: string}> {
+        let signOutList: any[] = [];
+        const lunchMeal = getMealNumberByTime(MealType.lunch);
+        const dinnerMeal = getMealNumberByTime(MealType.dinner);
+
+        const studentSnapshots = [];
+        for (const bedieningTable of bedieningTables) {
+            const bedieningTableName = bedieningTable.value;
+            const studentsAtTable = await this.findAllVerifiedStudentsForBedieningTable(bedieningTableName);
+            studentSnapshots.push(...studentsAtTable);
+        }
+
+        for (const studentSnapshot of studentSnapshots) {
+            const student = studentSnapshot.data() as StudentModel;
+            const weekdays = await this.weekdayService.getStudentWeekdayDetails({id: studentSnapshot.id});
+            const lunchDetail = weekdays.find(weekday => weekday.meal === lunchMeal) as WeekdayMealDetail;
+            const dinnerDetail = weekdays.find(weekday => weekday.meal === dinnerMeal) as WeekdayMealDetail;
+            const fullName = student.name + " " + student.surname;
+            const bedieningTable = await this.bedieningTableService.getTableValueFromReference(student.bedieningTable);
+            const bedieningTableName =  bedieningTable.value;
+            signOutList.push([
+                bedieningTableName,
+                fullName,
+                lunchDetail.status,
+                dinnerDetail.status
+            ]);
+        }
+        
+        return {
+            signOutList,
+            lunchMeal,
+            dinnerMeal
+        };
     }
 }

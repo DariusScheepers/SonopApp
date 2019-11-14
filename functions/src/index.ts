@@ -12,6 +12,8 @@ import { environment } from "./constants/environment.constant";
 import { WeekendService } from "./services/weekend.service";
 import { WeekdayService } from "./services/weekday.service";
 import { NonnieService } from "./services/nonnie.service";
+import { emailConfig } from "./constants/emailer.constant";
+import { EmailerService } from "./services/emailer.service";
 
 if (environment.development) {
     var serviceAccount = require("../../../CredentialKeys/sonopapptest1-firebase-adminsdk-eegpd-0036d9b018.json");
@@ -42,6 +44,8 @@ const nonnieService = new NonnieService(
 const app = express();
 app.use(cors());
 exports.app = functions.https.onRequest(app);
+const emailerService = new EmailerService(userService, weekendService);
+emailerService.start();
 
 //#region Temporary testing
 
@@ -151,18 +155,33 @@ app.get('/getVerifiedAccounts', async (req, res) => {
     res.send(response);
 });
 
-app.post('/acceptAccount', (req, res) => {
-    const response = nonnieService.verifyAccount(req.body);
+app.post('/acceptAccount', async (req, res) => {
+    const response = await nonnieService.verifyAccount(req.body);
     res.send(response);
 });
 
-app.post('/discardAccount', (req, res) => {
-    const response = userService.deleteStudent(req.body);
+app.post('/discardAccount', async (req, res) => {
+    const response = await userService.deleteStudent(req.body);
     res.send(response);
 });
 
-app.post('/deleteAccount', (req, res) => {
-    const response = userService.deleteStudent(req.body);
+app.post('/deleteAccount', async (req, res) => {
+    const response = await userService.deleteStudent(req.body);
+    res.send(response);
+});
+
+app.post('/updateAccountInformation', async (req, res) => {
+    const response = await userService.updateInformationForNonnie(req.body);
+    res.send(response);
+});
+
+app.get('/weekendSignInList', async (req, res) => {
+    const response = await nonnieService.getStudentsPerTableForWeekend();
+    res.send(response);
+});
+
+app.get('/currentSignInList', async (req, res) => {
+    const response = await nonnieService.getStudentsPerTableForWeekday();
     res.send(response);
 });
 

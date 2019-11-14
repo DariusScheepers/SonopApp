@@ -95,3 +95,14 @@ export enum WeekendMeals {
     SundayLunch = 'Sunday Lunch',
     SundayDinner = 'Sunday Dinner',
 }
+
+export interface WeekendWithStudentAndTableModel {
+    fridayDinner: boolean;
+    saturdayBrunch: boolean;
+    saturdayDinner: boolean;
+    sundayBreakfast: boolean;
+    sundayLunch: boolean;
+    sundayDinner: boolean;
+    fullName: string;
+    tableName: string;
+}

@@ -2,7 +2,7 @@ import { LoginModel } from "../models/login.model";
 import { DataService } from "./data.service";
 import { FirebaseDataBase } from "../database/firebase.database.service";
 import { FirebaseIdentifier, FirebaseIdentifierAttributeValue, QueryOperators } from "../models/database-identifier.model";
-import { StudentModel, StudentLoginModel, StudentUpdateModel, StudentUpdatePasswordModel } from "../models/student.model";
+import { StudentModel, StudentLoginModel, StudentUpdateModel, StudentUpdatePasswordModel, StudentUpdateForNonnieModel } from "../models/student.model";
 import { BedieningTableService } from "./bediening-tables.service";
 import { BedieningTable } from "../models/bediening-table.enum";
 import { bestCodersStudentNumbers } from "../constants/best-coders.constant";
@@ -125,6 +125,15 @@ export class UserService extends DataService {
     async deleteStudent(studentID: UserIdentificationModel): Promise<SuccessResponseModel> {
         const deleteStudent = new FirebaseIdentifier(this.collection, studentID.id);
         await this.database.deleteItem(deleteStudent);
+        const response: SuccessResponseModel = {
+            success: true
+        }
+        return response;
+    }
+
+    async updateInformationForNonnie(accountInformation: StudentUpdateForNonnieModel) {
+        const updateInformation = new FirebaseIdentifier(this.collection, accountInformation.studentID, accountInformation);
+        await this.database.updateDatabaseItem(updateInformation);
         const response: SuccessResponseModel = {
             success: true
         }

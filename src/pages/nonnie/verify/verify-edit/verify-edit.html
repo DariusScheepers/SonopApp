@@ -19,18 +19,8 @@
       <ion-item> 
         <ion-label floating>Your Bediening Table<span style="color:red">*</span></ion-label>
         <ion-select formControlName="table" [(ngModel)]="bedieningTableID">
-          <ion-option value=1>HK</ion-option>
-          <ion-option value=2>Weste Senior</ion-option>
-          <ion-option value=3>Weste Junior</ion-option>
-          <ion-option value=4>Ooste Senior</ion-option>
-          <ion-option value=5>Ooste Junior</ion-option>
-          <ion-option value=6>Noorde Senior</ion-option>
-          <ion-option value=7>Noorde Junior</ion-option>
-          <ion-option value=8>Sentraal</ion-option>
-          <ion-option value=9>Senaat</ion-option>
-          <ion-option value=10>Verre Weste</ion-option>
-          <ion-option value=11>Eerste Jaar</ion-option>
-        </ion-select>        
+          <ion-option *ngFor="let table of tables" [value]="table.value">{{ table.description }}</ion-option>
+        </ion-select>
       </ion-item>
       <ion-item>
         <ion-label>Semi</ion-label>

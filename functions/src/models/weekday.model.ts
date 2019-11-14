@@ -204,6 +204,20 @@ export function createInitialWeekdayEntry(student: any): WeekdayModel {
     }
 }
 
+export function getMealNumberByTime(time: MealType): WeekdayMeals {
+    
+    let today = new Date();
+    switch (today.getDay())
+    {
+        case 1: return time === MealType.lunch ? WeekdayMeals.mondayLunch : WeekdayMeals.mondayDinner;
+        case 2: return time === MealType.lunch ? WeekdayMeals.tuesdayLunch : WeekdayMeals.tuesdayDinner;
+        case 3: return time === MealType.lunch ? WeekdayMeals.wednesdayLunch : WeekdayMeals.wednesdayDinner;
+        case 4: return time === MealType.lunch ? WeekdayMeals.thursdayLunch : WeekdayMeals.thursdayDinner;
+        case 5: return WeekdayMeals.fridayLunch
+        default: return WeekdayMeals.mondayLunch
+    }
+}
+
 export enum WeekdayMeals {
     mondayLunch = 'Monday Lunch',
     mondayDinner = 'Monday Dinner',
@@ -216,8 +230,48 @@ export enum WeekdayMeals {
     fridayLunch = 'Friday Lunch',
 }
 
+export const WeekdayMealsArray = [
+    'Monday Lunch',
+    'Monday Dinner',
+    'Tuesday Lunch',
+    'Tuesday Dinner',
+    'Wednesday Lunch',
+    'Wednesday Dinner',
+    'Thursday Lunch',
+    'Thursday Dinner',
+    'Friday Lunch',
+];
+
 export enum WeekdaySignInStatus {
     signedOutPermanent = 0,
     signedOutTemporarily = 1,
     signedIn = 2,
+}
+
+export interface WeekdayWithTableAndStudentModel extends WeekdayModel {
+    mondayLunch: WeekdaySignInStatus;
+    mondayDinner: WeekdaySignInStatus;
+    tuesdayLunch: WeekdaySignInStatus;
+    tuesdayDinner: WeekdaySignInStatus;
+    wednesdayLunch: WeekdaySignInStatus;
+    wednesdayDinner: WeekdaySignInStatus;
+    thursdayLunch: WeekdaySignInStatus;
+    thursdayDinner: WeekdaySignInStatus;
+    fridayLunch: WeekdaySignInStatus;
+    fullName: string;
+    tableName: string;
+}
+
+export interface SignOutListInformation {
+    seatingMap: any[],
+    lunchMeal: string,
+    lunchOpenStatus: boolean,
+    dinnerMeal: string,
+    dinnerOpenStatus: boolean
+}
+
+export enum MealType {
+    breakfast,
+    lunch,
+    dinner
 }
