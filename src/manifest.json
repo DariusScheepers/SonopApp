@@ -1,13 +1,13 @@
 {
-  "name": "Ionic",
-  "short_name": "Ionic",
+  "name": "SonopApp",
+  "short_name": "SonopApp",
   "start_url": "index.html",
   "display": "standalone",
   "icons": [{
-    "src": "assets/imgs/logo.png",
-    "sizes": "512x512",
+    "src": "assets/imgs/icon-1024.png",
+    "sizes": "1024x1024",
     "type": "image/png"
   }],
-  "background_color": "#4e8ef7",
-  "theme_color": "#4e8ef7"
+  "background_color": "#0a4199",
+  "theme_color": "#0a4199"
 }
