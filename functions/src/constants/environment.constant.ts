@@ -1,3 +1,4 @@
 export const environment = {
-    development: false
+    development: false,
+    migrate: false
 }
