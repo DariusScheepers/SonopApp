@@ -1,4 +1,5 @@
 export const wipeAnnouncementsSchedule = {
-    dayOfWeek: 7,
-    hour: 17,
+    dayOfWeek: 6, // 6
+    hour: 19, // 17
+    minute: 0 // 0
 }

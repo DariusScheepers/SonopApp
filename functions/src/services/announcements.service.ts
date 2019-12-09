@@ -58,10 +58,11 @@ export class AnnouncementsService extends DataService {
     }
 
     private async setRecurrenceRule() {
-        let bibleVerseTimeRule = new scheduler.RecurrenceRule();
-        bibleVerseTimeRule.dayOfWeek = wipeAnnouncementsSchedule.dayOfWeek;  // 0
-        bibleVerseTimeRule.hour = wipeAnnouncementsSchedule.hour; // 17
-        scheduler.scheduleJob(bibleVerseTimeRule, async() => {
+        let wipeAnnouncementsRule = new scheduler.RecurrenceRule();
+        wipeAnnouncementsRule.dayOfWeek = wipeAnnouncementsSchedule.dayOfWeek;
+        wipeAnnouncementsRule.hour = wipeAnnouncementsSchedule.hour;
+        wipeAnnouncementsRule.minute = wipeAnnouncementsSchedule.minute;
+        scheduler.scheduleJob(wipeAnnouncementsRule, async() => {
             await this.clearAnnouncements();
         });
     }
