@@ -36,7 +36,8 @@ export class EmailerService {
         for (const studentSnapshot of studentSnapshots) {
             const student = studentSnapshot.data() as StudentModel;
             if (student.verified) {
-                const message = emailWeekendReminderContent.message + this.compileStudentWeekendStatus({id: studentSnapshot.id});
+                const studentWeekendStatus = await this.compileStudentWeekendStatus({id: studentSnapshot.id})
+                const message = emailWeekendReminderContent.message + studentWeekendStatus;
                 await this.sendMail(
                     {
                         name: student.surname,
