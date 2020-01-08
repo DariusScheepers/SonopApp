@@ -19,8 +19,6 @@
 
     <h1>Welcome Meneer {{global.mySurname}}</h1>
     <ion-card>
-        <ion-card-header>
-        </ion-card-header>
         <ion-card-content text-wrap>
             <ion-item>
                 <img item-start class="cardImage" src="../../assets/imgs/Garri Baldi.png" />
@@ -35,7 +33,7 @@
     
     <ion-list>
         <ion-card class="announcement card" *ngFor="let announcement of announcements" color="primary">
-        <ion-card-header>  
+        <ion-card-header class="announcement-header">  
             <ion-item color="primary">
                 <h1 class="line-break">{{announcement.title}}</h1>
             </ion-item>              

@@ -4,3 +4,5 @@ import { firebaseServe, firebaseSite } from '../functions/src/constants/destinat
 export let CONFIG = {
     url: environment.development ? firebaseServe : firebaseSite
 }
+
+export const appVersion = 'a2020.00.01';

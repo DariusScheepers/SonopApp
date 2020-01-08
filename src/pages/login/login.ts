@@ -5,16 +5,21 @@ import { Http } from '../../http-api';
 import { RegisterPage } from '../user/register/register';
 import { GlobalProvider } from "../../providers/global/global";
 import { presentToast, handleError } from '../../app-functions';
+import { appVersion } from '../../app-config';
 import { LoginNonniePage } from '../nonnie/login-nonnie/login';
 import { LoginModel } from '../../../functions/src/models/login.model';
 import { StudentLoginModel } from '../../../functions/src/models/student.model';
 import { AnnouncementsPage } from '../user/announcements/announcements';
+import { functionsVersion } from '../../../functions/src/constants/environment.constant';
 
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html'
 })
 export class LoginPage {
+
+  appVersion = appVersion;
+  backEndVersion = functionsVersion
 
   user: FormGroup | LoginModel;
   splashScreenReady: any = false;
