@@ -1,4 +1,5 @@
 import { firebaseSite } from "./destinations.constant";
+import { monthsOfSonopAppActive } from "./setDatabaseToDefault.constant";
 
 export const emailConfig = {
     "from": "SonopApp <sonoppi123@gmail.com>",
@@ -6,7 +7,7 @@ export const emailConfig = {
         "service": "gmail",
         "auth": {
             "user": "sonoppi123@gmail.com",
-            "pass": "sonoproot"
+            "pass": "sonoproot1"
         }
     }
 };
@@ -14,7 +15,8 @@ export const emailConfig = {
 export const emailNotificationTime = {
     dayOfWeek: 3, // 3
     hour: 12, // 12
-    minute: 0 // 0
+    minute: 0, // 0
+    month: monthsOfSonopAppActive
 }
 
 export const emailWeekendReminderContent = {
