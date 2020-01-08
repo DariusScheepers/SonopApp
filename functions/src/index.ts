@@ -15,10 +15,10 @@ import { NonnieService } from "./services/nonnie.service";
 import { EmailerService } from "./services/emailer.service";
 
 if (environment.development) {
-    var serviceAccount = require("../../../CredentialKeys/sonopapptest1-firebase-adminsdk-eegpd-0036d9b018.json");
+    var serviceAccount = require("../../../CredentialKeys/diesonopapp-firebase-adminsdk-fbdey-98dca42058.json");
     admin.initializeApp({
       credential: admin.credential.cert(serviceAccount),
-      databaseURL: "https://sonopapptest1.firebaseio.com"
+      databaseURL: "https://diesonopapp.firebaseio.com"
     });
 } else {
     admin.initializeApp(functions.config().firebase);    
