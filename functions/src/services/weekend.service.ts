@@ -5,8 +5,6 @@ import { WeekendModel, WeekendMealDetail, getWeekendMeals, getWeekendMealStatuse
 import { FirebaseIdentifier } from "../models/database-identifier.model";
 import { UserIdentificationModel } from "../models/user-identification.model";
 import { SuccessResponseModel } from "../models/success-response.model";
-import * as scheduler from "node-schedule";
-import { weekendResetSignIn } from "../constants/mealResets.constant";
 
 export class WeekendService extends DataService {
     collection = 'weekend';
@@ -17,7 +15,6 @@ export class WeekendService extends DataService {
         this.userService = userService;
         
         this.populateWeekendMeals();
-        this.setRecurrenceRule();
     }
 
     private async populateWeekendMeals() {
@@ -70,18 +67,7 @@ export class WeekendService extends DataService {
         return response;
     }
 
-    private setRecurrenceRule() {
-        let weekendResetsRule = new scheduler.RecurrenceRule();
-        weekendResetsRule.dayOfWeek = weekendResetSignIn.dayOfWeek;
-        weekendResetsRule.hour = weekendResetSignIn.hour;
-        weekendResetsRule.minute = weekendResetSignIn.minute;
-        weekendResetsRule.second = weekendResetSignIn.second;
-        scheduler.scheduleJob(weekendResetsRule, async _ => {
-            await this.resetWeekendSignIn();
-        });
-    }
-
-    private async resetWeekendSignIn() {
+    async resetWeekendSignIn() {
         const findAllWeekendEntries = new FirebaseIdentifier(this.collection);
         const weekends = await this.database.readFromDatabaseMultipleItems(findAllWeekendEntries);
         for (const weekendEntry of weekends) {

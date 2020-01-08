@@ -1,11 +1,5 @@
-export const weekendResetSignIn = {
-    dayOfWeek: 0,
-    hour: 17,
-    minute: 0,
-    second: 30
-}
+import { databaseToDefaultTime } from "./setDatabaseToDefault.constant"
 
-export const weekdayResetSignOut = {
-    dayOfWeek: 6,
-    hour: 23
-}
+export const weekendResetSignIn = databaseToDefaultTime;
+
+export const weekdayResetSignOut = databaseToDefaultTime;

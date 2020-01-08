@@ -3,8 +3,6 @@ import { FirebaseDataBase } from "../database/firebase.database.service";
 import { AnnouncementModel } from "../models/announcement.model";
 import { FirebaseIdentifier, FirebaseIdentifierAttributeValue, QueryOperators, OrderByDirection } from "../models/database-identifier.model";
 import { UserService } from "./user.service";
-import * as scheduler from "node-schedule";
-import { wipeAnnouncementsSchedule } from "../constants/announcements-schedule.constant";
 
 export class AnnouncementsService extends DataService {
     collection = 'announcements';
@@ -12,8 +10,6 @@ export class AnnouncementsService extends DataService {
     constructor(database: FirebaseDataBase, userService: UserService) {
         super(database);
         this.userService = userService;
-        
-        this.setRecurrenceRule();
     }
 
     async addAnnouncement(announcement: AnnouncementModel) {
@@ -52,18 +48,8 @@ export class AnnouncementsService extends DataService {
         return {announcements};
     }
 
-    private async clearAnnouncements() {
+    async clearAnnouncements() {
         const deleteAllAnnouncements = new FirebaseIdentifier(this.collection);
         await this.database.deleteTable(deleteAllAnnouncements);
-    }
-
-    private async setRecurrenceRule() {
-        let wipeAnnouncementsRule = new scheduler.RecurrenceRule();
-        wipeAnnouncementsRule.dayOfWeek = wipeAnnouncementsSchedule.dayOfWeek;
-        wipeAnnouncementsRule.hour = wipeAnnouncementsSchedule.hour;
-        wipeAnnouncementsRule.minute = wipeAnnouncementsSchedule.minute;
-        scheduler.scheduleJob(wipeAnnouncementsRule, async() => {
-            await this.clearAnnouncements();
-        });
     }
 }

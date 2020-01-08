@@ -13,6 +13,9 @@ import { WeekendService } from "./services/weekend.service";
 import { WeekdayService } from "./services/weekday.service";
 import { NonnieService } from "./services/nonnie.service";
 import { EmailerService } from "./services/emailer.service";
+import { SchedulerService } from "./services/scheduler.service";
+import { emailNotificationTime } from "./constants/emailer.constant";
+import { databaseToDefaultTime } from "./constants/setDatabaseToDefault.constant";
 
 if (environment.development) {
     var serviceAccount = require("../../../CredentialKeys/diesonopapp-firebase-adminsdk-fbdey-98dca42058.json");
@@ -39,12 +42,32 @@ const nonnieService = new NonnieService(
     weekendService,
     weekdayService
 );
+const emailerService = new EmailerService(userService, weekendService);
+const schedulerService = new SchedulerService(
+    weekdayService,
+    weekendService,
+    announcementsService,
+    emailerService
+);
 
 const app = express();
 app.use(cors());
 exports.app = functions.https.onRequest(app);
-const emailerService = new EmailerService(userService, weekendService);
-emailerService.start();
+
+const scheduleNotificationForWeekendSignInRule = `${emailNotificationTime.minute} ${emailNotificationTime.hour} * * ${emailNotificationTime.dayOfWeek}`;
+exports.scheduleNotificationForWeekendSignIn = functions.pubsub.schedule(scheduleNotificationForWeekendSignInRule)
+    .timeZone('Africa/Johannesburg')
+    .onRun(_ => {
+        schedulerService.sendNotifications();
+    }
+);
+const scheduleSetDatabaseToDefaultRule = `* ${databaseToDefaultTime.hour} * * ${databaseToDefaultTime.dayOfWeek}`
+exports.scheduleSetDatabaseToDefault = functions.pubsub.schedule(scheduleSetDatabaseToDefaultRule)
+    .timeZone('Africa/Johannesburg')
+    .onRun(_ => {
+        schedulerService.setDatabaseToDefault();
+    }
+);
 
 //#region Temporary testing
 

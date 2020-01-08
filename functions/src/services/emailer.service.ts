@@ -1,9 +1,8 @@
 import { UserService } from "./user.service";
 import { WeekendService } from "./weekend.service";
-import * as scheduler from "node-schedule";
 import * as nodemailer  from "nodemailer";
 import Mail = require("nodemailer/lib/mailer");
-import { emailNotificationTime, emailConfig, emailWeekendReminderContent } from "../constants/emailer.constant";
+import { emailConfig, emailWeekendReminderContent } from "../constants/emailer.constant";
 import { recipient } from "../models/emailer.model";
 import { UserIdentificationModel } from "../models/user-identification.model";
 import { StudentModel } from "../models/student.model";
@@ -17,21 +16,7 @@ export class EmailerService {
         this.weekendService = weekendService;
     }
 
-    start() {
-        this.scheduleToSendEmailNotification();
-    }
-
-    private async scheduleToSendEmailNotification() {
-        let emailNotificationRule = new scheduler.RecurrenceRule();
-        emailNotificationRule.dayOfWeek = emailNotificationTime.dayOfWeek;
-        emailNotificationRule.hour = emailNotificationTime.hour;
-        emailNotificationRule.minute = emailNotificationTime.minute;
-        scheduler.scheduleJob(emailNotificationRule, async () => {
-            await this.sendNotificationEmail();
-        });
-    }
-
-    private async sendNotificationEmail() {
+    async sendNotificationEmail() {
         const studentSnapshots = await this.userService.getAllStudents();
         for (const studentSnapshot of studentSnapshots) {
             const student = studentSnapshot.data() as StudentModel;
@@ -81,5 +66,4 @@ export class EmailerService {
         }
         return message;
     }
-
 }
