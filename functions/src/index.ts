@@ -52,17 +52,17 @@ const schedulerService = new SchedulerService(
 
 const app = express();
 app.use(cors());
-exports.app = functions.region('europe-west1').https.onRequest(app);
+exports.app = functions.https.onRequest(app);
 
 const scheduleNotificationForWeekendSignInRule = `${emailNotificationTime.minute} ${emailNotificationTime.hour} * ${databaseToDefaultTime.month} ${emailNotificationTime.dayOfWeek}`;
-exports.scheduleNotificationForWeekendSignIn = functions.region('europe-west1').pubsub.schedule(scheduleNotificationForWeekendSignInRule)
+exports.scheduleNotificationForWeekendSignIn = functions.pubsub.schedule(scheduleNotificationForWeekendSignInRule)
     .timeZone('Africa/Johannesburg')
     .onRun(_ => {
         schedulerService.sendNotifications();
     }
 );
-const scheduleSetDatabaseToDefaultRule = `* ${databaseToDefaultTime.hour} * ${databaseToDefaultTime.month} ${databaseToDefaultTime.dayOfWeek}`
-exports.scheduleSetDatabaseToDefault = functions.region('europe-west1').pubsub.schedule(scheduleSetDatabaseToDefaultRule)
+const scheduleSetDatabaseToDefaultRule = `${databaseToDefaultTime.minute} ${databaseToDefaultTime.hour} * ${databaseToDefaultTime.month} ${databaseToDefaultTime.dayOfWeek}`
+exports.scheduleSetDatabaseToDefault = functions.pubsub.schedule(scheduleSetDatabaseToDefaultRule)
     .timeZone('Africa/Johannesburg')
     .onRun(_ => {
         schedulerService.setDatabaseToDefault();
