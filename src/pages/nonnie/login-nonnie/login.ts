@@ -6,12 +6,14 @@ import { TabsPage } from '../tabs/tabs';
 import { presentToast, handleError } from '../../../app-functions';
 import { NonnieLoginModel } from '../../../../functions/src/models/nonnie.model';
 import { SuccessResponseModel } from '../../../../functions/src/models/success-response.model';
+import { LoginPage } from '../../login/login';
 
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html'
 })
 export class LoginNonniePage {
+
 
   nonnieLogin: any;
   constructor(public navCtrl: NavController, public toastCtrl: ToastController, public http: Http) {
@@ -52,5 +54,9 @@ export class LoginNonniePage {
         handleError(this.navCtrl,error,this.toastCtrl);         
       }
     ); 
+  }
+
+  public back(){
+    this.navCtrl.setRoot(LoginPage);
   }
 }

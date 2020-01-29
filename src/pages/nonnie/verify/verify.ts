@@ -6,6 +6,7 @@ import { VerifyEditPage } from './verify-edit/verify-edit';
 import { VerifyEditWeekendPage } from './verify-edit-weekend/verify-edit-weekend';
 import { StudentAccountInformation } from '../../../../functions/src/models/nonnie.model';
 import { UserIdentificationModel } from '../../../../functions/src/models/user-identification.model';
+import { LoginPage } from '../../login/login';
 
 @Component({
 	selector: 'page-verify',
@@ -171,5 +172,16 @@ export class VerifyPage {
 		let addModal = this.modalCtrl.create(VerifyEditWeekendPage, {'account': account});
         addModal.onDidDismiss(result => {});
         addModal.present();
+	}
+
+	public back(){
+		this.navCtrl.setRoot(LoginPage);
+		let t = document.querySelectorAll(".show-tabbar");
+		if(t != null){
+			console.log("clearing");
+			Object.keys(t).map((key) => {
+				t[key].style.display = 'none';
+			});
+		}else console.log("null");
 	}
 }

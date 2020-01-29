@@ -4,6 +4,7 @@ import { Http } from '../../../http-api';
 import * as papa from 'papaparse';
 import { handleError } from '../../../app-functions';
 import { WeekdaySignInStatus } from '../../../../functions/src/models/weekday.model';
+import { LoginPage } from '../../login/login';
 
 @Component({
 	selector: 'page-sign-out',
@@ -65,5 +66,16 @@ export class SignOutNonniePage {
 
 	public refresh() {
 		this.getCurrentSignOut();
+	}
+
+	public back(){
+		this.navCtrl.setRoot(LoginPage);
+		let t = document.querySelectorAll(".show-tabbar");
+		if(t != null){
+			console.log("clearing");
+			Object.keys(t).map((key) => {
+				t[key].style.display = 'none';
+			});
+		}else console.log("null");
 	}
 }

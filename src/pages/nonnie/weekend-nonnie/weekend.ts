@@ -4,6 +4,7 @@ import { Http } from '../../../http-api';
 import * as papa from 'papaparse';
 import { handleError } from '../../../app-functions';
 import { getNextDayOfWeek } from '../../../../functions/src/utils/date.util';
+import { LoginPage } from '../../login/login';
 
 @Component({
 	selector: 'page-weekend',
@@ -79,5 +80,16 @@ export class WeekendNonniePage {
 
 	public refresh() {
 		this.getWeekendSignIns();
+	}
+
+	public back(){
+		this.navCtrl.setRoot(LoginPage)
+		let t = document.querySelectorAll(".show-tabbar");
+		if(t != null){
+			console.log("clearing");
+			Object.keys(t).map((key) => {
+				t[key].style.display = 'none';
+			});
+		}else console.log("null");
 	}
 }

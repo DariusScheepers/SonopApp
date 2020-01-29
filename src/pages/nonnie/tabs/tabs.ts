@@ -3,6 +3,8 @@ import { VerifyPage } from '../verify/verify';
 import { WeekendNonniePage } from '../weekend-nonnie/weekend';
 import { SignOutNonniePage } from '../sign-out-nonnie/sign-out';
 
+
+
 @Component({
   templateUrl: 'tabs.html'
 })

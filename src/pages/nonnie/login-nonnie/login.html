@@ -15,6 +15,11 @@
                     <button ion-button outline round block type="submit" color="tertiary" id="button">Login</button>
                 </ion-list>
             </form>
+            <form (submit)="back()" [formGroup]="nonnieLogin">
+                <ion-list>
+                    <button ion-button outline round block type="submit" color="tertiary" id="button">Back</button>
+                </ion-list>
+            </form>
         </div>
         <div id="register-info">
         </div>
