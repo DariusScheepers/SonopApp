@@ -16,9 +16,10 @@ import { EmailerService } from "./services/emailer.service";
 import { SchedulerService } from "./services/scheduler.service";
 import { emailNotificationTime } from "./constants/emailer.constant";
 import { databaseToDefaultTime } from "./constants/setDatabaseToDefault.constant";
+import { MigrationService } from "./services/migration.service";
 
 if (environment.development) {
-    var serviceAccount = require("../../../CredentialKeys/diesonopapp-firebase-adminsdk-fbdey-98dca42058.json");
+    var serviceAccount = require("../../../CredentialKeys/diesonopapp-firebase-adminsdk-fbdey-612efac521.json");
     admin.initializeApp({
       credential: admin.credential.cert(serviceAccount),
       databaseURL: "https://diesonopapp.firebaseio.com"
@@ -68,6 +69,13 @@ exports.scheduleSetDatabaseToDefault = functions.pubsub.schedule(scheduleSetData
         schedulerService.setDatabaseToDefault();
     }
 );
+
+if (environment.migrationReady) {
+    console.log('Info: ', "Entered Migration");
+    
+    const migrationService = new MigrationService(dataBaseService, userService, bedieningTableService, nonnieService);
+    migrationService.migrateOldUsersToDatabase();
+}
 
 //#region Temporary testing
 

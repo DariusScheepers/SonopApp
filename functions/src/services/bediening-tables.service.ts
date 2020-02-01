@@ -40,4 +40,9 @@ export class BedieningTableService extends DataService {
         const table = await this.database.readDataWithReference(reference);
         return table.data() as BedieningTableModel;
     }
+
+    getBedieningTableByOldID(oldID: number): BedieningTable {
+        const result = bedieningTables.find(table => table.oldID == oldID);
+        return result ? result.value : bedieningTables[0].value;
+    }
 }

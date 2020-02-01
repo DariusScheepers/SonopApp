@@ -16,9 +16,11 @@ export class BedieningTableModel {
     description: string;
     value: BedieningTable;
     seats: number;
-    constructor(description: string, value: BedieningTable, seats: number) {
+    oldID: number;
+    constructor(description: string, value: BedieningTable, seats: number, oldID: number) {
         this.description = description;
         this.value = value;
         this.seats = seats;
+        this.oldID = oldID;
     }
 }

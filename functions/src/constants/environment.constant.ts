@@ -1,6 +1,7 @@
 export const environment = {
-    development: false,
-    migrate: false
+    development: true,
+    migrate: false,
+    migrationReady: true
 }
 
-export const functionsVersion = 'f2020.01.00';
+export const functionsVersion = 'f2020.01.01';
