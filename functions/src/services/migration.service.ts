@@ -24,27 +24,26 @@ export class MigrationService extends DataService {
         this.nonnieService = nonnieService;
     }
 
-    async migrateOldUsersToDatabase() {
-        console.log('Info: Data', rawData);
-        
+    async migrateOldUsersToDatabase() {        
         for (const rawUser of rawData) {
             const bedieningTable = this.bedieningTableService.getBedieningTableByOldID(Number(rawUser.tblBedieningTable_talID));
             const userIsSemi = rawUser.usrIsSemi == "1";
             const userIsHK = rawUser.usrIsHK == "1";
             const userFirstYearYear = Number(rawUser.usrFirstYearYear);
 
-            const user = new StudentModel(
-                rawUser.usrUsername,
-                rawUser.usrPassword,
-                rawUser.usrEmailAddress,
-                rawUser.usrName,
-                rawUser.usrSurname,
-                rawUser.usrStudentNumber,
-                userFirstYearYear,
-                bedieningTable,
-                userIsSemi,
-                userIsHK,
-            );
+            const user: StudentModel = {
+                username: rawUser.usrUsername,
+                password: "admin",
+                email: rawUser.usrEmailAddress,
+                name: rawUser.usrName,
+                surname: rawUser.usrSurname,
+                studentNumber: rawUser.usrStudentNumber,
+                firstYearYear: userFirstYearYear,
+                bedieningTable: bedieningTable,
+                isSemi: userIsSemi,
+                isHk: userIsHK,
+                verified: false
+            };
             
             if (environment.migrate) {
                 await this.publishUser(user);
@@ -56,9 +55,11 @@ export class MigrationService extends DataService {
         console.log('Info: ', "Publishing");
         
         await this.userService.register(user);
+        console.log('Info: ', "User", user.studentNumber, "added to DB");
+        
         const student: StudentLoginModel = await this.userService.login({studentNumber: user.studentNumber});
         await this.nonnieService.verifyAccount({id: student.studentID});
-        console.log('Info: Published:', student);
+        console.log('Info: Published:', student.studentID);
         
     }
 }
