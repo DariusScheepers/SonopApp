@@ -77,4 +77,9 @@ export class WeekdayService extends DataService {
             await this.resetStudentSignIn(documentID, studentReference);
         }
     }
+
+    async deleteAllEntries() {
+        const toDeleteAllEntries = new FirebaseIdentifier(this.collection);
+        await this.database.deleteTable(toDeleteAllEntries);
+    }
 }

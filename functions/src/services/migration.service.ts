@@ -1,30 +1,41 @@
 import { DataService } from "./data.service";
 import { FirebaseDataBase } from "../database/firebase.database.service";
-import { rawData } from "../database-back-up/old-database.data";
+// import { rawData } from "../database-back-up/old-database.data";
+import { sqlUser } from "../models/oldSQLDB.model"
 import { UserService } from "./user.service";
 import { StudentModel, StudentLoginModel } from "../models/student.model";
 import { BedieningTableService } from "./bediening-tables.service";
 import { NonnieService } from "./nonnie.service";
+import { WeekdayService } from "./weekday.service";
+import { WeekendService } from "./weekend.service";
 import { environment } from "../constants/environment.constant";
 
 export class MigrationService extends DataService {
 
     userService: UserService;
     bedieningTableService: BedieningTableService;
-    nonnieService: NonnieService; 
+    nonnieService: NonnieService;
+    weekdayService: WeekdayService;
+    weekendService: WeekendService;
     constructor(
             database: FirebaseDataBase,
             userService: UserService,
             bedieningTableService: BedieningTableService,
-            nonnieService: NonnieService
+            nonnieService: NonnieService,
+            weekdayService: WeekdayService,
+            weekendService: WeekendService
             ) {
         super(database);
         this.userService = userService;
         this.bedieningTableService = bedieningTableService;
         this.nonnieService = nonnieService;
+        this.weekdayService = weekdayService;
+        this.weekendService = weekendService;
     }
 
-    async migrateOldUsersToDatabase() {        
+    async migrateOldUsersToDatabase() {
+        let rawData: sqlUser[] = [];
+        
         for (const rawUser of rawData) {
             const bedieningTable = this.bedieningTableService.getBedieningTableByOldID(Number(rawUser.tblBedieningTable_talID));
             const userIsSemi = rawUser.usrIsSemi == "1";
@@ -59,7 +70,21 @@ export class MigrationService extends DataService {
         
         const student: StudentLoginModel = await this.userService.login({studentNumber: user.studentNumber});
         await this.nonnieService.verifyAccount({id: student.studentID});
-        console.log('Info: Published:', student.studentID);
-        
+        console.log('Info: Published:', student.studentID);   
+    }
+
+    async resetDB() {
+        console.log('Info: Deleting All users');
+        await this.userService.deleteAllUsers();
+        setTimeout(async number => {
+            console.log('Info: Deleting All weekday stuff');
+            await this.weekdayService.deleteAllEntries();
+    
+            setTimeout(async number => {
+                console.log('Info: Deleting All weekend stuff');
+                await this.weekendService.deleteAllEntries();                
+            }, 30000);            
+        }, 30000);
+
     }
 }

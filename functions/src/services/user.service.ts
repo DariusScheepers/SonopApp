@@ -139,4 +139,9 @@ export class UserService extends DataService {
         }
         return response;
     }
+
+    async deleteAllUsers() {
+        const toDeleteAllUsers = new FirebaseIdentifier(this.collection);
+        await this.database.deleteTable(toDeleteAllUsers);
+    }
 }
