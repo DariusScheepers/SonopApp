@@ -3,18 +3,17 @@ import { FirebaseDataBase } from "../database/firebase.database.service";
 import { FirebaseIdentifier, FirebaseIdentifierAttributeValue, QueryOperators } from "../models/database-identifier.model";
 import { BedieningTable, BedieningTableModel } from "../models/bediening-table.enum";
 import { bedieningTables } from "../constants/bediening-tables.constant";
-import { environment } from "../constants/environment.constant";
 
 export class BedieningTableService extends DataService {
     collection = 'bedieningTables';
     constructor(database: FirebaseDataBase) {
         super(database);
-        if (environment.development) {
-            this.populateDatabaseWithTables();
-        }
+        // if (environment.development) {
+        //     this.populateDatabaseWithTables();
+        // }
     }
 
-    private async populateDatabaseWithTables() {
+     async populateDatabaseWithTables() { // private
         // const toDeleteAllTables = new FirebaseIdentifier(this.collection);
         // await this.database.deleteTable(toDeleteAllTables);
         
@@ -26,12 +25,17 @@ export class BedieningTableService extends DataService {
     }
 
     async getBedieningTableByTableValue(bedieningTable: BedieningTable) {
-        const getBedieningTableDoc = new FirebaseIdentifierAttributeValue(
-            this.collection,
-            'value',
-            QueryOperators.equal,
-            bedieningTable
-        );
+        const getBedieningTableDoc: FirebaseIdentifierAttributeValue = {
+            collection: this.collection,
+            where: [
+                {
+                    attribute: 'value',
+                    queryOperator: QueryOperators.equal,
+                    value: bedieningTable
+                }
+            ],
+            orderBy: []
+        };
         const references = await this.database.readFromDatabaseWithProperty(getBedieningTableDoc);        
         return references[0];        
     }

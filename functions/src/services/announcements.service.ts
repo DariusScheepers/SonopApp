@@ -23,18 +23,22 @@ export class AnnouncementsService extends DataService {
     }
 
     async getAnnouncements() {
-        const allAnnouncementsSearch = new FirebaseIdentifierAttributeValue(
-            this.collection,
-            'datePosted',
-            QueryOperators.greaterThan,
-            0,
-            [
+        const allAnnouncementsSearch: FirebaseIdentifierAttributeValue = {
+            collection: this.collection,
+            where: [
+                {
+                    attribute: 'datePosted',
+                    queryOperator: QueryOperators.greaterThan,
+                    value: 0
+                }
+            ],
+            orderBy: [
                 {
                     attribute: 'datePosted',
                     direction: OrderByDirection.descending
                 }
             ]
-        );
+        };
         const announcementsSnapshots = await this.database.readFromDatabaseWithProperty(allAnnouncementsSearch);
         let announcements = announcementsSnapshots.map(document => document.data()) as AnnouncementModel[];
         announcements = announcements.sort((x, y) => {

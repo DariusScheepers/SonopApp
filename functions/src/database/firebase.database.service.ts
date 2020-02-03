@@ -31,12 +31,21 @@ export class FirebaseDataBase implements DatabaseInterface {
     }
 
     async readFromDatabaseWithProperty(databaseIdentifierAttributeValue: FirebaseIdentifierAttributeValue): Promise<FirebaseFirestore.QueryDocumentSnapshot[]> {
-        let documentsUnordered = this.database.collection(databaseIdentifierAttributeValue.collection)
-            .where(
-                databaseIdentifierAttributeValue.attribute,
-                databaseIdentifierAttributeValue.queryOperator,
-                databaseIdentifierAttributeValue.value
-            );
+        let documentsUnordered = this.database.collection(databaseIdentifierAttributeValue.collection).where(
+            databaseIdentifierAttributeValue.where[0].attribute,
+            databaseIdentifierAttributeValue.where[0].queryOperator,
+            databaseIdentifierAttributeValue.where[0].value
+        );
+        if (databaseIdentifierAttributeValue.where.length >= 1) {
+            for (let index = 1; index < databaseIdentifierAttributeValue.where.length; index++) {
+                const where = databaseIdentifierAttributeValue.where[index];
+                documentsUnordered = documentsUnordered.where(
+                    where.attribute,
+                    where.queryOperator,
+                    where.value
+                );                
+            }
+        }
         for (const order of databaseIdentifierAttributeValue.orderBy) {
             documentsUnordered = documentsUnordered.orderBy(order.attribute, order.direction);
         };
@@ -65,5 +74,9 @@ export class FirebaseDataBase implements DatabaseInterface {
         return await this.database.collection(databaseIdentifier.collection)
             .doc(databaseIdentifier.document)
             .delete();
+    }
+
+    referenceToString(collection: string, document: string): string {
+        return "/" + collection + "/" + document;
     }
 }

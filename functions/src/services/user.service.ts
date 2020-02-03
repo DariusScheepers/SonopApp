@@ -18,12 +18,17 @@ export class UserService extends DataService {
     }
 
     async login(loginModel: LoginModel): Promise<any> {
-        const searchForStudent = new FirebaseIdentifierAttributeValue(
-            this.collection,
-            'studentNumber',
-            QueryOperators.equal,
-            loginModel.studentNumber.toString()
-        );
+        const searchForStudent: FirebaseIdentifierAttributeValue = {
+            collection: this.collection,
+            where: [
+                {
+                    attribute: 'studentNumber',
+                    queryOperator: QueryOperators.equal,
+                    value: loginModel.studentNumber.toString()
+                }
+            ],
+            orderBy: []
+        };
         const students = await this.database.readFromDatabaseWithProperty(searchForStudent);
         if (students.length > 0) {
             const studentSnapshot = students[0];
@@ -143,5 +148,43 @@ export class UserService extends DataService {
     async deleteAllUsers() {
         const toDeleteAllUsers = new FirebaseIdentifier(this.collection);
         await this.database.deleteTable(toDeleteAllUsers);
+    }
+
+    async getAllUsersAccordingToBedieningTable(bedieningTable: BedieningTable): Promise<FirebaseFirestore.QueryDocumentSnapshot[]> {
+        const bedieningTableReferenceString = this.database.referenceToString(this.bedieningTableService.collection, bedieningTable.toString());
+        const searchForStudent: FirebaseIdentifierAttributeValue = {
+            collection: this.collection,
+            where: [
+                {
+                    attribute: 'bedieningTable',
+                    queryOperator: QueryOperators.equal,
+                    value: bedieningTableReferenceString
+                },
+                {
+                    attribute: 'verified',
+                    queryOperator: QueryOperators.equal,
+                    value: true
+                }
+            ],
+            orderBy: []
+        };
+        const studentsSnapshots = await this.database.readFromDatabaseWithProperty(searchForStudent);
+        return studentsSnapshots;
+    }
+
+    async getStudentsBaseOnVerifiedOrNot(verified: boolean) {
+        const searchForStudent: FirebaseIdentifierAttributeValue = {
+            collection: this.collection,
+            where: [
+                {
+                    attribute: 'verified',
+                    queryOperator: QueryOperators.equal,
+                    value: verified
+                }
+            ],
+            orderBy: []
+        };
+        const studentsSnapshots = await this.database.readFromDatabaseWithProperty(searchForStudent);
+        return studentsSnapshots;
     }
 }

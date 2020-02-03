@@ -14,10 +14,10 @@ export class WeekendService extends DataService {
         super(database);
         this.userService = userService;
         
-        this.populateWeekendMeals();
+        // this.populateWeekendMeals();
     }
 
-    private async populateWeekendMeals() {
+    async populateWeekendMeals() { // private
         const students = await this.userService.getAllStudents();
         for (const student of students) {
             await this.addWeekendEntryForStudent(student);
