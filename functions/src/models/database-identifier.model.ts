@@ -23,19 +23,16 @@ export class FirebaseIdentifier extends DatabaseIdentifier {
     }
 }
 
-export class FirebaseIdentifierAttributeValue {
+export interface FirebaseIdentifierAttributeValue {
     collection: string;
+    where: whereQuery[];
+    orderBy: OrderBy[];
+}
+
+export interface whereQuery {
     attribute: string;
     queryOperator: QueryOperators;
     value: any;
-    orderBy: OrderBy[];
-    constructor(collection: string, attribute: string, queryOperator: QueryOperators, value: any, orderBy: OrderBy[] = []) {
-        this.collection = collection;
-        this.attribute = attribute;
-        this.queryOperator = queryOperator;
-        this.value = value;
-        this.orderBy = orderBy;
-    }
 }
 
 export interface OrderBy {

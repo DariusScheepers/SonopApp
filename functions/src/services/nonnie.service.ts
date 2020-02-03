@@ -11,7 +11,6 @@ import { WeekendService } from "./weekend.service";
 import { WeekdayService } from "./weekday.service";
 import { sortArrayAlphabetically } from "../utils/array.util";
 import { bedieningTables } from "../constants/bediening-tables.constant";
-import { BedieningTable } from "../models/bediening-table.enum";
 import { getMealNumberByTime, MealType, SignOutListInformation, WeekdayMealDetail } from "../models/weekday.model";
 import { weekdayDeadlines } from "../constants/mealDeadlines.constant";
 
@@ -46,23 +45,21 @@ export class NonnieService extends DataService {
     }
 
     async getUnverifiedAccounts(): Promise<StudentAccountInformation[]> {
-        const accounts = await this.compileAllStudentAccountsInformation();
-        const unverifiedAccounts = accounts.filter(account => !account.verified);
+        const unverifiedAccounts = await this.compileAllStudentAccountsInformation(false);
 
         return unverifiedAccounts;
     }
 
     async getVerifiedAccounts(): Promise<StudentAccountInformation[]> {
-        const accounts = await this.compileAllStudentAccountsInformation();
+        const accounts = await this.compileAllStudentAccountsInformation(true);
         let orderedAccounts = sortArrayAlphabetically(accounts, 'fullName');
         orderedAccounts = sortArrayAlphabetically(orderedAccounts, 'bedieningTable');
-        const verifiedAccounts = orderedAccounts.filter(orderedAccounts => orderedAccounts.verified);
-        return verifiedAccounts;
+        return orderedAccounts;
     }
 
-    private async compileAllStudentAccountsInformation(): Promise<StudentAccountInformation[]> {
+    private async compileAllStudentAccountsInformation(verifiedAccounts: boolean): Promise<StudentAccountInformation[]> {
         let accounts: StudentAccountInformation[] = [];
-        const studentSnapshots = await this.userService.getAllStudents();
+        const studentSnapshots = await this.userService.getStudentsBaseOnVerifiedOrNot(verifiedAccounts);
         for (const studentSnapshot of studentSnapshots) {
             const account = await this.compileStudentAccountInformation(studentSnapshot);
             accounts.push(account);
@@ -105,7 +102,7 @@ export class NonnieService extends DataService {
         for (const bedieningTable of bedieningTables) {
             const bedieningTableMap: any[][] = [];
             const bedieningTableName = bedieningTable.value;
-            const studentsAtTable = await this.findAllVerifiedStudentsForBedieningTable(bedieningTableName);
+            const studentsAtTable = await this.userService.getAllUsersAccordingToBedieningTable(bedieningTableName);
             for (const studentSnapshot of studentsAtTable) {
                 const weekendWithStudentAndTable: any[] = [];
                 const student = studentSnapshot.data() as StudentModel;
@@ -122,19 +119,6 @@ export class NonnieService extends DataService {
             seatingMap.push(bedieningTableMap);
         }
         return {seatingMap: seatingMap};
-    }
-
-    private async findAllVerifiedStudentsForBedieningTable(bedieningTable: BedieningTable): Promise<FirebaseFirestore.QueryDocumentSnapshot[]> {
-        let studentsOfBedieningTable: FirebaseFirestore.QueryDocumentSnapshot[] = [];
-        const studentSnapshots = await this.userService.getAllStudents();
-        for (const studentSnapshot of studentSnapshots) {
-            const student = studentSnapshot.data() as StudentModel;
-            const bedieningTableOfStudent = await this.bedieningTableService.getTableValueFromReference(student.bedieningTable);
-            if (student.verified && bedieningTableOfStudent.value === bedieningTable) {
-                studentsOfBedieningTable.push(studentSnapshot);
-            }
-        }
-        return studentsOfBedieningTable;
     }
 
     async getStudentsPerTableForWeekday(): Promise<SignOutListInformation> {
@@ -163,7 +147,7 @@ export class NonnieService extends DataService {
         const studentSnapshots = [];
         for (const bedieningTable of bedieningTables) {
             const bedieningTableName = bedieningTable.value;
-            const studentsAtTable = await this.findAllVerifiedStudentsForBedieningTable(bedieningTableName);
+            const studentsAtTable = await this.userService.getAllUsersAccordingToBedieningTable(bedieningTableName);
             studentSnapshots.push(...studentsAtTable);
         }
 
