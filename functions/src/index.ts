@@ -50,19 +50,23 @@ const schedulerService = new SchedulerService(
     emailerService
 );
 
+const memoryTimeoutSettings: functions.RuntimeOptions = {
+    memory: '256MB',
+    timeoutSeconds: 540
+};
 const app = express();
 app.use(cors());
-exports.app = functions.https.onRequest(app);
+exports.app = functions.runWith(memoryTimeoutSettings).https.onRequest(app);
 
 const scheduleNotificationForWeekendSignInRule = `${emailNotificationTime.minute} ${emailNotificationTime.hour} * ${databaseToDefaultTime.month} ${emailNotificationTime.dayOfWeek}`;
-exports.scheduleNotificationForWeekendSignIn = functions.pubsub.schedule(scheduleNotificationForWeekendSignInRule)
+exports.scheduleNotificationForWeekendSignIn = functions.runWith(memoryTimeoutSettings).pubsub.schedule(scheduleNotificationForWeekendSignInRule)
     .timeZone('Africa/Johannesburg')
     .onRun(_ => {
         schedulerService.sendNotifications();
     }
 );
 const scheduleSetDatabaseToDefaultRule = `${databaseToDefaultTime.minute} ${databaseToDefaultTime.hour} * ${databaseToDefaultTime.month} ${databaseToDefaultTime.dayOfWeek}`
-exports.scheduleSetDatabaseToDefault = functions.pubsub.schedule(scheduleSetDatabaseToDefaultRule)
+exports.scheduleSetDatabaseToDefault = functions.runWith(memoryTimeoutSettings).pubsub.schedule(scheduleSetDatabaseToDefaultRule)
     .timeZone('Africa/Johannesburg')
     .onRun(_ => {
         schedulerService.setDatabaseToDefault();

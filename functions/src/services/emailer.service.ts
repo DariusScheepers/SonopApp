@@ -29,7 +29,7 @@ export class EmailerService {
                         emailAddress: student.email
                     },
                     emailWeekendReminderContent.subjectLine,
-                    message
+                    `Hi Mnr. ${student.name},\n\n${message}${emailWeekendReminderContent.signature}`
                 );
             }
         }
@@ -41,7 +41,7 @@ export class EmailerService {
                 from: emailConfig.from,
                 to: recipient.emailAddress,
                 subject: subjectLine,
-                text: `Hi Mnr. ${recipient.name},\n\n${message}${emailWeekendReminderContent.signature}`
+                text: message
             }, (error: any) => {
                 if (error) {
                     reject(error);
