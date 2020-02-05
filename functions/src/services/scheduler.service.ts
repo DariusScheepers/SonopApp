@@ -21,7 +21,7 @@ export class SchedulerService {
     }
 
     async sendNotifications() {
-        await this.emailerService.sendNotificationEmail();
+        await this.emailerService.sendWeekendNotificationEmail();
     }
 
     async setDatabaseToDefault() {

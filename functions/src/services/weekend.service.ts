@@ -39,7 +39,7 @@ export class WeekendService extends DataService {
         await this.database.writeToDatabase(studentWeekendToInsert);
     }
 
-    async getStudentWeekendDetails(userID: UserIdentificationModel) {
+    async getStudentWeekendDetails(userID: UserIdentificationModel): Promise<WeekendMealDetail[]> {
         const weekendDocumentID = this.getWeekendDocumentIDFromStudentID(userID.id);
         const findWeekend = new FirebaseIdentifier(this.collection, weekendDocumentID);
         const weekendDetailSnapshot = await this.database.readFromDatabaseSingleItem(findWeekend);

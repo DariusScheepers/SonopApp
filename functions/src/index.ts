@@ -14,7 +14,7 @@ import { WeekdayService } from "./services/weekday.service";
 import { NonnieService } from "./services/nonnie.service";
 import { EmailerService } from "./services/emailer.service";
 import { SchedulerService } from "./services/scheduler.service";
-import { emailNotificationTime } from "./constants/emailer.constant";
+import { emailWeekendNotificationTime, emailNonnieWeekendSummaryTime } from "./constants/emailer.constant";
 import { databaseToDefaultTime } from "./constants/setDatabaseToDefault.constant";
 
 if (environment.development) {
@@ -42,7 +42,7 @@ const nonnieService = new NonnieService(
     weekendService,
     weekdayService
 );
-const emailerService = new EmailerService(userService, weekendService);
+const emailerService = new EmailerService(userService, weekendService, nonnieService);
 const schedulerService = new SchedulerService(
     weekdayService,
     weekendService,
@@ -58,7 +58,7 @@ const app = express();
 app.use(cors());
 exports.app = functions.runWith(memoryTimeoutSettings).https.onRequest(app);
 
-const scheduleNotificationForWeekendSignInRule = `${emailNotificationTime.minute} ${emailNotificationTime.hour} * ${databaseToDefaultTime.month} ${emailNotificationTime.dayOfWeek}`;
+const scheduleNotificationForWeekendSignInRule = `${emailWeekendNotificationTime.minute} ${emailWeekendNotificationTime.hour} * ${databaseToDefaultTime.month} ${emailWeekendNotificationTime.dayOfWeek}`;
 exports.scheduleNotificationForWeekendSignIn = functions.runWith(memoryTimeoutSettings).pubsub.schedule(scheduleNotificationForWeekendSignInRule)
     .timeZone('Africa/Johannesburg')
     .onRun(_ => {
@@ -73,12 +73,20 @@ exports.scheduleSetDatabaseToDefault = functions.runWith(memoryTimeoutSettings).
     }
 );
 
+const emailNonnieWeekendSummaryTimeRule = `${emailNonnieWeekendSummaryTime.minute} ${emailNonnieWeekendSummaryTime.hour} * ${databaseToDefaultTime.month} ${emailNonnieWeekendSummaryTime.dayOfWeek}`;
+exports.scheduleNonnieWeekendSummaryEmail = functions.runWith(memoryTimeoutSettings).pubsub.schedule(emailNonnieWeekendSummaryTimeRule)
+    .timeZone('Africa/Johannesburg')
+    .onRun(_ => {
+        emailerService.sendNonnieWeekendSignInReport();
+    }
+);
+
 //#region Temporary testing
 
-app.get('/testing', (req, res) => {
+app.get('/testing', async (req, res) => {
     console.log("success con1");
-    let success = true;
-    res.send({success, "testing": 1});
+    const response = await emailerService.sendNonnieWeekendSignInReport();
+    res.send(response);
 });
 
 app.get('/testRequest', async (req, res) => {

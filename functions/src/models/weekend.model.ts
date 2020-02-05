@@ -106,3 +106,12 @@ export interface WeekendWithStudentAndTableModel {
     fullName: string;
     tableName: string;
 }
+
+export interface WeekendMealsCount {
+    fridayDinnerCount: number,
+    saturdayBrunchCount: number,
+    saturdayDinnerCount: number,
+    sundayBreakfastCount: number,
+    sundayLunchCount: number,
+    sundayDinnerCount: number
+}
