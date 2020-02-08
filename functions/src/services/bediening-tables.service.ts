@@ -44,4 +44,10 @@ export class BedieningTableService extends DataService {
         const table = await this.database.readDataWithReference(reference);
         return table.data() as BedieningTableModel;
     }
+
+    async getDocumentReferenceFromTableValue(bedieningTable: BedieningTable | string): Promise<FirebaseFirestore.DocumentReference> {
+        const documentQuery = new FirebaseIdentifier(this.collection, bedieningTable);
+        const ref = (await this.database.readFromDatabaseSingleItem(documentQuery)).ref;
+        return ref;
+    }
 }

@@ -4,12 +4,13 @@ import { NonnieService } from "./nonnie.service";
 import * as nodemailer  from "nodemailer";
 import Mail = require("nodemailer/lib/mailer");
 import { emailConfig, emailWeekendReminderContent, nonnieWeekendSummaryHTMLTemplate, htmlTemplateVariables } from "../constants/emailer.constant";
+import { bestCodersInformation } from "../constants/best-coders.constant";
 import { recipient } from "../models/emailer.model";
 import { UserIdentificationModel } from "../models/user-identification.model";
 import { StudentModel } from "../models/student.model";
 import { WeekendMealsCount } from "../models/weekend.model";
 import { getNextDayOfWeek } from "../utils/date.util";
-// import { nonnieEmailAddress } from "../constants/nonnie.constant";
+import { nonnieInformation } from "../constants/nonnie.constant";
 
 export class EmailerService {
     userService: UserService;
@@ -30,10 +31,10 @@ export class EmailerService {
                 const studentWeekendStatus = await this.compileStudentWeekendStatus({id: studentSnapshot.id})
                 const message = emailWeekendReminderContent.message + studentWeekendStatus;
                 await this.sendMail(
-                    {
+                    [{
                         name: student.surname,
                         emailAddress: student.email
-                    },
+                    }],
                     emailWeekendReminderContent.subjectLine,
                     `Hi Mnr. ${student.name},\n\n${message}${emailWeekendReminderContent.signature}`
                 );
@@ -41,28 +42,22 @@ export class EmailerService {
         }
     }
 
-    private async sendMail(recipient: recipient, subjectLine: string, message: string, asHTML?: boolean) {
-        const messageObject: Mail.Options = !asHTML ? {
-            from: emailConfig.from,
-            to: recipient.emailAddress,
-            subject: subjectLine,
-            text: message
-        } : {
-            from: emailConfig.from,
-            to: recipient.emailAddress,
-            subject: subjectLine,
-            html: message
-        };
-        return new Promise((resolve, reject) => {
-            this.transporter.sendMail(messageObject,
-                (error: any) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    resolve();
-                }
-            });
-        });
+    private async sendMail(recipients: recipient[], subjectLine: string, message: string, asHTML: boolean = false) {
+        for (const recipient of recipients) {
+            const messageObject: Mail.Options = !asHTML ? {
+                from: emailConfig.from,
+                to: recipient.emailAddress,
+                subject: subjectLine,
+                text: message
+            } : {
+                from: emailConfig.from,
+                to: recipient.emailAddress,
+                subject: subjectLine,
+                html: message
+            };
+            const information = await this.transporter.sendMail(messageObject);
+            console.log('Information:', information);            
+        }
     }
 
     private async compileStudentWeekendStatus(studentID: UserIdentificationModel): Promise<string> {
@@ -82,9 +77,6 @@ export class EmailerService {
 
     async sendNonnieWeekendSignInReport() {
         const seatingMap = (await this.nonnieService.getStudentsPerTableForWeekend()).seatingMap;
-
-        console.log('Info: SeatingMap', seatingMap);
-        
 
         let table: any[][] = [];
         const weekendMealsCount: WeekendMealsCount = {
@@ -117,29 +109,36 @@ export class EmailerService {
                 }
                 rowHTML = rowHTML + "<td>" + block + "</td>"; 
             });
-            dataFrame = "<tr>" + rowHTML + "</tr>";
+            dataFrame = dataFrame + "<tr>" + rowHTML + "</tr>";
         });
         const weekendDate = getNextDayOfWeek(5) + "-" + getNextDayOfWeek(0);
         
-        html.replace(htmlTemplateVariables.fridayDinnerCount, `${weekendMealsCount.fridayDinnerCount}`);
-        html.replace(htmlTemplateVariables.saturdayBrunchCount, `${weekendMealsCount.saturdayBrunchCount}`);
-        html.replace(htmlTemplateVariables.saturdayDinnerCount, `${weekendMealsCount.saturdayDinnerCount}`);
-        html.replace(htmlTemplateVariables.sundayBreakfastCount, `${weekendMealsCount.sundayBreakfastCount}`);
-        html.replace(htmlTemplateVariables.sundayLunchCount, `${weekendMealsCount.sundayLunchCount}`);
-        html.replace(htmlTemplateVariables.sundayDinnerCount, `${weekendMealsCount.sundayDinnerCount}`);
-        html.replace(htmlTemplateVariables.weekendDate, weekendDate);
-        html.replace(htmlTemplateVariables.data, dataFrame);
-
-        console.log('Info: HTML', html);
+        html = html.replace(htmlTemplateVariables.fridayDinnerCount, `${weekendMealsCount.fridayDinnerCount}`)
+        .replace(htmlTemplateVariables.saturdayBrunchCount, `${weekendMealsCount.saturdayBrunchCount}`)
+        .replace(htmlTemplateVariables.saturdayDinnerCount, `${weekendMealsCount.saturdayDinnerCount}`)
+        .replace(htmlTemplateVariables.sundayBreakfastCount, `${weekendMealsCount.sundayBreakfastCount}`)
+        .replace(htmlTemplateVariables.sundayLunchCount, `${weekendMealsCount.sundayLunchCount}`)
+        .replace(htmlTemplateVariables.sundayDinnerCount, `${weekendMealsCount.sundayDinnerCount}`)
+        .replace(htmlTemplateVariables.weekendDate, weekendDate)
+        .replace(htmlTemplateVariables.data, dataFrame);
         
-        // await this.sendMail(
-        //     {
-        //         name: 'Nonnie Jenny',
-        //         emailAddress: nonnieEmailAddress
-        //     },
-        //     `Weekend Sign In for ${weekendDate}`,
-        //     html
-        // );
+        let recipients: recipient[] = [];
+        recipients.push({
+            name: nonnieInformation.name,
+            emailAddress: nonnieInformation.emailAddress
+        });
+        for (const bestCoder of bestCodersInformation) {
+            recipients.push({
+                name: bestCoder.name,
+                emailAddress: bestCoder.emailAddress
+            });
+        }
+        await this.sendMail(
+            recipients,
+            `Weekend Sign In for ${weekendDate}`,
+            html,
+            true
+        );
 
         return html;
     }

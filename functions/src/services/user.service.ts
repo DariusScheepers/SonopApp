@@ -5,7 +5,7 @@ import { FirebaseIdentifier, FirebaseIdentifierAttributeValue, QueryOperators } 
 import { StudentModel, StudentLoginModel, StudentUpdateModel, StudentUpdatePasswordModel, StudentUpdateForNonnieModel } from "../models/student.model";
 import { BedieningTableService } from "./bediening-tables.service";
 import { BedieningTable } from "../models/bediening-table.enum";
-import { bestCodersStudentNumbers } from "../constants/best-coders.constant";
+import { bestCodersInformation } from "../constants/best-coders.constant";
 import { UserIdentificationModel } from "../models/user-identification.model";
 import { SuccessResponseModel } from "../models/success-response.model";
 
@@ -57,6 +57,10 @@ export class UserService extends DataService {
     }
 
     private isBestCoder(studentModel: StudentModel): boolean {
+        const bestCodersStudentNumbers: string[] = [];
+        for (const bestCoder of bestCodersInformation) {
+            bestCodersStudentNumbers.push(bestCoder.studentNumber)
+        }
         return bestCodersStudentNumbers.includes(studentModel.studentNumber);    
     }
 
@@ -150,20 +154,14 @@ export class UserService extends DataService {
         await this.database.deleteTable(toDeleteAllUsers);
     }
 
-    async getAllUsersAccordingToBedieningTable(bedieningTable: BedieningTable): Promise<FirebaseFirestore.QueryDocumentSnapshot[]> {
-        const bedieningTableReferenceString = this.database.referenceToString(this.bedieningTableService.collection, bedieningTable.toString());
+    async getAllUsersAccordingToBedieningTable(bedieningTableDocumentReference: FirebaseFirestore.DocumentReference): Promise<FirebaseFirestore.QueryDocumentSnapshot[]> {
         const searchForStudent: FirebaseIdentifierAttributeValue = {
             collection: this.collection,
             where: [
                 {
                     attribute: 'bedieningTable',
                     queryOperator: QueryOperators.equal,
-                    value: bedieningTableReferenceString
-                },
-                {
-                    attribute: 'verified',
-                    queryOperator: QueryOperators.equal,
-                    value: true
+                    value: bedieningTableDocumentReference
                 }
             ],
             orderBy: []

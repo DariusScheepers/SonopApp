@@ -85,7 +85,7 @@ exports.scheduleNonnieWeekendSummaryEmail = functions.runWith(memoryTimeoutSetti
 
 app.get('/testing', async (req, res) => {
     console.log("success con1");
-    const response = await emailerService.sendNonnieWeekendSignInReport();
+    const response = "Hello World";
     res.send(response);
 });
 
@@ -216,6 +216,11 @@ app.get('/weekendSignInList', async (req, res) => {
 
 app.get('/currentSignInList', async (req, res) => {
     const response = await nonnieService.getStudentsPerTableForWeekday();
+    res.send(response);
+});
+
+app.get('/send-weekend-summary-mail', async (req, res) => {
+    const response = await emailerService.sendNonnieWeekendSignInReport();
     res.send(response);
 });
 

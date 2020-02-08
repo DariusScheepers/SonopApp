@@ -102,7 +102,8 @@ export class NonnieService extends DataService {
         for (const bedieningTable of bedieningTables) {
             const bedieningTableMap: any[][] = [];
             const bedieningTableName = bedieningTable.value;
-            const studentsAtTable = await this.userService.getAllUsersAccordingToBedieningTable(bedieningTableName);
+            const bedieningReference = await this.bedieningTableService.getDocumentReferenceFromTableValue(bedieningTable.value.replace(/ /g,''));
+            const studentsAtTable = await this.userService.getAllUsersAccordingToBedieningTable(bedieningReference);
             for (const studentSnapshot of studentsAtTable) {
                 const weekendWithStudentAndTable: any[] = [];
                 const student = studentSnapshot.data() as StudentModel;
@@ -146,8 +147,8 @@ export class NonnieService extends DataService {
 
         const studentSnapshots = [];
         for (const bedieningTable of bedieningTables) {
-            const bedieningTableName = bedieningTable.value;
-            const studentsAtTable = await this.userService.getAllUsersAccordingToBedieningTable(bedieningTableName);
+            const bedieningTableRef = await this.bedieningTableService.getDocumentReferenceFromTableValue(bedieningTable.value.replace(/ /g,''));
+            const studentsAtTable = await this.userService.getAllUsersAccordingToBedieningTable(bedieningTableRef);
             studentSnapshots.push(...studentsAtTable);
         }
 

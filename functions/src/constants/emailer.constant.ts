@@ -22,9 +22,9 @@ export const emailWeekendNotificationTime = {
 }
 
 export const emailNonnieWeekendSummaryTime = {
-    dayOfWeek: 3, // 3
-    hour: 21, // 12
-    minute: 42, // 0
+    dayOfWeek: 4, // 4
+    hour: 15, // 15
+    minute: 0, // 0
     month: monthsOfSonopAppActive
 }
 
@@ -107,9 +107,9 @@ export const nonnieWeekendSummaryHTMLTemplate = `
   <br /><br />
   Aantal wat ingeteken het per ete:<br/>
   \tFriday Dinner:\t\t%fridayDinnerCount%<br/>
-  \tSaturday Brunch:\t\t%saturdayBrunchCount%<br/>
-  \tSaturday Dinner:\t\t%saturdayDinnerCount%<br/>
-  \tSunday Breakfast:\t\t%sundayBreakfastCount%<br/>
+  \tSaturday Brunch:\t%saturdayBrunchCount%<br/>
+  \tSaturday Dinner:\t%saturdayDinnerCount%<br/>
+  \tSunday Breakfast:\t%sundayBreakfastCount%<br/>
   \tSunday Lunch:\t\t%sundayLunchCount%<br/>
   \tSunday Dinner:\t\t%sundayDinnerCount%<br/>
   <br /><br />
@@ -119,8 +119,8 @@ export const nonnieWeekendSummaryHTMLTemplate = `
   <table class="weekend-table">
     <tbody>
         <tr>
+            <th width="30%">Student</th>
             <th width="20%">Table</th>
-            <th width="50%">Student</th>
             <th><b>Friday Dinner</b></th>
             <th><b>Saturday Brunch</b></th>
             <th><b>Saturday Dinner</b></th>
@@ -139,12 +139,12 @@ export const nonnieWeekendSummaryHTMLTemplate = `
 `;
 
 export const htmlTemplateVariables = {
-    fridayDinnerCount: /%fridayDinnerCount%/g,
-    saturdayBrunchCount: /%saturdayBrunchCount%/g,
-    saturdayDinnerCount: /%saturdayDinnerCount%/g,
-    sundayBreakfastCount: /%sundayBreakfastCount%/g,
-    sundayDinnerCount: /%sundayDinnerCount%/g,
-    sundayLunchCount: /%sundayLunchCount%/g,
-    weekendDate: /%weekendDate%/g,
-    data: /%data%/g
+    fridayDinnerCount: "%fridayDinnerCount%",
+    saturdayBrunchCount: "%saturdayBrunchCount%",
+    saturdayDinnerCount: "%saturdayDinnerCount%",
+    sundayBreakfastCount: "%sundayBreakfastCount%",
+    sundayDinnerCount: "%sundayDinnerCount%",
+    sundayLunchCount: "%sundayLunchCount%",
+    weekendDate: "%weekendDate%",
+    data: "%data%"
 }
