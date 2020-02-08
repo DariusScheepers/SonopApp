@@ -20,7 +20,7 @@ export interface WeekdayMealDetail {
     openStatus: boolean;
 }
 
-export function getWeekdayMeals(weekendDetailFromStudent: WeekdayModel): WeekdayMealDetail[] {
+export function getWeekdayMeals(weekendDetailFromStudent: WeekdayMealsModel): WeekdayMealDetail[] {
     const weekendMeals: WeekdayMealDetail[] = [
         {
             meal: WeekdayMeals.mondayLunch,

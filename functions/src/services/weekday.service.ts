@@ -3,7 +3,7 @@ import { UserService } from "./user.service";
 import { FirebaseDataBase } from "../database/firebase.database.service";
 import { FirebaseIdentifier } from "../models/database-identifier.model";
 import { UserIdentificationModel } from "../models/user-identification.model";
-import { createInitialWeekdayEntry, WeekdayModel, WeekdayMealDetail, getWeekdayMeals, getWeekdayMealStatuses } from "../models/weekday.model";
+import { createInitialWeekdayEntry, WeekdayModel, WeekdayMealDetail, getWeekdayMeals, getWeekdayMealStatuses, WeekdayMealsModel } from "../models/weekday.model";
 import { SuccessResponseModel } from "../models/success-response.model";
 
 export class WeekdayService extends DataService {
@@ -40,18 +40,27 @@ export class WeekdayService extends DataService {
     }
 
     async getStudentWeekdayDetails(userID: UserIdentificationModel) {
-        const weekdayDocumentID = this.getWeekdayDocumentIDFromStudentID(userID.id);
-        const findWeekday = new FirebaseIdentifier(this.collection, weekdayDocumentID);
-        const weekdayDetailSnapshot = await this.database.readFromDatabaseSingleItem(findWeekday);
-        const weekdayDetail = weekdayDetailSnapshot.data() as WeekdayModel;
-        return this.provideArrayOfWeekdayMeals(weekdayDetail);
+        const student = await this.userService.getStudentDataByID(userID);
+        const weekdaySignIns = student.weekdaySignIns;
+        return this.provideArrayOfWeekdayMeals(weekdaySignIns);
+    }
+
+    async getOldWeekdayDoc(userID: UserIdentificationModel): Promise<WeekdayMealsModel> {
+        const docID = this.getWeekdayDocumentIDFromStudentID(userID.id);
+        const weekdayDataIdentifier = new FirebaseIdentifier(this.collection, docID);
+        const weekdaySnapshot = await this.database.readFromDatabaseSingleItem(weekdayDataIdentifier);
+        const data = weekdaySnapshot.data();
+        if (data) {
+            delete data.student;
+        }
+        return data as WeekdayMealsModel;
     }
 
     private getWeekdayDocumentIDFromStudentID(studentID: string) {
         return studentID + this.weekdayDocumentSuffix;
     }
 
-    private provideArrayOfWeekdayMeals(weekdayDetail: WeekdayModel): WeekdayMealDetail[] {
+    private provideArrayOfWeekdayMeals(weekdayDetail: WeekdayMealsModel): WeekdayMealDetail[] {
         const weekdayMeals: WeekdayMealDetail[] = getWeekdayMeals(weekdayDetail);
         return weekdayMeals;
     }

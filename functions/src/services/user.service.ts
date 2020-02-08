@@ -2,12 +2,14 @@ import { LoginModel } from "../models/login.model";
 import { DataService } from "./data.service";
 import { FirebaseDataBase } from "../database/firebase.database.service";
 import { FirebaseIdentifier, FirebaseIdentifierAttributeValue, QueryOperators } from "../models/database-identifier.model";
-import { StudentModel, StudentLoginModel, StudentUpdateModel, StudentUpdatePasswordModel, StudentUpdateForNonnieModel } from "../models/student.model";
+import { StudentModel, StudentLoginModel, StudentUpdateModel, StudentUpdatePasswordModel, StudentUpdateForNonnieModel, StudentRegisterModel, addNewStudent } from "../models/student.model";
 import { BedieningTableService } from "./bediening-tables.service";
 import { BedieningTable } from "../models/bediening-table.enum";
 import { bestCodersInformation } from "../constants/best-coders.constant";
 import { UserIdentificationModel } from "../models/user-identification.model";
 import { SuccessResponseModel } from "../models/success-response.model";
+import { WeekendModel, getWeekendMealStatuses } from "../models/weekend.model";
+import { WeekdayModel, getWeekdayMealStatuses } from "../models/weekday.model";
 
 export class UserService extends DataService {
     collection = 'users';
@@ -44,11 +46,9 @@ export class UserService extends DataService {
         }
     }
 
-    async register(studentModel: StudentModel): Promise<SuccessResponseModel> {
-        studentModel.verified = false;
-        const bedieningTableSnapShot = await this.bedieningTableService.getBedieningTableByTableValue(studentModel.bedieningTable as BedieningTable);
-        studentModel.bedieningTable = bedieningTableSnapShot.ref;
-        const newStudentToWrite = new FirebaseIdentifier(this.collection, studentModel.studentNumber.toString(), studentModel, true);
+    async register(studentRegisterModel: StudentRegisterModel): Promise<SuccessResponseModel> {
+        const newStudent: StudentModel = addNewStudent(studentRegisterModel)
+        const newStudentToWrite = new FirebaseIdentifier(this.collection, newStudent.studentNumber.toString(), newStudent, true);
         await this.database.writeToDatabase(newStudentToWrite);
         const response: SuccessResponseModel = {
             success: true
@@ -82,16 +82,11 @@ export class UserService extends DataService {
     async getStudentDataByID(userID: UserIdentificationModel): Promise<StudentModel> {
         const snapshot = await this.getStudentByID(userID.id);
         const student = snapshot.data() as StudentModel;
-        const bedieningTableReference = student.bedieningTable;
-        const bedieningTable = await this.bedieningTableService.getTableValueFromReference(bedieningTableReference);
-        student.bedieningTable = bedieningTable.value;
         
         return student;
     }
 
     async updateStudentInformation(studentUpdateInfo: StudentUpdateModel) {
-        const tableSnapshot = await this.bedieningTableService.getBedieningTableByTableValue(studentUpdateInfo.bedieningTable as BedieningTable);
-        studentUpdateInfo.bedieningTable = tableSnapshot;
         const updateStudent = new FirebaseIdentifier(this.collection, studentUpdateInfo.studentID, studentUpdateInfo);
         await this.database.updateDatabaseItem(updateStudent);
     }
@@ -111,6 +106,26 @@ export class UserService extends DataService {
         await this.database.updateDatabaseItem(updateStudent);
         response.success = true;
         return response;        
+    }
+
+    async updateStudentWeekend(weekendMeals: WeekendModel) {
+        const fieldsToUpdate = getWeekendMealStatuses(weekendMeals);
+        const updateStudentWeekendMeals = new FirebaseIdentifier(this.collection, weekendMeals.student, {weekendSignIns: fieldsToUpdate});
+        await this.database.updateDatabaseItem(updateStudentWeekendMeals);
+        const response: SuccessResponseModel = {
+            success: true
+        }
+        return response;
+    }
+
+    async updateStudentWeekday(weekdayMeals: WeekdayModel) {
+        const fieldsToUpdate = getWeekdayMealStatuses(weekdayMeals);
+        const updateStudentWeekendMeals = new FirebaseIdentifier(this.collection, weekdayMeals.student, {weekdaySignIns: fieldsToUpdate});
+        await this.database.updateDatabaseItem(updateStudentWeekendMeals);
+        const response: SuccessResponseModel = {
+            success: true
+        }
+        return response;
     }
 
     async getAllStudents() {
@@ -154,14 +169,14 @@ export class UserService extends DataService {
         await this.database.deleteTable(toDeleteAllUsers);
     }
 
-    async getAllUsersAccordingToBedieningTable(bedieningTableDocumentReference: FirebaseFirestore.DocumentReference): Promise<FirebaseFirestore.QueryDocumentSnapshot[]> {
+    async getAllUsersAccordingToBedieningTable(bedieningTable: BedieningTable): Promise<FirebaseFirestore.QueryDocumentSnapshot[]> {
         const searchForStudent: FirebaseIdentifierAttributeValue = {
             collection: this.collection,
             where: [
                 {
                     attribute: 'bedieningTable',
                     queryOperator: QueryOperators.equal,
-                    value: bedieningTableDocumentReference
+                    value: bedieningTable
                 }
             ],
             orderBy: []

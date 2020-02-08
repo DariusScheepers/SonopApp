@@ -156,7 +156,7 @@ app.post('/get-weekend', async (req, res) => {
 });
 
 app.post('/updateWeekend', async (req, res) => {
-    const received = await weekendService.updateWeekendForStudent(req.body);
+    const received = await userService.updateStudentWeekend(req.body);
     res.send(received);
 });
 
@@ -166,7 +166,7 @@ app.post('/get-week', async (req, res) => {
 });
 
 app.post('/updateWeeklySignOut', async (req, res) => {
-    const received = await weekdayService.updateWeekdayForStudent(req.body);
+    const received = await userService.updateStudentWeekday(req.body);
     res.send(received);
 });
 
@@ -222,6 +222,16 @@ app.get('/currentSignInList', async (req, res) => {
 app.get('/send-weekend-summary-mail', async (req, res) => {
     const response = await emailerService.sendNonnieWeekendSignInReport();
     res.send(response);
+});
+
+app.get('/back-up-students', async (req, res) => {
+    const response = await nonnieService.convertNewDatabase();
+    res.send("Done!" + response);
+});
+
+app.get('/post-new-students', async (req, res) => {
+    const response = await nonnieService.postNewStudents();
+    res.send("Done!" + response);
 });
 
 //#endregion

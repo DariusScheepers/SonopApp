@@ -3,4 +3,4 @@ export const environment = {
     migrate: false
 }
 
-export const functionsVersion = 'f2020.04.00';
+export const functionsVersion = 'f2020.05.00';

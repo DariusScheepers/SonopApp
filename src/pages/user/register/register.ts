@@ -4,7 +4,7 @@ import { FormGroup, FormControl} from '@angular/forms';
 import { Http } from '../../../http-api';
 import { LoginPage } from '../../login/login';
 import { presentToast, handleError } from '../../../app-functions';
-import { StudentModel } from '../../../../functions/src/models/student.model';
+import { StudentModel, StudentRegisterModel } from '../../../../functions/src/models/student.model';
 import { BedieningTableModel } from '../../../../functions/src/models/bediening-table.enum';
 import { bedieningTables } from '../../../../functions/src/constants/bediening-tables.constant';
 import { SuccessResponseModel } from '../../../../functions/src/models/success-response.model';
@@ -114,7 +114,7 @@ export class RegisterPage {
 
             if (value.semi == null)
                 value.semi = false;
-            var jsonArr: StudentModel = new StudentModel(
+            var jsonArr: StudentRegisterModel = new StudentRegisterModel(
                 value.username,
                 value.password,
                 value.email,

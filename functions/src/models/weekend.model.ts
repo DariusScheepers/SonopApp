@@ -28,7 +28,7 @@ export interface WeekendMealDetail {
     date: string;
 }
 
-export function getWeekendMeals(weekendDetailFromStudent: WeekendModel): WeekendMealDetail[] {
+export function getWeekendMeals(weekendDetailFromStudent: WeekendMealsModel): WeekendMealDetail[] {
     const weekendMeals: WeekendMealDetail[] = [
         {
             meal: WeekendMeals.FridayDinner,

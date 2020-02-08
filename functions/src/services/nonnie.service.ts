@@ -4,7 +4,7 @@ import { FirebaseDataBase } from "../database/firebase.database.service";
 import { NonnieLoginModel, StudentAccountInformation } from "../models/nonnie.model";
 import { SuccessResponseModel } from "../models/success-response.model";
 import { nonniePassword } from "../constants/nonnie.constant";
-import { StudentModel } from "../models/student.model";
+import { StudentModel, StudentRegisterModel, addNewStudent } from "../models/student.model";
 import { BedieningTableService } from "./bediening-tables.service";
 import { UserIdentificationModel } from "../models/user-identification.model";
 import { WeekendService } from "./weekend.service";
@@ -13,6 +13,8 @@ import { sortArrayAlphabetically } from "../utils/array.util";
 import { bedieningTables } from "../constants/bediening-tables.constant";
 import { getMealNumberByTime, MealType, SignOutListInformation, WeekdayMealDetail } from "../models/weekday.model";
 import { weekdayDeadlines } from "../constants/mealDeadlines.constant";
+import { FirebaseIdentifier } from "../models/database-identifier.model";
+import { data } from "../database-back-up/new-data.data";
 
 export class NonnieService extends DataService {
     collection = 'nonnie';
@@ -69,7 +71,7 @@ export class NonnieService extends DataService {
 
     private async compileStudentAccountInformation(studentSnapshot: FirebaseFirestore.QueryDocumentSnapshot): Promise<StudentAccountInformation> {
         const student = studentSnapshot.data() as StudentModel;
-        const bedieningTable = await this.bedieningTableService.getTableValueFromReference(student.bedieningTable);
+        const bedieningTable = student.bedieningTable;
         const studentAccount: StudentAccountInformation = {
             studentID: studentSnapshot.id,
             username: student.username,
@@ -77,7 +79,7 @@ export class NonnieService extends DataService {
             email: student.email,
             isHk: student.isHk,
             isSemi: student.isSemi,
-            bedieningTable: bedieningTable.value,
+            bedieningTable: bedieningTable,
             verified: student.verified
         };
         return studentAccount
@@ -102,8 +104,7 @@ export class NonnieService extends DataService {
         for (const bedieningTable of bedieningTables) {
             const bedieningTableMap: any[][] = [];
             const bedieningTableName = bedieningTable.value;
-            const bedieningReference = await this.bedieningTableService.getDocumentReferenceFromTableValue(bedieningTable.value.replace(/ /g,''));
-            const studentsAtTable = await this.userService.getAllUsersAccordingToBedieningTable(bedieningReference);
+            const studentsAtTable = await this.userService.getAllUsersAccordingToBedieningTable(bedieningTableName);
             for (const studentSnapshot of studentsAtTable) {
                 const weekendWithStudentAndTable: any[] = [];
                 const student = studentSnapshot.data() as StudentModel;
@@ -147,8 +148,8 @@ export class NonnieService extends DataService {
 
         const studentSnapshots = [];
         for (const bedieningTable of bedieningTables) {
-            const bedieningTableRef = await this.bedieningTableService.getDocumentReferenceFromTableValue(bedieningTable.value.replace(/ /g,''));
-            const studentsAtTable = await this.userService.getAllUsersAccordingToBedieningTable(bedieningTableRef);
+            const bedieningTableName = bedieningTable.value;
+            const studentsAtTable = await this.userService.getAllUsersAccordingToBedieningTable(bedieningTableName);
             studentSnapshots.push(...studentsAtTable);
         }
 
@@ -158,10 +159,9 @@ export class NonnieService extends DataService {
             const lunchDetail = weekdays.find(weekday => weekday.meal === lunchMeal) as WeekdayMealDetail;
             const dinnerDetail = weekdays.find(weekday => weekday.meal === dinnerMeal) as WeekdayMealDetail;
             const fullName = student.name + " " + student.surname;
-            const bedieningTable = await this.bedieningTableService.getTableValueFromReference(student.bedieningTable);
-            const bedieningTableName =  bedieningTable.value;
+            const bedieningTable = student.bedieningTable;
             signOutList.push([
-                bedieningTableName,
+                bedieningTable,
                 fullName,
                 lunchDetail.status,
                 dinnerDetail.status
@@ -173,5 +173,35 @@ export class NonnieService extends DataService {
             lunchMeal,
             dinnerMeal
         };
+    }   
+
+    async convertNewDatabase() {
+        let newStudents: StudentModel[] = []
+        let studentsSnapshots = await this.userService.getStudentsBaseOnVerifiedOrNot(true);
+        for (let studentSnapshot of studentsSnapshots) {
+            const student = studentSnapshot.data() as StudentRegisterModel;
+            const bedieningTableModel = await this.bedieningTableService.getTableValueFromReference(student.bedieningTable as any);
+            const bedieningTable = bedieningTableModel.value;
+            const weekendSignIns = await this.weekendService.getOldWeekendDoc({id: studentSnapshot.id});
+            const weekdaySignIns = await this.weekdayService.getOldWeekdayDoc({id: studentSnapshot.id});
+
+            const studentNewDesign: StudentModel = addNewStudent(student);
+            studentNewDesign.bedieningTable = bedieningTable;
+            studentNewDesign.weekdaySignIns = weekdaySignIns;
+            studentNewDesign.weekendSignIns = weekendSignIns;
+
+            newStudents.push(studentNewDesign);
+        }
+        console.log('Info: ', newStudents);
+        return newStudents;
+    }
+
+    async postNewStudents() {
+        const studentNewDesigns = data;
+        for (const student of studentNewDesigns) {
+            let newStudent = new FirebaseIdentifier(this.userService.collection, student.studentNumber, student, true);
+            await this.database.writeToDatabase(newStudent);
+        }
+        return true;
     }
 }
