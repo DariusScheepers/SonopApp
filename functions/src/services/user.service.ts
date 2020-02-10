@@ -177,6 +177,11 @@ export class UserService extends DataService {
                     attribute: 'bedieningTable',
                     queryOperator: QueryOperators.equal,
                     value: bedieningTable
+                },
+                {
+                    attribute: 'verified',
+                    queryOperator: QueryOperators.equal,
+                    value: true
                 }
             ],
             orderBy: []

@@ -25,6 +25,7 @@ export class SignOutNonniePage {
 
 	public getCurrentSignOut() {
 		this.http.get('/currentSignInList').subscribe(data => {
+			this.deleteSeatingMapList();
 			this.seatingMapList = [];
 			this.lunchCount = 0;
 			this.dinnerCount = 0;
@@ -65,5 +66,13 @@ export class SignOutNonniePage {
 
 	public refresh() {
 		this.getCurrentSignOut();
+	}
+
+	deleteSeatingMapList() {
+		if (this.seatingMapList && this.seatingMapList.length > 0) {
+			this.seatingMapList.forEach(seat => {
+				seat = [];
+			});
+		}
 	}
 }

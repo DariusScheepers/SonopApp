@@ -77,7 +77,7 @@ const emailNonnieWeekendSummaryTimeRule = `${emailNonnieWeekendSummaryTime.minut
 exports.scheduleNonnieWeekendSummaryEmail = functions.runWith(memoryTimeoutSettings).pubsub.schedule(emailNonnieWeekendSummaryTimeRule)
     .timeZone('Africa/Johannesburg')
     .onRun(_ => {
-        emailerService.sendNonnieWeekendSignInReport();
+        schedulerService.sendNonnieWeekendSignInReport();
     }
 );
 
@@ -219,19 +219,42 @@ app.get('/currentSignInList', async (req, res) => {
     res.send(response);
 });
 
-app.get('/send-weekend-summary-mail', async (req, res) => {
-    const response = await emailerService.sendNonnieWeekendSignInReport();
-    res.send(response);
+app.post('/send-weekend-summary-mail', async (req, res) => {
+    if (nonnieService.nonnieLogin(req.body).success) {
+        const response = await emailerService.sendNonnieWeekendSignInReport();
+        res.send(response);
+    } else {
+        res.send("Invalid Nonnie Password!");
+    }
 });
 
-app.get('/back-up-students', async (req, res) => {
-    const response = await nonnieService.convertNewDatabase();
-    res.send("Done!" + response);
+app.post('/back-up-students', async (req, res) => {
+    if (nonnieService.nonnieLogin(req.body).success) {
+        const response = await nonnieService.convertNewDatabase();
+        res.send("Done!" + response);
+    } else {
+        res.send("Invalid Nonnie Password!");
+    }
 });
 
-app.get('/post-new-students', async (req, res) => {
-    const response = await nonnieService.postNewStudents();
-    res.send("Done!" + response);
+app.post('/post-new-students', async (req, res) => {
+    if (nonnieService.nonnieLogin(req.body).success) {
+        const response = await nonnieService.postNewStudents();
+        res.send("Done!" + response);
+    } else {
+        res.send("Invalid Nonnie Password!");
+    }
 });
+
+app.post('/reset-database-to-default', async (req, res) => {
+    console.log('Info: ', req.body);
+    
+    if (nonnieService.nonnieLogin(req.body).success) {
+        const response = await schedulerService.setDatabaseToDefault();
+        res.send("Done!" + response);
+    } else {
+        res.send("Invalid Nonnie Password!");
+    }
+})
 
 //#endregion

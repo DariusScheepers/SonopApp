@@ -1,8 +1,8 @@
 import { BedieningTable } from "./bediening-table.enum";
 // import { DocumentReference } from "@google-cloud/firestore";
 import { SuccessResponseModel } from "./success-response.model"
-import { WeekdayMealsModel, WeekdaySignInStatus } from "./weekday.model";
-import { WeekendMealsModel } from "./weekend.model";
+import { WeekdayMealsModel, defaultWeekdaySignInValues } from "./weekday.model";
+import { WeekendMealsModel, defaultWeekendSignInValues } from "./weekend.model";
 
 export interface StudentModel extends StudentRegisterModel{
     weekdaySignIns: WeekdayMealsModel,
@@ -22,27 +22,9 @@ export function addNewStudent(studentRegisterModel: StudentRegisterModel): Stude
         isHk: studentRegisterModel.isHk,
         isSemi: studentRegisterModel.isSemi,
         verified: false,
-        weekdaySignIns: {
-            mondayLunch: WeekdaySignInStatus.signedIn,
-            mondayDinner: WeekdaySignInStatus.signedIn,
-            tuesdayLunch: WeekdaySignInStatus.signedIn,
-            tuesdayDinner: WeekdaySignInStatus.signedIn,
-            wednesdayLunch: WeekdaySignInStatus.signedIn,
-            wednesdayDinner: WeekdaySignInStatus.signedIn,
-            thursdayLunch: WeekdaySignInStatus.signedIn,
-            thursdayDinner: WeekdaySignInStatus.signedIn,
-            fridayLunch: WeekdaySignInStatus.signedIn
-        },
-        weekendSignIns: {
-            fridayDinner: false,
-            saturdayBrunch: false,
-            saturdayDinner: false,
-            sundayBreakfast: false,
-            sundayLunch: false,
-            sundayDinner: false,
-        }
-    }
-    
+        weekdaySignIns: defaultWeekdaySignInValues,
+        weekendSignIns: defaultWeekendSignInValues
+    }   
 }
 
 export class StudentRegisterModel {

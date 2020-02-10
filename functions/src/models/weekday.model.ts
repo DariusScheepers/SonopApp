@@ -275,3 +275,15 @@ export enum MealType {
     lunch,
     dinner
 }
+
+export const defaultWeekdaySignInValues: WeekdayMealsModel = {
+    mondayLunch: WeekdaySignInStatus.signedIn,
+    mondayDinner: WeekdaySignInStatus.signedIn,
+    tuesdayLunch: WeekdaySignInStatus.signedIn,
+    tuesdayDinner: WeekdaySignInStatus.signedIn,
+    wednesdayLunch: WeekdaySignInStatus.signedIn,
+    wednesdayDinner: WeekdaySignInStatus.signedIn,
+    thursdayLunch: WeekdaySignInStatus.signedIn,
+    thursdayDinner: WeekdaySignInStatus.signedIn,
+    fridayLunch: WeekdaySignInStatus.signedIn
+}

@@ -27,6 +27,7 @@ export class WeekendNonniePage {
 
 	public getWeekendSignIns() {
 		this.http.get('/weekendSignInList').subscribe(data => {
+			this.deleteSeatingMapList();
 			this.seatingMap = [];
 			this.seatingMapList = [];
 			this.countFrD = 0;
@@ -79,5 +80,13 @@ export class WeekendNonniePage {
 
 	public refresh() {
 		this.getWeekendSignIns();
+	}
+
+	deleteSeatingMapList() {
+		if (this.seatingMapList && this.seatingMapList.length > 0) {
+			this.seatingMapList.forEach(seat => {
+				seat = [];
+			});
+		}
 	}
 }

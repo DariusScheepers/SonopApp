@@ -15,8 +15,8 @@
 <ion-content padding>
 	<table border=1>
 		<tr>
-			<th width="20%">Table</th>
 			<th width="50%">Student</th>
+			<th width="20%">Table</th>
 			<th *ngFor="let meal of meals"><b>{{ meal }}</b></th>
 		</tr>
 		<tr *ngFor="let student of seatingMapList; let i = index">

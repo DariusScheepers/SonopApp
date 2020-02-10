@@ -20,11 +20,26 @@
 
 
   <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('service-worker.js')
-        .then(() => console.log('service worker installed'))
-        .catch(err => console.error('Error', err));
+    // if ('serviceWorker' in navigator) {
+    //   navigator.serviceWorker.register('service-worker.js')
+    //     .then(() => console.log('service worker installed'))
+    //     .catch(err => console.error('Error', err));
+    // }
+    document.addEventListener('deviceready', onDeviceReady);
+    function onDeviceReady()
+    {
+            var success = function(status) {
+                alert('Message: ' + status);
+            }
+    
+            var error = function(status) {
+                alert('Error: ' + status);
+            }
+    
+            window.cache.clear( success, error );
+            window.cache.cleartemp(); // 
     }
+    onDeviceReady();
   </script>
 
   <link href="build/main.css" rel="stylesheet">

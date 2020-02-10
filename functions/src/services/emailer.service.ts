@@ -24,21 +24,19 @@ export class EmailerService {
     }
 
     async sendWeekendNotificationEmail() {
-        const studentSnapshots = await this.userService.getAllStudents();
+        const studentSnapshots = await this.userService.getStudentsBaseOnVerifiedOrNot(true);
         for (const studentSnapshot of studentSnapshots) {
             const student = studentSnapshot.data() as StudentModel;
-            if (student.verified) {
-                const studentWeekendStatus = await this.compileStudentWeekendStatus({id: studentSnapshot.id})
-                const message = emailWeekendReminderContent.message + studentWeekendStatus;
-                await this.sendMail(
-                    [{
-                        name: student.surname,
-                        emailAddress: student.email
-                    }],
-                    emailWeekendReminderContent.subjectLine,
-                    `Hi Mnr. ${student.name},\n\n${message}${emailWeekendReminderContent.signature}`
-                );
-            }
+            const studentWeekendStatus = await this.compileStudentWeekendStatus({id: studentSnapshot.id})
+            const message = emailWeekendReminderContent.message + studentWeekendStatus;
+            await this.sendMail(
+                [{
+                    name: student.surname,
+                    emailAddress: student.email
+                }],
+                emailWeekendReminderContent.subjectLine,
+                `Hi Mnr. ${student.name},\n\n${message}${emailWeekendReminderContent.signature}`
+            );
         }
     }
 

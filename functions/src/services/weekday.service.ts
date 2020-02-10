@@ -3,8 +3,9 @@ import { UserService } from "./user.service";
 import { FirebaseDataBase } from "../database/firebase.database.service";
 import { FirebaseIdentifier } from "../models/database-identifier.model";
 import { UserIdentificationModel } from "../models/user-identification.model";
-import { createInitialWeekdayEntry, WeekdayModel, WeekdayMealDetail, getWeekdayMeals, getWeekdayMealStatuses, WeekdayMealsModel } from "../models/weekday.model";
+import { createInitialWeekdayEntry, WeekdayModel, WeekdayMealDetail, getWeekdayMeals, getWeekdayMealStatuses, WeekdayMealsModel, WeekdaySignInStatus } from "../models/weekday.model";
 import { SuccessResponseModel } from "../models/success-response.model";
+import { StudentModel } from "../models/student.model";
 
 export class WeekdayService extends DataService {
     collection = 'weekday';
@@ -77,13 +78,24 @@ export class WeekdayService extends DataService {
     }
 
     async resetWeekdaySignOut() {
-        const findAllWeekdayEntries = new FirebaseIdentifier(this.collection);
-        const weekdays = await this.database.readFromDatabaseMultipleItems(findAllWeekdayEntries);
-        for (const weekdayEntry of weekdays) {
-            const documentID = weekdayEntry.id;
-            const weekday = weekdayEntry.data() as WeekdayModel;
-            const studentReference = weekday.student;
-            await this.resetStudentSignIn(documentID, studentReference);
+        const studentSnapshots = await this.userService.getStudentsBaseOnVerifiedOrNot(true);
+        for (const studentSnapshot of studentSnapshots) {
+            const student = studentSnapshot.data() as StudentModel;
+            const weekdaySignIns = student.weekdaySignIns;
+            weekdaySignIns.mondayLunch = weekdaySignIns.mondayLunch == WeekdaySignInStatus.signedOutTemporarily ? WeekdaySignInStatus.signedIn : weekdaySignIns.mondayLunch;
+            weekdaySignIns.mondayDinner = weekdaySignIns.mondayDinner == WeekdaySignInStatus.signedOutTemporarily ? WeekdaySignInStatus.signedIn : weekdaySignIns.mondayDinner;
+            weekdaySignIns.tuesdayLunch = weekdaySignIns.tuesdayLunch == WeekdaySignInStatus.signedOutTemporarily ? WeekdaySignInStatus.signedIn : weekdaySignIns.tuesdayLunch;
+            weekdaySignIns.tuesdayDinner = weekdaySignIns.tuesdayDinner == WeekdaySignInStatus.signedOutTemporarily ? WeekdaySignInStatus.signedIn : weekdaySignIns.tuesdayDinner;
+            weekdaySignIns.wednesdayLunch = weekdaySignIns.wednesdayLunch == WeekdaySignInStatus.signedOutTemporarily ? WeekdaySignInStatus.signedIn : weekdaySignIns.wednesdayLunch;
+            weekdaySignIns.wednesdayDinner = weekdaySignIns.wednesdayDinner == WeekdaySignInStatus.signedOutTemporarily ? WeekdaySignInStatus.signedIn : weekdaySignIns.wednesdayDinner;
+            weekdaySignIns.thursdayLunch = weekdaySignIns.thursdayLunch == WeekdaySignInStatus.signedOutTemporarily ? WeekdaySignInStatus.signedIn : weekdaySignIns.thursdayLunch;
+            weekdaySignIns.thursdayDinner = weekdaySignIns.thursdayDinner == WeekdaySignInStatus.signedOutTemporarily ? WeekdaySignInStatus.signedIn : weekdaySignIns.thursdayDinner;
+            weekdaySignIns.fridayLunch = weekdaySignIns.fridayLunch == WeekdaySignInStatus.signedOutTemporarily ? WeekdaySignInStatus.signedIn : weekdaySignIns.fridayLunch;
+            const update = Object.assign(
+                {student: studentSnapshot.id},
+                weekdaySignIns
+            );
+            await this.userService.updateStudentWeekday(update);
         }
     }
 }

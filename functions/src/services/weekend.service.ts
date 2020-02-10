@@ -1,7 +1,7 @@
 import { UserService } from "./user.service";
 import { DataService } from "./data.service";
 import { FirebaseDataBase } from "../database/firebase.database.service";
-import { WeekendModel, WeekendMealDetail, getWeekendMeals, createInitialWeekendEntry, WeekendMealsModel } from "../models/weekend.model";
+import { WeekendMealDetail, getWeekendMeals, createInitialWeekendEntry, WeekendMealsModel, defaultWeekendSignInValues } from "../models/weekend.model";
 import { FirebaseIdentifier } from "../models/database-identifier.model";
 import { UserIdentificationModel } from "../models/user-identification.model";
 
@@ -65,13 +65,13 @@ export class WeekendService extends DataService {
     }
 
     async resetWeekendSignIn() {
-        const findAllWeekendEntries = new FirebaseIdentifier(this.collection);
-        const weekends = await this.database.readFromDatabaseMultipleItems(findAllWeekendEntries);
-        for (const weekendEntry of weekends) {
-            const documentID = weekendEntry.id;
-            const weekend = weekendEntry.data() as WeekendModel;
-            const studentReference = weekend.student;
-            await this.resetStudentSignIn(documentID, studentReference);
+        const studentSnapshots = await this.userService.getStudentsBaseOnVerifiedOrNot(true);
+        for (const studentSnapshot of studentSnapshots) {
+            const update = Object.assign(
+                {student: studentSnapshot.id},
+                defaultWeekendSignInValues
+            )
+            await this.userService.updateStudentWeekend(update);
         }
     }
 }

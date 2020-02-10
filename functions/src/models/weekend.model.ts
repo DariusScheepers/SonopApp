@@ -115,3 +115,12 @@ export interface WeekendMealsCount {
     sundayLunchCount: number,
     sundayDinnerCount: number
 }
+
+export const defaultWeekendSignInValues: WeekendMealsModel = {
+    fridayDinner: false,
+    saturdayBrunch: false,
+    saturdayDinner: false,
+    sundayBreakfast: false,
+    sundayLunch: false,
+    sundayDinner: false,
+}

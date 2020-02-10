@@ -41,4 +41,8 @@ export class SchedulerService {
     private async clearWeekdayTemporarySignOuts() {
         await this.weekdayService.resetWeekdaySignOut();
     }
+
+    async sendNonnieWeekendSignInReport() {
+        await this.emailerService.sendNonnieWeekendSignInReport();
+    }
 }
