@@ -13,30 +13,35 @@
 </ion-header>
 
 <ion-content padding>
-	<table border=1>
-		<tr>
-			<th width="50%">Student</th>
-			<th width="20%">Table</th>
-			<th *ngFor="let meal of meals"><b>{{ meal }}</b></th>
-		</tr>
-		<tr *ngFor="let student of seatingMapList; let i = index">
-			<td *ngFor="let field of student; let j = index" [style.background-color]="field == false ? '#f53d3d' : (field == true ? '#119b05' : '#FFFFFF')">
-				<div *ngIf="field != false && field != true">					
-					{{ field }}
-				</div>
-				<div *ngIf="field == false && field != true">
-					Signed Out
-				</div>
-				<div *ngIf="field != false && field == true">
-					Signed In
-				</div>		
-			</td>
-		</tr>		
-	</table>
-	<ion-label>Number of Students Signed In on Friday Dinner: {{ countFrD }}</ion-label>
-	<ion-label>Number of Students Signed In on Saturday Brunch: {{ countSaB }}</ion-label>
-	<ion-label>Number of Students Signed In on Saturday Dinner: {{ countSaD }}</ion-label>
-	<ion-label>Number of Students Signed In on Sunday Breakfast: {{ countSuB }}</ion-label>
-	<ion-label>Number of Students Signed In on Sunday Lunch: {{ countSuL }}</ion-label>
-	<ion-label>Number of Students Signed In on Sunday Dinner: {{ countSuD }}</ion-label>
+	<div *ngIf="showLoading">
+		<h1>Loading... Please give us a minute...</h1>
+	</div>
+	<div *ngIf="!showLoading">
+		<table border=1>
+			<tr>
+				<th width="50%">Student</th>
+				<th width="20%">Table</th>
+				<th *ngFor="let meal of meals"><b>{{ meal }}</b></th>
+			</tr>
+			<tr *ngFor="let student of seatingMapList; let i = index">
+				<td *ngFor="let field of student; let j = index" [style.background-color]="field == false ? '#f53d3d' : (field == true ? '#119b05' : '#FFFFFF')">
+					<div *ngIf="field != false && field != true">					
+						{{ field }}
+					</div>
+					<div *ngIf="field == false && field != true">
+						Signed Out
+					</div>
+					<div *ngIf="field != false && field == true">
+						Signed In
+					</div>		
+				</td>
+			</tr>		
+		</table>
+		<ion-label>Number of Students Signed In on Friday Dinner: {{ countFrD }}</ion-label>
+		<ion-label>Number of Students Signed In on Saturday Brunch: {{ countSaB }}</ion-label>
+		<ion-label>Number of Students Signed In on Saturday Dinner: {{ countSaD }}</ion-label>
+		<ion-label>Number of Students Signed In on Sunday Breakfast: {{ countSuB }}</ion-label>
+		<ion-label>Number of Students Signed In on Sunday Lunch: {{ countSuL }}</ion-label>
+		<ion-label>Number of Students Signed In on Sunday Dinner: {{ countSuD }}</ion-label>
+	</div>
 </ion-content>

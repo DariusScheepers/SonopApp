@@ -19,11 +19,15 @@ export class SignOutNonniePage {
 	lunchCount: any;
 	dinnerCount: any;
 	WeekdaySignInStatus = WeekdaySignInStatus;
+
+	showLoading: boolean = true;
+
 	constructor(public navCtrl: NavController, public http: Http, public toastCtrl: ToastController) {
 		this.getCurrentSignOut();
 	}
 
 	public getCurrentSignOut() {
+		this.showLoading = true;
 		this.http.get('/currentSignInList').subscribe(data => {
 			this.deleteSeatingMapList();
 			this.seatingMapList = [];
@@ -41,7 +45,9 @@ export class SignOutNonniePage {
 				if (element[3] == 2)
 					this.dinnerCount++;
 			}
+			this.showLoading = false;
 		}, (error) => {
+			this.showLoading = false;
 			handleError(this.navCtrl, error, this.toastCtrl);
 		})
 	}

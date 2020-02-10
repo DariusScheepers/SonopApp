@@ -13,30 +13,35 @@
 </ion-header>
 
 <ion-content padding>
-	<table border=1>
-		<tr>
-			<th width="20%">Table</th>
-			<th width="50%">Student</th>
-			<th [style.background-color]="lunchMealStatus == WeekdaySignInStatus.signedOutPermanent ? '#f53d3d' : '#119b05'"><b>{{ lunchMeal }}</b></th>
-			<th [style.background-color]="dinnerMealStatus == WeekdaySignInStatus.signedOutPermanent ? '#f53d3d' : '#119b05'"><b>{{ dinnerMeal }}</b></th>
-		</tr>
-		<tr *ngFor="let student of seatingMapList;">
-			<td *ngFor="let field of student;" [style.background-color]="field == WeekdaySignInStatus.signedOutPermanent ? '#FFFF00' : (field == WeekdaySignInStatus.signedOutTemporarily ? '#f53d3d' : (field == WeekdaySignInStatus.signedIn ? '#119b05' : '#FFFFFF'))">
-				<div *ngIf="field != WeekdaySignInStatus.signedOutPermanent && field != WeekdaySignInStatus.signedOutTemporarily && field != WeekdaySignInStatus.signedIn">
-					{{ field }}
-				</div>	
-				<div *ngIf="field == WeekdaySignInStatus.signedOutPermanent && field != WeekdaySignInStatus.signedOutTemporarily && field != WeekdaySignInStatus.signedIn">
-					Permanent Sign Out
-				</div>	
-				<div *ngIf="field != WeekdaySignInStatus.signedOutPermanent && field == WeekdaySignInStatus.signedOutTemporarily && field != WeekdaySignInStatus.signedIn">
-					Signed Out
-				</div>
-				<div *ngIf="field != WeekdaySignInStatus.signedOutPermanent && field != WeekdaySignInStatus.signedOutTemporarily && field == WeekdaySignInStatus.signedIn">
-					Signed In
-				</div>					
-			</td>
-		</tr>
-	</table>
-	<ion-label>Number of Students Signed In for Lunch: {{ lunchCount }}</ion-label>
-	<ion-label>Number of Students Signed In for Dinner: {{ dinnerCount }}</ion-label>
+	<div *ngIf="showLoading">
+		<h1>Loading... Please give us a minute...</h1>
+	</div>
+	<div *ngIf="!showLoading">
+		<table border=1>
+			<tr>
+				<th width="20%">Table</th>
+				<th width="50%">Student</th>
+				<th [style.background-color]="lunchMealStatus == WeekdaySignInStatus.signedOutPermanent ? '#f53d3d' : '#119b05'"><b>{{ lunchMeal }}</b></th>
+				<th [style.background-color]="dinnerMealStatus == WeekdaySignInStatus.signedOutPermanent ? '#f53d3d' : '#119b05'"><b>{{ dinnerMeal }}</b></th>
+			</tr>
+			<tr *ngFor="let student of seatingMapList;">
+				<td *ngFor="let field of student;" [style.background-color]="field == WeekdaySignInStatus.signedOutPermanent ? '#FFFF00' : (field == WeekdaySignInStatus.signedOutTemporarily ? '#f53d3d' : (field == WeekdaySignInStatus.signedIn ? '#119b05' : '#FFFFFF'))">
+					<div *ngIf="field != WeekdaySignInStatus.signedOutPermanent && field != WeekdaySignInStatus.signedOutTemporarily && field != WeekdaySignInStatus.signedIn">
+						{{ field }}
+					</div>	
+					<div *ngIf="field == WeekdaySignInStatus.signedOutPermanent && field != WeekdaySignInStatus.signedOutTemporarily && field != WeekdaySignInStatus.signedIn">
+						Permanent Sign Out
+					</div>	
+					<div *ngIf="field != WeekdaySignInStatus.signedOutPermanent && field == WeekdaySignInStatus.signedOutTemporarily && field != WeekdaySignInStatus.signedIn">
+						Signed Out
+					</div>
+					<div *ngIf="field != WeekdaySignInStatus.signedOutPermanent && field != WeekdaySignInStatus.signedOutTemporarily && field == WeekdaySignInStatus.signedIn">
+						Signed In
+					</div>					
+				</td>
+			</tr>
+		</table>
+		<ion-label>Number of Students Signed In for Lunch: {{ lunchCount }}</ion-label>
+		<ion-label>Number of Students Signed In for Dinner: {{ dinnerCount }}</ion-label>
+	</div>
 </ion-content>

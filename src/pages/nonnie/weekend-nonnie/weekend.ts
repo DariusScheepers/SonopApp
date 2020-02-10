@@ -21,11 +21,14 @@ export class WeekendNonniePage {
 	countSuL: any;
 	countSuD: any;
 
+	showLoading: boolean = true;
+
 	constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public toastCtrl: ToastController) {
 		this.getWeekendSignIns();
 	}
 
 	public getWeekendSignIns() {
+		this.showLoading = true;
 		this.http.get('/weekendSignInList').subscribe(data => {
 			this.deleteSeatingMapList();
 			this.seatingMap = [];
@@ -55,8 +58,10 @@ export class WeekendNonniePage {
 						this.countSuD++;
 				});
 			});
+			this.showLoading = false;
 		}, (error) => {
 			handleError(this.navCtrl, error, this.toastCtrl);
+			this.showLoading = false;
 		});
 	}
 

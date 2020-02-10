@@ -5,4 +5,4 @@ export let CONFIG = {
     url: environment.development ? firebaseServe : firebaseSite
 }
 
-export const appVersion = 'a2020.02.14';
+export const appVersion = 'a2020.03.00';
