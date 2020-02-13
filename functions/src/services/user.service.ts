@@ -1,4 +1,4 @@
-import { LoginModel } from "../models/login.model";
+import { LoginModel, AppVersionModel } from "../models/login.model";
 import { DataService } from "./data.service";
 import { FirebaseDataBase } from "../database/firebase.database.service";
 import { FirebaseIdentifier, FirebaseIdentifierAttributeValue, QueryOperators } from "../models/database-identifier.model";
@@ -10,6 +10,7 @@ import { UserIdentificationModel } from "../models/user-identification.model";
 import { SuccessResponseModel } from "../models/success-response.model";
 import { WeekendModel, getWeekendMealStatuses } from "../models/weekend.model";
 import { WeekdayModel, getWeekdayMealStatuses } from "../models/weekday.model";
+import { appVersion } from "../constants/environment.constant";
 
 export class UserService extends DataService {
     collection = 'users';
@@ -204,5 +205,11 @@ export class UserService extends DataService {
         };
         const studentsSnapshots = await this.database.readFromDatabaseWithProperty(searchForStudent);
         return studentsSnapshots;
+    }
+
+    verifyAppVersion(appVersionFromFrontEnd: AppVersionModel): SuccessResponseModel {
+        return {
+            success: appVersionFromFrontEnd.appVersion == appVersion
+        };
     }
 }

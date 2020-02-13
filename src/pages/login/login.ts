@@ -5,12 +5,14 @@ import { Http } from '../../http-api';
 import { RegisterPage } from '../user/register/register';
 import { GlobalProvider } from "../../providers/global/global";
 import { presentToast, handleError } from '../../app-functions';
-import { appVersion } from '../../app-config';
+import { appVersionToDisplay } from '../../app-config';
 import { LoginNonniePage } from '../nonnie/login-nonnie/login';
 import { LoginModel } from '../../../functions/src/models/login.model';
 import { StudentLoginModel } from '../../../functions/src/models/student.model';
+import { AppVersionModel } from '../../../functions/src/models/login.model';
 import { AnnouncementsPage } from '../user/announcements/announcements';
 import { functionsVersion } from '../../../functions/src/constants/environment.constant';
+import { SuccessResponseModel } from '../../../functions/src/models/success-response.model';
 
 @Component({
   selector: 'page-login',
@@ -18,8 +20,9 @@ import { functionsVersion } from '../../../functions/src/constants/environment.c
 })
 export class LoginPage {
 
-  appVersion = appVersion;
-  backEndVersion = functionsVersion
+  appVersion = appVersionToDisplay;
+  backEndVersion = functionsVersion;
+  appVersionIsCorrect = true;
 
   user: FormGroup | LoginModel;
   splashScreenReady: any = false;
@@ -30,8 +33,27 @@ export class LoginPage {
     this.user = new FormGroup({
       studentNumber: new FormControl()
     });
+
+    this.verifyAppVersionUpToDate();
   }
 
+  public verifyAppVersionUpToDate() {
+    const appVersionFromFrontEnd: AppVersionModel = {
+      appVersion: this.appVersion
+    }
+
+    this.http.post('/appVersion', appVersionFromFrontEnd).subscribe(data => {
+      const response: SuccessResponseModel = JSON.parse(data.text());
+      if (response.success) {
+        presentToast(this.toastCtrl, 'App version is up to date!');
+      } else {
+        alert(`Please refresh your browser for an updated version!\nHint: clear cache (search history).`);
+        this.appVersionIsCorrect = false;
+      }
+    }, (error) => {
+      handleError(this.navCtrl, error, this.toastCtrl);
+    });
+  }
 
   public splashScreenLoaded() {
     this.splashScreenReady = true;

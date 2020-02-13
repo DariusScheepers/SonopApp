@@ -19,15 +19,15 @@
                         <ion-input formControlName="studentNumber" type="number" maxlength="8" placeholder="Student Number"></ion-input>
                     </ion-item>
                     <ion-item>
-                        <button ion-button outline round block type="submit" color="tertiary" class="button">Login</button>
+                        <button ion-button outline round block type="submit" color="tertiary" class="button" [disabled]="!appVersionIsCorrect">Login</button>
                     </ion-item>
                 </ion-list>
             </form>
             <ion-item>
-                <button ion-button block (click)="openRegister()" class="button">Need an Account?</button>
+                <button ion-button block (click)="openRegister()" class="button" [disabled]="!appVersionIsCorrect">Need an Account?</button>
             </ion-item>
             <ion-item>
-                <button ion-button block style="background-color: salmon;" (click)="goToNonnieLogin()" class="button">Go To Nonnie Login</button>
+                <button ion-button block style="background-color: salmon;" (click)="goToNonnieLogin()" class="button" [disabled]="!appVersionIsCorrect">Go To Nonnie Login</button>
             </ion-item>
         </ion-list>
         <div style="display: flex; justify-content: center;">

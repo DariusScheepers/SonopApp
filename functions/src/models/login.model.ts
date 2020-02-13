@@ -4,3 +4,7 @@ export class LoginModel {
     }
     public studentNumber: string;
 }
+
+export interface AppVersionModel {
+    appVersion: string;
+}

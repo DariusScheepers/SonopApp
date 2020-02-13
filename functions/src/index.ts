@@ -115,6 +115,11 @@ app.get('/testRequest', async (req, res) => {
 
 //#region User front end requests
 
+app.post('/appVersion', (req, res) => {
+    const received = userService.verifyAppVersion(req.body);
+    res.send(received);
+});
+
 app.post('/login', async (req, res) => {
     const received = await userService.login(req.body);
     res.send(received);
@@ -246,9 +251,7 @@ app.post('/post-new-students', async (req, res) => {
     }
 });
 
-app.post('/reset-database-to-default', async (req, res) => {
-    console.log('Info: ', req.body);
-    
+app.post('/reset-database-to-default', async (req, res) => {    
     if (nonnieService.nonnieLogin(req.body).success) {
         const response = await schedulerService.setDatabaseToDefault();
         res.send("Done!" + response);
