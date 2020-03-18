@@ -25,7 +25,7 @@ export class EmailerService {
     }
 
     async sendWeekendNotificationEmail() {
-        if(sendEmail){
+        if (sendEmail) {
             const studentSnapshots = await this.userService.getStudentsBaseOnVerifiedOrNot(true);
             for (const studentSnapshot of studentSnapshots) {
                 const student = studentSnapshot.data() as StudentModel;
@@ -40,7 +40,9 @@ export class EmailerService {
                     `Hi Mnr. ${student.name},\n\n${message}${emailWeekendReminderContent.signature}`
                 );
             }
-        }else console.log("Email not sent");
+        } else {
+            console.log("Email not sent");   
+        }
     }
 
     private async sendMail(recipients: recipient[], subjectLine: string, message: string, asHTML: boolean = false) {
@@ -77,7 +79,7 @@ export class EmailerService {
     }
 
     async sendNonnieWeekendSignInReport() {
-        if(sendEmail){
+        if (sendEmail) {
             const seatingMap = (await this.nonnieService.getStudentsPerTableForWeekend()).seatingMap;
 
             let table: any[][] = [];
@@ -144,5 +146,6 @@ export class EmailerService {
 
             return html;
         }
+        return null;
     }
 }
