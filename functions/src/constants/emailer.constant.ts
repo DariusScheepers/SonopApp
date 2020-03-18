@@ -148,3 +148,6 @@ export const htmlTemplateVariables = {
     weekendDate: "%weekendDate%",
     data: "%data%"
 }
+
+
+export const sendEmail = false;
