@@ -149,4 +149,4 @@ export const htmlTemplateVariables = {
     data: "%data%"
 }
 
-export const sendEmail = false;
+export const sendEmail = true;
