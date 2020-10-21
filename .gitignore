@@ -19,7 +19,6 @@ npm-debug.log*
 .tmp/
 .versions/
 .firebase/
-.sourcemaps/
 coverage/
 dist/
 www/
