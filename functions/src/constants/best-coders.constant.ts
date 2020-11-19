@@ -5,9 +5,9 @@ export const bestCodersInformation: BestCodersInformation[] = [
         emailAddress: "dariusscheepers@gmail.com"
     },
     {
-        name: "Ivan Pretorius",
-        studentNumber: '19021306',
-        emailAddress: "ivanpretorius0@gmail.com"
+        name: "Bedeker Snyman",
+        studentNumber: '17106436',
+        emailAddress: "bedeker.hk@gmail.com"
     }
 ]
 
